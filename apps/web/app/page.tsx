@@ -1,5 +1,6 @@
 import Navbar from "../components/layout/Navbar";
 import Overview from "../components/layout/Overview";
+import GroupIcon from "../components/layout/GroupIcon";
 
 export default function Home() {
   return (
@@ -12,6 +13,9 @@ export default function Home() {
             </div>
             <div className="w-[61.75rem] flex flex-row items-start justify-start py-[0rem] pr-[0rem] pl-[0.94rem] box-border max-w-full">
               <Overview />
+            </div>
+            <div className="self-stretch h-[36.44rem] relative shrink-0 flex items-center justify-center">
+              <GroupIcon />
             </div>
           </div>
         </section>
