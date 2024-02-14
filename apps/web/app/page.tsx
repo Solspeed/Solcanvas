@@ -1,6 +1,7 @@
 import Navbar from "../components/layout/Navbar";
 import Overview from "../components/layout/Overview";
 import GroupIcon from "../components/layout/GroupIcon";
+import Features from "../components/layout/Features";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <Features />
       </div>
     </main>
   );
