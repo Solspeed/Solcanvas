@@ -69,7 +69,6 @@ export default function Features() {
           </div>
         </button>
       </div>
-
       <div className="w-[48rem] flex flex-row flex-wrap items-center justify-center gap-[1.69rem] max-w-full">
         <div className="flex  justify-center items-center gap-4">
           <Image src={CandyPay} alt="candy pay" width={80} />
@@ -86,4 +85,4 @@ export default function Features() {
       </div>
     </div>
   );
-}
+};
