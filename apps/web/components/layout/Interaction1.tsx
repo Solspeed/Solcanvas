@@ -18,7 +18,7 @@ export default function Interaction1() {
                     Drip
                 </div>
             </div>
-            <div className="w-[9.81rem] flex flex-row items-start justify-start gap-[2.25rem] text-[0.94rem] text-lime">
+            <div className="w-[9.81rem] flex flex-row items-start justify-start gap-[2.25rem] text-[0.94rem] text-[#42ff00]">
                 <Image
                     className="h-[3.31rem] w-[3.31rem] relative rounded-sm object-cover z-[2]"
                     loading="eager"

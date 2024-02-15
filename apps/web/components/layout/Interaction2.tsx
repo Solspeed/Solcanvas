@@ -19,16 +19,16 @@ export default function Interaction2() {
             </div>
             <div className="flex flex-row items-start justify-start gap-[1.63rem] text-[2.19rem] text-[#ff0000]">
                 <div className="flex flex-row items-start justify-start relative">
-                    <Image
-                        className="h-[1.5rem] w-[1.5rem] absolute my-0 mx-[!important] top-[1.31rem] right-[-1.16rem] z-[1]"
-                        alt=""
-                        src={arrowTop}
-                    />
                     <div className="relative tracking-[0.02em] leading-[4.38rem] capitalize font-medium whitespace-nowrap z-[2]">
                         $50
                     </div>
                 </div>
-                <div className="flex flex-col items-start justify-start pt-[0.63rem] px-[0rem] pb-[0rem] text-[0.94rem]">
+                <div className="flex flex-row items-start justify-start pt-[0.63rem] px-[0rem] pb-[0rem] text-[0.94rem]">
+                    <Image
+                        className="mt-4 pl-1"
+                        alt=""
+                        src={arrowTop}
+                    />
                     <div className="relative tracking-[0.02em] leading-[4.38rem] capitalize font-medium z-[1]">
                         sent
                     </div>
