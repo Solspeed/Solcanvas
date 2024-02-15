@@ -6,7 +6,7 @@ import MoonPay from "../../public/images/MoonPay.png";
 import CandyPay from "../../public/images/CandyPay.png";
 
 export default function Features() {
-  const [activeButton, setActiveButton] = useState<string | null>(null);
+  const [activeButton, setActiveButton] = useState<string | null>('Payment');
 
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
@@ -72,13 +72,13 @@ export default function Features() {
 
       <div className="w-[48rem] flex flex-row flex-wrap items-center justify-center gap-[1.69rem] max-w-full">
         <div className="flex  justify-center items-center gap-4">
-          <Image src={CandyPay} alt="candy pay" />
+          <Image src={CandyPay} alt="candy pay" width={80} />
           <div className="relative tracking-[0.02em] leading-[1.88rem] font-semibold mq450:text-[1.44rem] mq450:leading-[1.13rem] mq1000:text-[1.88rem] mq1000:leading-[1.5rem]">
             Candy Pay
           </div>
         </div>
         <div className="flex  justify-center items-center gap-4">
-          <Image src={MoonPay} alt="moon pay" />
+          <Image src={MoonPay} alt="moon pay" width={80} />
           <div className="relative tracking-[0.02em] leading-[1.88rem] font-semibold mq450:text-[1.44rem] mq450:leading-[1.13rem] mq1000:text-[1.88rem] mq1000:leading-[1.5rem]">
             Moon Pay
           </div>
