@@ -5,7 +5,7 @@ import twitter from "../../public/images/twitter.svg";
 
 export default function Footer() {
     return (
-        <section className="self-stretch bg-black flex flex-row items-center justify-between py-[2.13rem] pr-[14.38rem] pl-[14.19rem] box-border gap-[rem] max-w-full text-center text-[1.13rem] text-white font-inter mq450:pl-[0.4rem] mq450:pr-[0.4rem] mq450:box-border mq1000:flex-wrap mq1000:pl-[7.06rem] mq1000:pr-[7.19rem] mq1000:box-border">
+        <section className="self-stretch bg-black flex flex-row items-center justify-between py-[2.13rem] pr-[14.38rem] pl-[14.19rem] box-border gap-[rem] max-w-full text-center text-[1.13rem] text-white font-inter mq450:pl-[0.4rem] mq450:pr-[0.4rem] mq450:box-border mq450:mt-[-2.5rem]  mq1000:flex-wrap mq1000:pl-[7.06rem] mq1000:pr-[7.19rem] mq1000:box-border">
             <div className="h-[7.5rem] w-[108rem] relative bg-black hidden max-w-full" />
             <div className="w-[18.81rem] flex flex-row items-start justify-start gap-[1.25rem]">
                 <div className="flex-1 flex flex-row items-center justify-start gap-[0.44rem]">
