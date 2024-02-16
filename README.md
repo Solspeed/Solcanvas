@@ -1,3 +1,11 @@
+<h1 align="center">
+<img src="./apps/web/public/images/Icon.png"  />
+SolCanvas 
+    <a href="">
+        <img src="https://img.shields.io/badge/Status-Under%20Development-blue" alt="Status" /> 
+        </a>
+</h1>
+
 # Turborepo starter
 
 This is an official starter Turborepo.
