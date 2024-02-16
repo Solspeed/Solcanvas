@@ -38,7 +38,7 @@ export default function Navbar() {
                 {/* Show menu icon on smaller screens */}
                 <div className="sm:hidden">
                     <button onClick={toggleMenu} className="text-white">
-                        {showMenu ? <FaTimes size={32} /> : <FaBars size={32} />}
+                        {showMenu ? <FaTimes size={28} /> : <FaBars size={28} />}
                     </button>
                 </div>
                 {/* Sliding menu for smaller screens with enhanced animation */}
