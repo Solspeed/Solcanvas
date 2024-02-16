@@ -24,7 +24,7 @@ export default function Navbar() {
             opacity: animateHeader ? 1 : 0,
             transform: animateHeader ? "translateY(0%) scale(1)" : "translateY(-100%) scale(0.5)",
         },
-        config: config.default,
+        config: config.wobbly,
     });
 
     const fadeInAnimation = useSpring({
@@ -59,7 +59,7 @@ export default function Navbar() {
 
                 {showMenu && (
                     <animated.div
-                        className="sm:hidden fixed inset-0 bg-black bg-opacity-75 z-50 overflow-hidden"
+                        className="sm:hidden fixed inset-0 bg-black bg-opacity-50 rounded-full z-50  "
                         style={slideAnimation}
                     >
                         <animated.div style={fadeInAnimation}>
