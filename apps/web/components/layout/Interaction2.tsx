@@ -18,9 +18,9 @@ export default function Interaction1() {
             </div>
             <div className="pr-4 flex flex-row  items-baseline justify-center sm:gap-[2.25rem] gap-[1rem] text-[0.94rem] text-[#ff0000]">
                 <div
-                    className="sm:text-[2rem] text-[1.5rem]  font-semibold relative rounded-sm object-cover z-[2]"
+                    className="sm:text-[2rem] cursor-grab text-[1.5rem]  font-semibold relative rounded-sm object-cover z-[2]"
                 > 50$</div>
-                <div className="flex flex-row items-baseline justify-center">
+                <div className="flex flex-row items-baseline justify-center cursor-grab">
                     <Image
                         className="h-[1.5rem] w-[1.5rem]  object-contain z-[2]"
                         loading="eager"

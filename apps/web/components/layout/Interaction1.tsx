@@ -19,19 +19,19 @@ export default function Interaction1() {
             </div>
             <div className="pr-4 flex flex-row  items-center justify-center sm:gap-[2.25rem] gap-[1rem] text-[0.94rem] text-[#42ff00]">
                 <Image
-                    className="sm:h-[3.31rem] h-8 sm:w-[3.31rem] w-8  relative rounded-sm object-cover z-[2]"
+                    className="sm:h-[3.31rem] cursor-grab h-8 sm:w-[3.31rem] w-8  relative rounded-sm object-cover z-[2]"
                     loading="eager"
                     alt=""
                     src={icon1}
                 />
-                <div className="flex flex-row items-center justify-center">
+                <div className="flex flex-row items-center justify-center cursor-grab">
                     <Image
                         className="h-[1.5rem] w-[1.5rem]  object-contain z-[2]"
                         loading="eager"
                         alt=""
                         src={arrowDown}
                     />
-                    <div className="relative sm:text-[1rem] text-[0.8rem] tracking-[0.02em] leading-[4.38rem] capitalize font-medium z-[3]">
+                    <div className="relative  sm:text-[1rem] text-[0.8rem] tracking-[0.02em] leading-[4.38rem] capitalize font-medium z-[3]">
                         Received
                     </div>
                 </div>
