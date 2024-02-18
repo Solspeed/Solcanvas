@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     url: 'https://solcanvas.vercel.app/',
     images: {
-      url: '../public/og.png',
+      url: 'og.png',
       alt: 'About Acme',
       width: 1200,
       height: 630,
