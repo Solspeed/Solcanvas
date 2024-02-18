@@ -5,7 +5,7 @@ import twitter from "../../public/images/twitter.svg";
 
 export default function Footer() {
     return (
-        <section className="text-white bg-black container flex  items-center justify-between sm:px-32 px-4 sm:py-9 py-4 -mt-10 sm:mt-0">
+        <section className="text-white bg-black container flex  items-center justify-between sm:px-32 px-4 sm:py-9 py-4 mq450:-mt-16">
             <div className="h-[7.5rem] w-[108rem] relative bg-black hidden max-w-full" />
             <div className="w-[18.81rem] flex flex-row items-start justify-start gap-[1.25rem]">
                 <a href="https://superteam.fun/" target="_blank" rel="noopener noreferrer" className="flex-1 flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300">
