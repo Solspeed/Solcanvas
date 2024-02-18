@@ -52,14 +52,14 @@ export default function Navbar() {
                 {/* Show menu icon on smaller screens */}
                 <div className="sm:hidden">
                     <button onClick={toggleMenu} className="text-white">
-                        {showMenu ? <FaTimes size={28} /> : <FaBars size={28} />}
+                        {showMenu ? <FaTimes size={24} /> : <FaBars size={24} />}
                     </button>
                 </div>
                 {/* Sliding menu for smaller screens with enhanced animation */}
 
                 {showMenu && (
                     <animated.div
-                        className="sm:hidden fixed inset-0 bg-black bg-opacity-50 rounded-full z-50  "
+                        className="sm:hidden fixed inset-0 bg-black bg-opacity-80 rounded-full z-50  "
                         style={slideAnimation}
                     >
                         <animated.div style={fadeInAnimation}>
@@ -91,11 +91,11 @@ export default function Navbar() {
                 <div className="hidden sm:flex items-end justify-center lg:justify-between gap-[1.94rem]">
                     <a
                         href="#"
-                        className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]"
+                        className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                     >
                         Explore
                     </a>
-                    <button className="rounded-full bg-black flex items-center justify-center pt-[0.06rem] pb-[0.13rem] pr-[1.5rem] pl-[1.81rem] whitespace-nowrap z-[1] border-[1px] border-solid border-white">
+                    <button className="rounded-full bg-black flex items-center justify-center pt-[0.06rem] pb-[0.13rem] pr-[1.5rem] pl-[1.81rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md">
                         <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
                             Add project
                         </div>
