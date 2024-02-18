@@ -1,13 +1,13 @@
 export default function Overview() {
     return (
         <div className="flex-1 flex flex-col items-center text-white justify-start gap-[4.38rem] max-w-full text-center text-[5.4rem] font-inter mq725:gap-[4.38rem] mq1000:gap-[4.38rem]">
-            <h1 className="m-0 self-stretch  relative text-inherit  sm:tracking-[0.0em] leading-[1.88rem] capitalize font-bold font-inherit inline-block mq450:text-[1.8rem] mq450:leading-[0.75rem] mq1000:text-[3.4rem] mq1000:leading-[3.9rem]">
+            <h1 className="m-0 self-stretch  relative text-inherit  sm:tracking-[0.0em] leading-[1.88rem] capitalize font-bold font-inherit inline-block mq450:text-[2.3rem] mq450:shadow-xl mq450:leading-[0.75rem] mq1000:text-[3.4rem] mq1000:leading-[3.9rem]">
                 <p className="[margin-block-start:0] [margin-block-end:100px] mq1000:[margin-block-end:60px]">
                     Explore projects
                 </p>
                 <p className="m-0">around ecosystem</p>
             </h1>
-            <b className="relative text-[1.56rem] tracking-[0.03em] leading-[1.88rem] capitalize inline-block text-gray-400 max-w-full mq1000:text-[1.2rem] md:leading-[1.5rem]">
+            <b className="relative mq450:text-[1.1rem] text-[1.56rem] tracking-[0.03em] leading-[1.88rem] capitalize inline-block text-gray-400 max-w-full mq1000:text-[1.2rem] md:leading-[1.5rem]">
                 There are almost 400+ projects all around the Solana ecosystem.
             </b>
 
