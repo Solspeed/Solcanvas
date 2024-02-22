@@ -15,7 +15,7 @@ export default function Features() {
   const getButtonShadow = (buttonName: string) => {
     return activeButton === buttonName
       ? "shadow-[4px_4px_70px_4px_rgba(134,_122,_210,_0.8)]"
-      : "shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)]";
+      : "shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] mq450:shadow-[2px_4px_50px_rgba(134,_122,_210,_0.4)]";
   };
 
   return (
@@ -27,7 +27,7 @@ export default function Features() {
             "DeFi"
           )} flex flex-row items-center justify-center box-border min-w-[9.31rem] hover:bg-[#333] mq1000:flex-1`}
         >
-          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] hidden" />
+          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] mq450:shadow-[2px_4px_50px_rgba(134,_122,_210,_0.4)] hidden" />
           <div className="relative text-[1.88rem] tracking-[0.02em] leading-[1.88rem] font-medium font-inter text-white text-left z-[1] mq450:text-[1.13rem] mq450:leading-[1.13rem] mq1000:text-[1.4rem] mq1000:leading-[1.5rem]">
             DeFi
           </div>
@@ -39,7 +39,7 @@ export default function Features() {
             "Payment"
           )} flex flex-row items-center justify-center hover:bg-[#333]`}
         >
-          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] hidden" />
+          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] mq450:shadow-[2px_4px_50px_rgba(134,_122,_210,_0.4)] hidden" />
           <div className="relative text-[1.88rem] tracking-[0.02em] leading-[1.88rem] font-medium font-inter text-white text-left z-[1] mq450:text-[1.13rem] mq450:leading-[1.13rem] mq1000:text-[1.4rem] mq1000:leading-[1.5rem]">
             Payment
           </div>
@@ -51,7 +51,7 @@ export default function Features() {
             "DevTools"
           )} flex flex-row items-center justify-center box-border min-w-[9.31rem] whitespace-nowrap hover:bg-[#333] mq1000:flex-1`}
         >
-          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] hidden" />
+          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] mq450:shadow-[2px_4px_50px_rgba(134,_122,_210,_0.4)] hidden" />
           <div className="relative text-[1.88rem] tracking-[0.02em] leading-[1.88rem] font-medium font-inter text-white text-left z-[1] mq450:text-[1.13rem] mq450:leading-[1.13rem] mq1000:text-[1.4rem] mq1000:leading-[1.5rem]">
             Dev Tools
           </div>
@@ -63,7 +63,7 @@ export default function Features() {
             "Wallet"
           )} flex flex-row items-center justify-center hover:bg-[#333]`}
         >
-          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] hidden" />
+          <div className="h-[4.38rem] w-[14.38rem] relative rounded-full bg-black shadow-[2px_4px_50px_rgba(134,_122,_210,_0.5)] mq450:shadow-[2px_4px_50px_rgba(134,_122,_210,_0.4)] hidden" />
           <div className="relative text-[1.88rem] tracking-[0.02em] leading-[1.88rem] font-medium font-inter text-white text-left z-[1] mq450:text-[1.13rem] mq450:leading-[1.13rem] mq1000:text-[1.4rem] mq1000:leading-[1.5rem]">
             Wallet
           </div>

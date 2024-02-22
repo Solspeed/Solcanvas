@@ -8,7 +8,7 @@ export default function Footer() {
         <section className="text-white bg-black container flex  items-center justify-between sm:px-32 px-4 sm:py-9 py-4 mq450:-mt-16">
             <div className="h-[7.5rem] w-[108rem] relative bg-black hidden max-w-full" />
             <div className="w-[18.81rem] flex flex-row items-start justify-start gap-[1.25rem]">
-                <a href="https://superteam.fun/" target="_blank" rel="noopener noreferrer" className="flex-1 flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300">
+                <a href="https://superteam.fun/" target="_blank" rel="noopener noreferrer" className="flex-1 flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300 mq450:scale-[0.8]">
                     <Image
                         className="h-[3.25rem] w-[3rem] relative rounded-[50%] object-cover z-[1]"
                         loading="eager"
@@ -19,9 +19,9 @@ export default function Footer() {
                         <div className="relative tracking-[0.03em] leading-[1.88rem] capitalize font-semibold z-[1]">{`Superteam `}</div>
                     </div>
                 </a>
-                <a href="https://solana.com/" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300">
+                <a href="https://solana.com/" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300 mq450:scale-[0.8]">
                     <Image
-                        className="h-[3.25rem] w-[3rem] relative rounded-[50%] object-cover z-[1]"
+                        className="h-[3.25rem] w-[3rem] relative rounded-[50%] object-cover z-[1] "
                         loading="eager"
                         alt=""
                         src={solana}
@@ -33,7 +33,7 @@ export default function Footer() {
                     </div>
                 </a>
             </div>
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 hover:scale-105 transition duration-300">
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 hover:scale-105 transition duration-300 mq450:scale-[0.8]">
                 <Image
                     className="h-[2.13rem] w-[2.6rem] relative z-[1]"
                     loading="eager"

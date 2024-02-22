@@ -30,7 +30,7 @@ export default function Navbar() {
     const fadeInAnimation = useSpring({
         opacity: showMenu ? 1 : 0,
         config: config.slow,
-        delay: showMenu ? 20 : 0,
+        delay: showMenu ? 5 : 0,
     });
 
     const toggleMenu = () => {
