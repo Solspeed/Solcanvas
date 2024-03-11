@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import MoonPay from "../../public/images/MoonPay.png";
 import CandyPay from "../../public/images/CandyPay.png";
+import FeatureItem from "./FeatComp";
 
 export default function Features() {
   const [activeButton, setActiveButton] = useState<string | null>('Payment');
@@ -69,20 +70,10 @@ export default function Features() {
           </div>
         </button>
       </div>
-      <div className="w-[48rem] flex flex-row items-center justify-center sm:gap-[1.69rem] gap-4 max-w-full">
-        <div className="flex  justify-center items-center gap-2 sm:gap-4">
-          <Image src={CandyPay} alt="candy pay" className="w-16 sm:w-20" />
-          <div className="relative tracking-[0.02em] leading-[1.88rem] font-semibold text-xl mq450:leading-[1.13rem] sm:text-4xl mq1000:leading-[1.5rem]">
-            Candy Pay
-          </div>
-        </div>
-        <div className="flex  justify-center items-center gap-2 sm:gap-4">
-          <Image src={MoonPay} alt="moon pay" className="w-16 sm:w-20" />
-          <div className="relative tracking-[0.02em] leading-[1.88rem] font-semibold text-xl mq450:leading-[1.13rem] sm:text-4xl mq1000:leading-[1.5rem]">
-            Moon Pay
-          </div>
-        </div>
-      </div>
+      <FeatureItem
+        images={[CandyPay.src, MoonPay.src]}
+        titles={["Candy Pay", "Moon Pay"]}
+      />
     </div>
   );
 };
