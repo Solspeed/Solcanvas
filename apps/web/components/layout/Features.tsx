@@ -1,13 +1,10 @@
 'use client';
 
 import React, { useState } from "react";
-import Image from "next/image";
-import MoonPay from "../../public/images/MoonPay.png";
-import CandyPay from "../../public/images/CandyPay.png";
 import FeatureItem from "./FeatComp";
 
 export default function Features() {
-  const [activeButton, setActiveButton] = useState<string | null>('Payment');
+  const [activeButton, setActiveButton] = useState<string>('Payment');
 
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
@@ -70,10 +67,7 @@ export default function Features() {
           </div>
         </button>
       </div>
-      <FeatureItem
-        images={[CandyPay.src, MoonPay.src]}
-        titles={["Candy Pay", "Moon Pay"]}
-      />
+      <FeatureItem activeButton={activeButton} />
     </div>
   );
 };

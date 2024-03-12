@@ -1,5 +1,5 @@
 import Image from "next/image";
-import phantom from "../../public/images/phantom.png";
+import phantom from "../../public/images/Phantom.png";
 import arrowTop from "../../public/images/arrow_top.png";
 
 export default function Interaction1() {
