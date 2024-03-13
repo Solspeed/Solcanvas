@@ -4,6 +4,7 @@ import GroupIcon from "../components/layout/GroupIcon";
 import Features from "../components/layout/Features";
 import Footer from "../components/layout/Footer";
 import Interactions from "../components/layout/Interactions";
+import Timeline from "../components/layout/Timeline";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         </section>
         <Features />
         <Interactions />
+        <Timeline />
         <Footer />
       </div>
     </main>
