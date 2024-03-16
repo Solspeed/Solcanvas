@@ -5,9 +5,12 @@ import FeatureItem from "./FeatComp";
 
 export default function Features() {
   const [activeButton, setActiveButton] = useState<string>('Payment');
+  const [animationTrigger, setAnimationTrigger] = useState<boolean>(false);
 
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
+    setAnimationTrigger(true);
+    setTimeout(() => setAnimationTrigger(false), 500); // Reset animation trigger after 500ms
   };
 
   const getButtonShadow = (buttonName: string) => {
@@ -67,7 +70,7 @@ export default function Features() {
           </div>
         </button>
       </div>
-      <FeatureItem activeButton={activeButton} />
+      <FeatureItem activeButton={activeButton} animate={animationTrigger} />
     </div>
   );
 };
