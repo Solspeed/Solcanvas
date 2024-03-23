@@ -100,6 +100,12 @@ export default function Timeline() {
                 </motion.div>
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 13.4, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: 13.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                <div className=' w-[65rem]  flex justify-center'>
+                    <motion.div initial={{ width: 0 }} animate={animationTriggered ? { width: '65rem' } : {}} transition={{ duration: 1, delay: 15.1, ease: 'linear' }} className=' h-[0.25rem] w-0 bg-[#B2B2B2] ' />
+                </div>
+                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{  duration: 1.5, delay: 15.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+
+
             </div>
         </div>
     );
