@@ -27,7 +27,7 @@ export default function Home() {
         <Features />
         <Interactions />
         <Timeline />
-        <Trying />
+        {/* <Trying /> */}
         <Footer />
       </div>
     </main>
