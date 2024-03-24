@@ -100,40 +100,42 @@ export default function Timeline() {
                 </motion.div>
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 13.4, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: 13.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
-                <div className='h-[0.25rem] bg-[#B2B2B2]' style={{ width: '66.39rem' }} />
+                <motion.div className='h-[0.25rem] bg-[#B2B2B2]' initial={{ width: 0 }} animate={animationTriggered ? { width: '66.39rem' } : {}} transition={{ duration: 1, delay: 15.1, ease: 'linear' }} />
                 <div className='flex justify-between w-full'>
                     <div className='flex flex-col items-center'>
-                        <div className="h-0 w-[0.25rem] bg-[#B2B2B2] self-" style={{ height: "12.825rem" }} />
-                        <div className="flex justify-center items-center w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
+                        <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 16.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                        <motion.div initial={{ opacity: 0 }} animate={animationTriggered ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 17.1, ease: 'easeOut' }} className="flex justify-center items-center w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
                             <div className="[font-family:'Inter',Helvetica] font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
                                 Edit Project
                             </div>
-                        </div>
-                        <div className="t h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
+                        </motion.div>
+                        <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 17.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                     </div>
                     <div className='flex flex-col items-center justify-center'>
-                        <div className="t h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
-                        <div className="flex justify-center items-center w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
+                        <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 16.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                        <motion.div initial={{ opacity: 0 }} animate={animationTriggered ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 17.1, ease: 'easeOut' }} className="flex justify-center items-center w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
                             <div className="[font-family:'Inter',Helvetica] font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
                                 Edit Project
                             </div>
-                        </div>
-                        <div className="t h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
+                        </motion.div>
+                        <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 17.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                     </div>
                     <div className='flex flex-col items-center'>
-                        <div className="er h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
-                        <div className="flex justify-center items-center   w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
+                        <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 16.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                        <motion.div initial={{ opacity: 0 }} animate={animationTriggered ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 17.1, ease: 'easeOut' }} className="flex justify-center items-center   w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
                             <div className="[font-family:'Inter',Helvetica] font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
                                 Edit Project
                             </div>
-                        </div>
-                        <div className="t h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
+                        </motion.div>
+                        <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 17.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                     </div>
                 </div>
-                <div className='h-[0.25rem] bg-[#B2B2B2]' style={{ width: '66.39rem' }} />
-                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: .6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
-                <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 2.1, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
-
+                <div className='w-[66.39rem] flex flex-row justify-between'>
+                    <motion.div initial={{ width: 0 }} animate={animationTriggered ? { width: '33.195rem' } : {}} transition={{ duration: 1, delay: 18.6, ease: 'linear' }} className='self-start h-[0.25rem] w-0 bg-[#B2B2B2] ' />
+                    <motion.div initial={{ width: 0 }} animate={animationTriggered ? { width: '33.195rem' } : {}} transition={{ duration: 1, delay: 18.6, ease: 'linear' }} className='self-end h-[0.25rem] w-0 bg-[#B2B2B2] ' />
+                </div>
+                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1, delay: 19.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 20., ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
             </div>
         </div>
     );
