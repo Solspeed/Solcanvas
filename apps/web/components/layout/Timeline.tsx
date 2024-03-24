@@ -135,7 +135,20 @@ export default function Timeline() {
                     <motion.div initial={{ width: 0 }} animate={animationTriggered ? { width: '33.195rem' } : {}} transition={{ duration: 1, delay: 18.6, ease: 'linear' }} className='self-end h-[0.25rem] w-0 bg-[#B2B2B2] ' />
                 </div>
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1, delay: 19.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
-                <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 20., ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
+                <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 20.5, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={animationTriggered ? { opacity: 1, y: 0 } : {}} transition={{ duration: .5, delay: 21, ease: 'easeOut' }} className="[font-family:'Inter',Helvetica] font-semibold text-white  space-y-12 m-20 text-[80px] tracking-[1.60px] leading-[30px] whitespace-nowrap">
+                    Rewards
+                </motion.div>
+                <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 21.5, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
+                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: 21.7, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                <div className='rounded-r-md rounded-l-md overflow-hidden border-t'>
+                    <motion.div className='h-[0.16rem] bg-[#B2B2B2]' initial={{ width: 0 }} animate={animationTriggered ? { width: '46.563rem' } : {}} transition={{ duration: 1, delay: 23.2, ease: 'linear' }} />
+                    <div className='flex justify-between w-full'>
+                        <div className='flex flex-col items-center'>
+                            <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 24.2, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
