@@ -144,76 +144,76 @@ export default function Timeline() {
                 </motion.div>
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 21.5, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: 21.7, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
-                <div className=''>
-                    <div className="flex flex-col items-center px-5">
-                        <div className='rounded-t-md overflow-hidden '>
-                            <div className='h-[0.25rem] bg-[#B2B2B2]' style={{ width: '46.563rem' }} />
-                            <div className='flex justify-between w-full '>
-                                <div className='flex flex-col items-center'>
-                                    <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
-                                </div>
-                                <div className='flex flex-col items-center'>
-                                    <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
-                                </div>
+                <div className="flex flex-col items-center px-5">
+                    <div className='rounded-t-md overflow-hidden '>
+                        <div className='h-[0.25rem] bg-[#B2B2B2]' style={{ width: '46.563rem' }} />
+                        <div className='flex justify-between w-full '>
+                            <div className='flex flex-col items-center'>
+                                <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
                             </div>
-                        </div>
-                        <div className="flex gap-[21rem] justify-between self-stretch w-full max-md:flex-wrap max-md:max-w-full">
-                            <div className="flex flex-col px-20 pt-20 pb-12 rounded-2xl bg-neutral-900 max-md:px-5 max-md:max-w-full">
-                                <div className="flex gap-5 mt-6 max-md:mx-2">
-                                    <div className="flex flex-col flex-1 items-center">
-                                        <Image src={elliplse68} alt="image"
-                                            loading="lazy"
-                                            className="rounded-full aspect-square w-[177px]"
-                                        />
-                                        <Image src={ellipse69} alt="image"
-                                            loading="lazy"
-                                            className="mt-24 rounded-full aspect-square w-[177px] max-md:mt-10"
-                                        />
-                                    </div>
-                                    <Image src={ellipse70} alt="image"
-                                        loading="lazy"
-                                        className="shrink-0 my-auto max-w-full rounded-full aspect-square w-[177px]"
-                                    />
-                                </div>
-                                <div className="self-center mt-32 text-6xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:text-4xl">
-                                    Token
-                                </div>
+                            <div className='flex flex-col items-center'>
+                                <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
                             </div>
-                            <div className="flex flex-col px-20 pt-20 pb-12 rounded-2xl bg-neutral-900 max-md:px-5 max-md:max-w-full">
-                                <div className="flex gap-5 mt-6 max-md:mx-2">
-                                    <div className="flex flex-col flex-1 items-center">
-                                        <Image src={elliplse68} alt="image"
-                                            loading="lazy"
-                                            className="rounded-full aspect-square w-[177px]"
-                                        />
-                                        <Image src={ellipse69} alt="image"
-                                            loading="lazy"
-                                            className="mt-24 rounded-full aspect-square w-[177px] max-md:mt-10"
-                                        />
-                                    </div>
-                                    <Image src={ellipse70} alt="image"
-                                        loading="lazy"
-                                        className="shrink-0 my-auto max-w-full rounded-full aspect-square w-[177px]"
-                                    />
-                                </div>
-                                <div className="self-center mt-32 text-6xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:text-4xl">
-                                    NFT
-                                </div>
-                            </div>
-                        </div>
-                        <div className='rounded-b-md overflow-hidden'>
-                            <div className='flex justify-between w-full '>
-                                <div className='flex flex-col items-center'>
-                                    <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
-                                </div>
-                                <div className='flex flex-col items-center'>
-                                    <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
-                                </div>
-                            </div>
-                            <div className='h-[0.25rem] bg-[#B2B2B2]' style={{ width: '46.563rem' }} />
                         </div>
                     </div>
+                    <div className="flex gap-[21rem] justify-between self-stretch w-full max-md:flex-wrap max-md:max-w-full">
+                        <div className="flex flex-col px-20 pt-20 pb-12 rounded-2xl bg-neutral-900 max-md:px-5 max-md:max-w-full">
+                            <div className="flex gap-5 mt-6 max-md:mx-2">
+                                <div className="flex flex-col flex-1 items-center">
+                                    <Image src={elliplse68} alt="image"
+                                        loading="lazy"
+                                        className="rounded-full aspect-square w-[177px]"
+                                    />
+                                    <Image src={ellipse69} alt="image"
+                                        loading="lazy"
+                                        className="mt-24 rounded-full aspect-square w-[177px] max-md:mt-10"
+                                    />
+                                </div>
+                                <Image src={ellipse70} alt="image"
+                                    loading="lazy"
+                                    className="shrink-0 my-auto max-w-full rounded-full aspect-square w-[177px]"
+                                />
+                            </div>
+                            <div className="self-center mt-32 text-6xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:text-4xl">
+                                Token
+                            </div>
+                        </div>
+                        <div className="flex flex-col px-20 pt-20 pb-12 rounded-2xl bg-neutral-900 max-md:px-5 max-md:max-w-full">
+                            <div className="flex gap-5 mt-6 max-md:mx-2">
+                                <div className="flex flex-col flex-1 items-center">
+                                    <Image src={elliplse68} alt="image"
+                                        loading="lazy"
+                                        className="rounded-full aspect-square w-[177px]"
+                                    />
+                                    <Image src={ellipse69} alt="image"
+                                        loading="lazy"
+                                        className="mt-24 rounded-full aspect-square w-[177px] max-md:mt-10"
+                                    />
+                                </div>
+                                <Image src={ellipse70} alt="image"
+                                    loading="lazy"
+                                    className="shrink-0 my-auto max-w-full rounded-full aspect-square w-[177px]"
+                                />
+                            </div>
+                            <div className="self-center mt-32 text-6xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:text-4xl">
+                                NFT
+                            </div>
+                        </div>
+                    </div>
+                    <div className='rounded-b-md overflow-hidden'>
+                        <div className='flex justify-between w-full '>
+                            <div className='flex flex-col items-center'>
+                                <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
+                            </div>
+                            <div className='flex flex-col items-center'>
+                                <div className="h-0 w-[0.25rem] bg-[#B2B2B2]" style={{ height: "12.825rem" }} />
+                            </div>
+                        </div>
+                        <div className='h-[0.25rem] bg-[#B2B2B2]' style={{ width: '46.563rem' }} />
+                    </div>
                 </div>
+                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: 21.7, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
+                <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 20.5, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
             </div>
         </div>
     );
