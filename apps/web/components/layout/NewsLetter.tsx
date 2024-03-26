@@ -8,7 +8,7 @@ export default function NewsLetter() {
                 <div className="[font-family:'Inter',Helvetica] font-semibold text-white  text-[60px]  xl:text-[80px] tracking-[1.60px] whitespace-">
                     Join our newsletter
                 </div>
-                <DripHaus property1="variant-2" className="cursor-pointer sm:scale-[1] scale-[0.8]" />
+                <DripHaus property1="variant-2" className="cursor-pointer sm:scale-[0.8] xl:scale-[1] scale-[0.7]" />
             </div>
         </section>
     );

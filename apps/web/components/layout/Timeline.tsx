@@ -162,11 +162,11 @@ export default function Timeline() {
                                 <div className="flex flex-col flex-1 items-center">
                                     <Image src={elliplse68} alt="image"
                                         loading="lazy"
-                                        className="rounded-full aspect-square w-[177px]"
+                                        className="shrink-0 rounded-full aspect-square w-[177px]"
                                     />
                                     <Image src={ellipse69} alt="image"
                                         loading="lazy"
-                                        className="mt-24 rounded-full aspect-square w-[177px] max-md:mt-10"
+                                        className="shrink-0 mt-24 rounded-full aspect-square w-[177px] "
                                     />
                                 </div>
                                 <Image src={ellipse70} alt="image"
