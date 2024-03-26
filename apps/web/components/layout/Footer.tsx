@@ -1,46 +1,49 @@
 import Image from "next/image";
 import superteam from "../../public/images/superteam.png";
 import solana from "../../public/images/solana.png";
-import twitter from "../../public/images/twitter.svg";
+import twitter from "../../public/images/twitter.png"
+import github from "../../public/images/github.png"
 
 export default function Footer() {
     return (
-        <section className="text-white bg-black container flex  items-center justify-between sm:px-32 px-4 sm:py-9 py-4 mq450:-mt-16">
-            <div className="h-[7.5rem] w-[108rem] relative bg-black hidden max-w-full" />
-            <div className="w-[18.81rem] flex flex-row items-start justify-start gap-[1.25rem]">
-                <a href="https://superteam.fun/" target="_blank" rel="noopener noreferrer" className="flex-1 flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300 mq450:scale-[0.8]">
-                    <Image
-                        className="h-[3.25rem] w-[3rem] relative rounded-[50%] object-cover z-[1]"
-                        loading="eager"
-                        alt=""
-                        src={superteam}
-                    />
-                    <div className="flex flex-col items-start justify-start pt-[0rem] px-[0rem] pb-[0.25rem]">
-                        <div className="relative tracking-[0.03em] leading-[1.88rem] capitalize font-semibold z-[1]">{`Superteam `}</div>
-                    </div>
-                </a>
-                <a href="https://solana.com/" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center justify-start gap-[0.44rem] hover:scale-105 transition duration-300 mq450:scale-[0.8]">
-                    <Image
-                        className="h-[3.25rem] w-[3rem] relative rounded-[50%] object-cover z-[1] "
-                        loading="eager"
-                        alt=""
-                        src={solana}
-                    />
-                    <div className="flex flex-col items-start justify-start pt-[0rem] px-[0rem] pb-[0.25rem]">
-                        <div className="relative tracking-[0.03em] leading-[1.88rem] capitalize font-semibold z-[1]">
-                            solana
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 hover:scale-105 transition duration-300 mq450:scale-[0.8]">
+        <div className="flex xl:px-20 sm:py-12 whitespace-nowrap space-y-6 sm:space-y-0 sm:flex-nowrap flex-wrap sm:justify-between container">
+            <div className="flex sm:scale-[0.8] scale-[0.7] lg:scale-[1] lg:gap-20 gap-12  justify-between my-auto w-full sm:w-auto text-xl font-semibold tracking-wide leading-8 text-white uppercase max-md:flex-wrap max-md:max-w-full">
                 <Image
-                    className="h-[2.13rem] w-[2.6rem] relative z-[1]"
-                    loading="eager"
-                    alt=""
-                    src={twitter}
+                    loading="lazy"
+                    src={solana}
+                    alt="image"
+                    className="shrink-0 my-auto max-w-full aspect-[6.67] w-[175px]"
                 />
-            </a>
-        </section>
+                <div className="flex gap-4">
+                    <Image
+                        loading="lazy"
+                        src={superteam}
+                        alt="image"
+                        className="shrink-0 w-10 aspect-square"
+                    />
+                    <div className="flex-auto my-auto">Superteam</div>
+                </div>
+            </div>
+            <div className="flex lg:gap-20  sm:scale-[0.8] scale-[0.7] lg:scale-[1] w-full justify-between sm:w-auto text-2xl font-medium tracking-wide leading-8 text-zinc-400">
+                <div className="flex gap-4 py-1 bg-black">
+                    <Image
+                        loading="lazy"
+                        src={github}
+                        alt="image"
+                        className="shrink- aspect-square w-[54px]  object-cover"
+                    />
+                    <div className="flex-auto my-auto">Github</div>
+                </div>
+                <div className="flex gap-3 py-px bg-black">
+                    <Image
+                        loading="lazy"
+                        src={twitter}
+                        alt="image"
+                        className="shrink- aspect-square w-[58px] object-cover"
+                    />
+                    <div className="flex-auto my-auto">Twitter</div>
+                </div>
+            </div>
+        </div>
     );
 };
