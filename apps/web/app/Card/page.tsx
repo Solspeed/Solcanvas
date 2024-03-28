@@ -26,12 +26,22 @@ function ProjectCard({ project }) {
             <span key={index} className="mr-2">{link}</span>
           ))}
         </p> */}
-        <p className="text-gray-700">
-          <strong>Banner Image:</strong> {project.banner_image}
-        </p>
-        <p className="text-gray-700">
-          <strong>Logo Image:</strong> {project.logo_image}
-        </p>
+        <div>
+          <strong>Banner Image:</strong> 
+          <img
+            src={project.bannerImageUrl}
+            alt={`Banner Image for ${project.title}`}
+            className="w-48 h-48 object-cover mb-4"
+          />
+        </div>
+        <div>
+          <strong>Logo Image:</strong> 
+          <img
+            src={project.logoImageUrl}
+            alt={`Logo Image for ${project.title}`}
+            className="w-48 h-48 object-cover mb-4"
+          />
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ interface FormData {
   description: string;
   creator: string;
   imageUrl: string;
+  bannerImageUrl: string;
+  logoImageUrl: string;
 }
 
 function MyComponent(): JSX.Element {
@@ -17,6 +19,8 @@ function MyComponent(): JSX.Element {
     description: "",
     creator: "",
     imageUrl: "",
+    bannerImageUrl: "",
+    logoImageUrl: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -27,7 +31,7 @@ function MyComponent(): JSX.Element {
     }));
   };
 
-  const uploadImage = async (imageFile: File): Promise<string | undefined> => {
+  const uploadImage = async (imageFile: File, bucketName: string): Promise<string | undefined> => {
     const MAX_IMAGE_SIZE = 5 * 1024 * 1024; 
 
     if (imageFile.size > MAX_IMAGE_SIZE) {
@@ -36,20 +40,20 @@ function MyComponent(): JSX.Element {
     }
 
     try {
-      const { data, error } = await supabase.storage.from("project_images").upload(imageFile.name, imageFile);
+      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile);
 
       if (error) {
         throw error;
       }
 
       return data?.publicUrl;
-    }catch (error) {
-        console.error("Error uploading image:", error.message); // Access the message property
-        alert(`An error occurred while uploading the image: ${error.message}`); // Display user-friendly alert with details
-      }
+    } catch (error) {
+        console.error(`Error uploading ${bucketName} image:`, error.message);
+        alert(`An error occurred while uploading the ${bucketName} image: ${error.message}`);
+    }
   };
 
-  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>, fieldName: string, bucketName: string): Promise<void> => {
     const imageFile = event.target.files?.[0];
 
     if (!imageFile) return;
@@ -57,13 +61,13 @@ function MyComponent(): JSX.Element {
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageUrl = e.target?.result as string;
-      setFormData((prevState) => ({ ...prevState, imageUrl }));
+      setFormData((prevState) => ({ ...prevState, [fieldName]: imageUrl }));
     };
     reader.readAsDataURL(imageFile);
 
-    const uploadedImageUrl = await uploadImage(imageFile);
+    const uploadedImageUrl = await uploadImage(imageFile, bucketName);
     if (uploadedImageUrl) {
-      setFormData((prevState) => ({ ...prevState, imageUrl: uploadedImageUrl }));
+      setFormData((prevState) => ({ ...prevState, [fieldName]: uploadedImageUrl }));
     }
   };
 
@@ -84,9 +88,10 @@ function MyComponent(): JSX.Element {
         description: "",
         creator: "",
         imageUrl: "",
+        bannerImageUrl: "",
+        logoImageUrl: "",
       });
 
-     
       window.location.href = "/projectCard";
     } catch (error) {
       console.error("Error saving project data:", error.message);
@@ -157,7 +162,25 @@ function MyComponent(): JSX.Element {
                   <input
                     type="file"
                     name="image"
-                    onChange={handleImageChange}
+                    onChange={(e) => handleImageChange(e, "imageUrl", "project_images")}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="leading-loose">Banner Image</label>
+                  <input
+                    type="file"
+                    name="bannerImage"
+                    onChange={(e) => handleImageChange(e, "bannerImageUrl", "banner_image")}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="leading-loose">Logo Image</label>
+                  <input
+                    type="file"
+                    name="logoImage"
+                    onChange={(e) => handleImageChange(e, "logoImageUrl", "logo_image")}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
