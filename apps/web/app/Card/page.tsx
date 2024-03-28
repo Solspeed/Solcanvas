@@ -21,11 +21,18 @@ function ProjectCard({ project }) {
         <p className="text-gray-700 font-medium">
           <strong>Creator:</strong> {project.creator}
         </p>
-        {/* <p className="text-gray-700">
-          <strong>Links:</strong> {project.links.map((link, index) => (
-            <span key={index} className="mr-2">{link}</span>
-          ))}
-        </p> */}
+        <p className="text-gray-700">
+          <strong>GitHub Link:</strong> <a href={project.githubLink} target="_blank" rel="noopener noreferrer">{project.githubLink}</a>
+        </p>
+        <p className="text-gray-700">
+          <strong>Discord Link:</strong> <a href={project.discordLink} target="_blank" rel="noopener noreferrer">{project.discordLink}</a>
+        </p>
+        <p className="text-gray-700">
+          <strong>Twitter Link:</strong> <a href={project.twitterLink} target="_blank" rel="noopener noreferrer">{project.twitterLink}</a>
+        </p>
+        <p className="text-gray-700">
+          <strong>Website Link:</strong> <a href={project.websiteLink} target="_blank" rel="noopener noreferrer">{project.websiteLink}</a>
+        </p>
         <div>
           <strong>Banner Image:</strong> 
           <img

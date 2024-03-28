@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import supabase from "../../supabase";
+import supabase  from "../../supabase";
 
 interface FormData {
   title: string;
@@ -10,6 +10,10 @@ interface FormData {
   imageUrl: string;
   bannerImageUrl: string;
   logoImageUrl: string;
+  githubLink: string;
+  discordLink: string;
+  twitterLink: string;
+  websiteLink: string;
 }
 
 function MyComponent(): JSX.Element {
@@ -21,6 +25,10 @@ function MyComponent(): JSX.Element {
     imageUrl: "",
     bannerImageUrl: "",
     logoImageUrl: "",
+    githubLink: "",
+    discordLink: "",
+    twitterLink: "",
+    websiteLink: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -90,6 +98,10 @@ function MyComponent(): JSX.Element {
         imageUrl: "",
         bannerImageUrl: "",
         logoImageUrl: "",
+        githubLink: "",
+        discordLink: "",
+        twitterLink: "",
+        websiteLink: "",
       });
 
       window.location.href = "/projectCard";
@@ -181,6 +193,46 @@ function MyComponent(): JSX.Element {
                     type="file"
                     name="logoImage"
                     onChange={(e) => handleImageChange(e, "logoImageUrl", "logo_image")}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="leading-loose">GitHub Link</label>
+                  <input
+                    type="text"
+                    name="githubLink"
+                    value={formData.githubLink}
+                    onChange={handleChange}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="leading-loose">Discord Link</label>
+                  <input
+                    type="text"
+                    name="discordLink"
+                    value={formData.discordLink}
+                    onChange={handleChange}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="leading-loose">Twitter Link</label>
+                  <input
+                    type="text"
+                    name="twitterLink"
+                    value={formData.twitterLink}
+                    onChange={handleChange}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="leading-loose">Website Link</label>
+                  <input
+                    type="text"
+                    name="websiteLink"
+                    value={formData.websiteLink}
+                    onChange={handleChange}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
