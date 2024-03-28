@@ -6,7 +6,7 @@ import Footer from "../components/layout/Footer";
 import Interactions from "../components/layout/Interactions";
 import Timeline from "../components/layout/Timeline";
 import Trying from "../components/layout/trying";
-
+// import Project from '../components/layout/project_listing'
 export default function Home() {
   return (
     <main>
@@ -29,6 +29,7 @@ export default function Home() {
         <Timeline />
         {/* <Trying /> */}
         <Footer />
+        {/* <Project /> */}
       </div>
     </main>
   );
