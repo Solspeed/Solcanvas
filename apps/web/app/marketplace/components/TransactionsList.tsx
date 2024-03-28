@@ -2,7 +2,18 @@ import Image from "next/image";
 import sentImage from '../../../public/images/marketplace/sent.png';
 import receivedImage from '../../../public/images/marketplace/received.png';
 
-export default function TransactionsList({ transactions }) {
+interface Transaction {
+    type: string,
+    amount: string,
+    recipient?: string,
+    sender?: string
+}
+
+export default function TransactionsList({
+    transactions
+}: {
+    transactions: Transaction[]
+}) {
     return (
         <>
             {transactions.map((transaction, index) => (

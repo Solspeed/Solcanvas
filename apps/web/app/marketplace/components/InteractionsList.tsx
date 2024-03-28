@@ -1,6 +1,16 @@
 import Image from "next/image";
 
-export default function InteractionsList({ interactions }) {
+interface Interaction {
+    image: string,
+    name: string,
+    status: string,
+}
+
+export default function InteractionsList({
+    interactions
+}: {
+    interactions: Interaction[]
+}) {
     return (
         <>
             {interactions.map((interaction, index) => (
