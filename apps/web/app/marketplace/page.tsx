@@ -7,6 +7,7 @@ import Recommendation from "./components/Recommendation";
 import Footer from "../../components/layout/Footer";
 import { useState } from "react";
 import Balance from "./components/Balance";
+import Transactions from "./components/Transactions";
 
 interface PageContentState {
     isWalletClicked: boolean;
@@ -37,7 +38,7 @@ export default function page() {
                 </div>
                 <div className="xl:pt-36">
                     {state.contentToShow === "recommendations" && <Projects />}
-                    {state.contentToShow === "walletContent" && <Recommendation />}
+                    {state.contentToShow === "walletContent" && <Transactions />}
                 </div>
             </div>
             <div className="w-full relative bg-black overflow-hidden flex flex-col items-center justify-start sm:pt-[5.81rem] pt-[5.6rem] px-[0rem] pb-[0rem] box-border gap-[14.19rem] tracking-[normal] mq450:gap-[8rem] mq1000:gap-[14.19rem]">
