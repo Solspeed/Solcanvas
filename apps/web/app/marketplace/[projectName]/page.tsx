@@ -11,6 +11,7 @@ import github from "../../../public/images/github.png"
 import twitter from "../../../public/images/twitter.png"
 import Marquee from 'react-fast-marquee'
 import { useState } from "react";
+import CustomButton from "../../../components/button/CustomButton";
 
 export default function ProjectDetails({
     params,
@@ -333,6 +334,12 @@ export default function ProjectDetails({
                             See all
                         </button>
                     )}
+                </div>
+                <div className="flex flex-col items-center  w-full font-medium  leading-8">
+                    <CustomButton text="Edit Project" property1="variant-2" className="flex hover:cursor-pointer sm:scale-[0.8] xl:scale-[1] scale-[0.7] justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full text-4xl tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]" />
+                    <div className="sm:mt-80 mt-36 sm:text-3xl text-xl text-center text-white text-opacity-60">
+                        All right reserved @solcanvas
+                    </div>
                 </div>
             </div>
         </div>
