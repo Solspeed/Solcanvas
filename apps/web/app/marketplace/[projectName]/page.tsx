@@ -2,14 +2,20 @@ import Image from "next/image";
 import cubik from "../../../public/images/marketplace/projects/cubikBanner.png"
 import cubikLogo from "../../../public/images/marketplace/projects/cubikLogo.png"
 import projectGithub from "../../../public/images/marketplace/projects/github.png"
+import irfanAvatar from "../../../public/images/marketplace/projects/irfanAvatar.png"
+import dhruvAvatar from "../../../public/images/marketplace/projects/dhruvAvatar.png"
+import avatarBg from "../../../public/images/marketplace/projects/avatarBg.png"
+import github from "../../../public/images/github.png"
+import twitter from "../../../public/images/twitter.png"
+
 export default function ProjectDetails({
     params,
 }: {
     params: { projectName: string };
 }) {
     return (
-        <div className="flex flex-col xl:py-16 sm:py-12 py-6 bg-black ">
-            <div className="flex flex-col xl:px-14 sm:px-10 px-4 w-full max-md:px-5 max-md:max-w-full">
+        <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:py-16 sm:py-12 py-6 bg-black ">
+            <div className="flex flex-col  w-full max-md:px-5 max-md:max-w-full">
                 <Image
                     alt="cubik banner"
                     src={cubik}
@@ -63,7 +69,7 @@ export default function ProjectDetails({
                                 influence.
                             </li>
                             <li>
-                                This mechanism encourages uliduals to donate to projects
+                                This mechanism encourages individuals to donate to projects
                                 they genuinely care about, irrespective of their financial
                                 capability. It ensures that grant funds, hackathon prize
                                 pools, and various resources are distributed in a fair and
@@ -93,9 +99,9 @@ export default function ProjectDetails({
                             </li>
                         </ul>
                     </div>
-                    <div className="flex flex-col max-w-[395px] xl:w-[40%]">
-                        <div className="flex gap-5">
-                            <div className="flex flex-1 justify-center items-center px-7 py-11 rounded-xl bg-neutral-900">
+                    <div className="flex xl:gap-0 sm:gap-5 items-center sm:flex-row flex-col xl:flex-col xl:justify-normal sm:justify-evenly sm:items-center xl:max-w-[395px] xl:w-[40%] 2xl:mr-16 xl:mt-0 mt-4">
+                        <div className="flex gap-5 sm:w-full xl:justify-normal sm:justify-evenly">
+                            <div className="flex  justify-center items-center sm:px-7 sm:py-11 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     loading="lazy"
@@ -103,7 +109,7 @@ export default function ProjectDetails({
                                     className="aspect-square"
                                 />
                             </div>
-                            <div className="flex flex-1 justify-center items-center px-7 py-12 rounded-xl bg-neutral-900">
+                            <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     loading="lazy"
@@ -112,8 +118,8 @@ export default function ProjectDetails({
                                 />
                             </div>
                         </div>
-                        <div className="flex gap-5 mt-8">
-                            <div className="flex flex-1 justify-center items-center px-7 py-12 rounded-xl bg-neutral-900">
+                        <div className="flex gap-5 xl:mt-8 sm:mt-0 mt-8 sm:w-full xl:justify-normal sm:justify-evenly ">
+                            <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     loading="lazy"
@@ -121,7 +127,7 @@ export default function ProjectDetails({
                                     className="aspect-square "
                                 />
                             </div>
-                            <div className="flex flex-1 justify-center items-center px-8 py-12 rounded-xl bg-neutral-900">
+                            <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     loading="lazy"
@@ -129,6 +135,34 @@ export default function ProjectDetails({
                                     className="aspect-square"
                                 />
                             </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <h2 className="self-start mt-40 sm:text-5xl text-4xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
+                        Team
+                    </h2>
+                    <div className="grid grid-cols-2 justify-items-center">
+                        <div className="Group1008 w-[576px] h-[315px] relative">
+                            <div className=" w-[374px] h-[315px] left-0 top-0 absolute">
+                                <img className=" z-0 w-[317px] h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" />
+                                <img className=" w-[265px] z-10 h-[265px] left-[109px] top-0 absolute rounded-full" src="/images/marketplace/projects/irfanAvatar.png" />
+                            </div>
+                            <div className=" left-[415px] top-[70px] absolute text-white text-4xl font-semibold font-['Inter'] leading-[30px] tracking-wide"></div>
+                            <div className=" left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold font-['Inter'] leading-[30px] tracking-wide">@Junad<br /></div>
+                            <img className=" w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/twitter.png' />
+                            <img className=" w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/twitter.png' />
+                        </div>
+                        <div className="Group1008 w-[576px] h-[315px] relative">
+                            <div className=" w-[374px] h-[315px] left-0 top-0 absolute">
+                                <img className=" z-0 w-[317px] h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" />
+                                <img className=" w-[265px] z-10 h-[265px] left-[109px] top-0 absolute rounded-full" src="/images/marketplace/projects/irfanAvatar.png" />
+                            </div>
+                            <div className=" left-[415px] top-[70px] absolute text-white text-4xl font-semibold font-['Inter'] leading-[30px] tracking-wide"></div>
+                            <div className=" left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold font-['Inter'] leading-[30px] tracking-wide">@Irfan<br /></div>
+                            <img className=" w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/twitter.png' />
+                            <img className=" w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/twitter.png' />
                         </div>
                     </div>
                 </div>
