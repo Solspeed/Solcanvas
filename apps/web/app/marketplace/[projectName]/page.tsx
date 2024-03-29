@@ -17,8 +17,12 @@ export default function ProjectDetails({
 }: {
     params: { projectName: string };
 }) {
-
     const [isPaused, setIsPaused] = useState(false);
+    const [showAll, setShowAll] = useState(false);
+
+    const handleSeeAllClick = () => {
+        setShowAll(true);
+    };
 
     return (
         <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:py-16 sm:py-12 py-6 bg-black ">
@@ -250,18 +254,29 @@ export default function ProjectDetails({
                             25 Jan, 2024
                         </div>
                     </div>
-                    <div className="flex gap-5 blur-[3px] self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1390px] flex-wrap">
-                    <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
+                    <div className={`flex gap-5 ${showAll ? '' : 'blur-[3px]'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
+                        <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             Started their first round of funding
                         </div>
                         <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
                             25 Jan, 2024
                         </div>
                     </div>
-                    <div className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
-                        See all
+                    <div className={`flex gap-5 ${showAll ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
+                        <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
+                            Started their first round of funding
+                        </div>
+                        <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
+                            25 Jan, 2024
+                        </div>
                     </div>
+                    {!showAll && (
+                        <button onClick={handleSeeAllClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
+                            See all
+                        </button>
+                    )}
                 </div>
+               
             </div>
         </div>
     )
