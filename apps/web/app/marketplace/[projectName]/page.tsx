@@ -18,10 +18,15 @@ export default function ProjectDetails({
     params: { projectName: string };
 }) {
     const [isPaused, setIsPaused] = useState(false);
-    const [showAll, setShowAll] = useState(false);
+    const [showAllCommits, setShowAllCommits] = useState(false);
+    const [showAllUpdates, setShowAllUpdates] = useState(false);
 
-    const handleSeeAllClick = () => {
-        setShowAll(true);
+
+    const handleSeeAllCommitsClick = () => {
+        setShowAllCommits(true);
+    };
+    const handleSeeAllUpdatesClick = () => {
+        setShowAllUpdates(true);
     };
 
     return (
@@ -254,7 +259,7 @@ export default function ProjectDetails({
                             25 Jan, 2024
                         </div>
                     </div>
-                    <div className={`flex gap-5 ${showAll ? '' : 'blur-[3px]'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
+                    <div className={`flex gap-5 ${showAllUpdates ? '' : 'blur-[3px]'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             Started their first round of funding
                         </div>
@@ -262,7 +267,7 @@ export default function ProjectDetails({
                             25 Jan, 2024
                         </div>
                     </div>
-                    <div className={`flex gap-5 ${showAll ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
+                    <div className={`flex gap-5 ${showAllUpdates ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             Started their first round of funding
                         </div>
@@ -270,8 +275,8 @@ export default function ProjectDetails({
                             25 Jan, 2024
                         </div>
                     </div>
-                    {!showAll && (
-                        <button onClick={handleSeeAllClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
+                    {!showAllUpdates && (
+                        <button onClick={handleSeeAllUpdatesClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
                             See all
                         </button>
                     )}
@@ -315,7 +320,7 @@ export default function ProjectDetails({
                             Past
                         </div>
                     </div>
-                    <div className={`flex gap-5 ${showAll ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap`}>
+                    <div className={`flex gap-5 ${showAllCommits ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             8bpx5gh7sg....
                         </div>
@@ -323,8 +328,8 @@ export default function ProjectDetails({
                             Past
                         </div>
                     </div>
-                    {!showAll && (
-                        <button onClick={handleSeeAllClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
+                    {!showAllCommits && (
+                        <button onClick={handleSeeAllCommitsClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
                             See all
                         </button>
                     )}
