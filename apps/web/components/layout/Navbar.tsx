@@ -70,6 +70,13 @@ export default function Navbar() {
                             </div>
                             <div className="flex flex-col items-center justify-center h-6">
                                 <animated.a
+                                    href="/marketplace"
+                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                                    style={fadeInAnimation}
+                                >
+                                    Marketplace
+                                </animated.a>
+                                <animated.a
                                     href="#"
                                     className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                     style={fadeInAnimation}
@@ -89,6 +96,12 @@ export default function Navbar() {
                 )}
                 {/* Links for larger screens */}
                 <div className="hidden sm:flex items-end justify-center lg:justify-between gap-[1.94rem]">
+                <a
+                        href="/marketplace"
+                        className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                    >
+                        Marketplace
+                    </a>
                     <a
                         href="#"
                         className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
