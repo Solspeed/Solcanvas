@@ -19,7 +19,6 @@ export default function Recommendation() {
                     <div className="flex sm:justify-normal sm:flex-nowrap flex-wrap justify-evenly sm:gap-5 gap-2 self-center mt-10 w-full text-base tracking-normal leading-8 whitespace-nowrap max-w-[1419px] max-md:flex-wrap max-md:max-w-full">
                         <Link href="/marketplace/cubik" className="flex flex-col sm:flex-1 items-center">
                             <Image
-                                loading="lazy"
                                 src={cubik}
                                 alt="cubik"
                                 className="aspect-square sm:w-[188px] w-[86.2px]"
@@ -28,7 +27,6 @@ export default function Recommendation() {
                         </Link>
                         <div className="flex flex-col sm:flex-1 items-center">
                             <Image
-                                loading="lazy"
                                 src={drip}
                                 alt="drip"
                                 className="aspect-square sm:w-[188px] w-[86.2px]"
@@ -37,7 +35,6 @@ export default function Recommendation() {
                         </div>
                         <div className="flex flex-col sm:flex-1 items-center">
                             <Image
-                                loading="lazy"
                                 src={helious}
                                 alt="helious"
                                 className="aspect-square sm:w-[188px] w-[86.2px]"
@@ -46,7 +43,6 @@ export default function Recommendation() {
                         </div>
                         <div className="flex flex-col sm:flex-1 items-center">
                             <Image
-                                loading="lazy"
                                 src={marginifi}
                                 alt="marginifi"
                                 className="aspect-square sm:w-[188px] w-[86.2px]"
@@ -55,7 +51,6 @@ export default function Recommendation() {
                         </div>
                         <div className="flex flex-col sm:flex-1 items-center">
                             <Image
-                                loading="lazy"
                                 src={squads}
                                 alt="squads"
                                 className="aspect-square sm:w-[188px] w-[86.2px]"

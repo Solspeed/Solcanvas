@@ -19,7 +19,6 @@ export default function InteractionsList({
                         <div className="flex flex-col justify-start">
                             <Image
                                 alt={interaction.name}
-                                loading="lazy"
                                 src={interaction.image}
                                 className="aspect-[1.08] sm:w-[70px] w-[50px] shrink-0 flex-1"
                                 width={70}

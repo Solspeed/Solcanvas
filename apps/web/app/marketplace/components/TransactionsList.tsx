@@ -21,7 +21,6 @@ export default function TransactionsList({
                     <div className="flex flex-col justify-start">
                         <Image
                             alt={transaction.type === 'Sent' ? 'sent icon' : 'received icon'}
-                            loading="lazy"
                             src={transaction.type === 'Sent' ? sentImage : receivedImage}
                             className="aspect-[1.08] sm:w-[70px] w-[50px]"
                         />

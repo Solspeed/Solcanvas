@@ -125,7 +125,6 @@ export default function ProjectDetails({
                             <div className="flex  justify-center items-center sm:px-7 sm:py-11 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    loading="lazy"
                                     src={projectGithub}
                                     className="aspect-square"
                                 />
@@ -133,7 +132,6 @@ export default function ProjectDetails({
                             <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    loading="lazy"
                                     src={projectGithub}
                                     className="aspect-square"
                                 />
@@ -143,7 +141,6 @@ export default function ProjectDetails({
                             <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    loading="lazy"
                                     src={projectGithub}
                                     className="aspect-square "
                                 />
@@ -151,7 +148,6 @@ export default function ProjectDetails({
                             <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    loading="lazy"
                                     src={projectGithub}
                                     className="aspect-square"
                                 />

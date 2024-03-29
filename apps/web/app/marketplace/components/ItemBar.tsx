@@ -20,7 +20,6 @@ export default function ItemBar({ isWalletClicked, onWalletClick }: ItemBarProps
       <div className="flex sm:flex-row flex-col gap-4 items- justify-between">
         <div className="flex xl:w-[39.5rem] md:w-[20rem] sm:w-[16rem] gap-4 p-3 w-full bg-neutral-900 rounded-[30px] text-zinc-400">
           <Image
-            loading="lazy"
             src={search}
             className="shrink-0 aspect-square w-[18px]"
             alt="Search Icon"
@@ -41,7 +40,6 @@ export default function ItemBar({ isWalletClicked, onWalletClick }: ItemBarProps
           <div className="shrink-0">Submit Project</div>
           <div className="border border-solid bg-zinc-400 border-zinc-400 h-[30px] " />
           <Image
-            loading="lazy"
             src={profile}
             className="shrink-0 aspect-[0.86] w-[31px]"
             alt="Submit Icon"

@@ -15,7 +15,6 @@ export default function Balance() {
             </div>
             <Image
                 alt="right arrow"
-                loading="lazy"
                 src={rightArrow}
                 className="mt-9 bg-black rounded-full aspect-square h-[46px] w-[46px] cursor-pointer"
             />
