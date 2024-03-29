@@ -146,10 +146,10 @@ export default function ProjectDetails({
                     </div>
                 </div>
                 <div>
-                    <h2 className="self-start mt-40 sm:text-5xl text-4xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
+                    <h2 className="self-start sm:mt-40 mt-24 sm:text-5xl text-4xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
                         Team
                     </h2>
-                    <div className="grid lg:grid-cols-2 place-items-center lg:mr-0  -ml-16 gap-16 mt-12">
+                    <div className="grid lg:grid-cols-2 place-items-center lg:mr-0  -ml-16 sm:gap-16 sm:mt-12 mt-6">
                         <div className=" xl:w-[576px] xl:h-[315px] w-[476px] h-[215px] mr-4 relative sm:scale-[0.7] scale-[0.6]  sm:ml-0 -ml-12 xl:scale-[1] ">
                             <div className=" w-[374px] h-[315px] left-0 top-0 absolute">
                                 <img className=" z-0 w-[317px] object-fill h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" />
@@ -179,7 +179,7 @@ export default function ProjectDetails({
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center items-center mt-36">
+                <div className="flex flex-col justify-center items-center sm:mt-36 mt-20">
                     <Marquee
                         speed={40}
                         pauseOnHover={!isPaused}
@@ -237,6 +237,30 @@ export default function ProjectDetails({
                             </div>
                         </div>
                     </Marquee>
+                </div>
+                <div className="flex flex-col sm:mt-64 mt-24 w-full">
+                    <div className="mx-2.5  sm:text-5xl mb-3 text-4xl tracking-tighter font-semibold sm:tracking-wider leading-8 text-white max-md:mt-10 max-md:max-w-full max-md:text-4xl">
+                        Product Updates
+                    </div>
+                    <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1390px] flex-wrap">
+                        <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
+                            Started their first round of funding
+                        </div>
+                        <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
+                            25 Jan, 2024
+                        </div>
+                    </div>
+                    <div className="flex gap-5 blur-[3px] self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1390px] flex-wrap">
+                    <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
+                            Started their first round of funding
+                        </div>
+                        <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
+                            25 Jan, 2024
+                        </div>
+                    </div>
+                    <div className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
+                        See all
+                    </div>
                 </div>
             </div>
         </div>
