@@ -4,6 +4,9 @@ import Image from "next/image";
 import cubik from "../../../public/images/marketplace/projects/cubikBanner.png"
 import cubikLogo from "../../../public/images/marketplace/projects/cubikLogo.png"
 import projectGithub from "../../../public/images/marketplace/projects/github.png"
+import projectTwitter from "../../../public/images/marketplace/projects/twitter.png"
+import projectDiscord from "../../../public/images/marketplace/projects/discord.png"
+import projectWebsite from "../../../public/images/marketplace/projects/website.png"
 import irfanAvatar from "../../../public/images/marketplace/projects/irfanAvatar.png"
 import dhruvAvatar from "../../../public/images/marketplace/projects/dhruvAvatar.png"
 import avatarBg from "../../../public/images/marketplace/projects/avatarBg.png"
@@ -40,7 +43,7 @@ export default function ProjectDetails({
                 <Image
                     alt="cubik banner"
                     src={cubik}
-                    className="w-full  object-cover border"
+                    className="w-full  object-cover"
                     width={1920}
                     height={365}
                 />
@@ -132,7 +135,7 @@ export default function ProjectDetails({
                             <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    src={projectGithub}
+                                    src={projectTwitter}
                                     className="aspect-square"
                                 />
                             </div>
@@ -141,14 +144,14 @@ export default function ProjectDetails({
                             <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    src={projectGithub}
+                                    src={projectDiscord}
                                     className="aspect-square "
                                 />
                             </div>
                             <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
-                                    src={projectGithub}
+                                    src={projectWebsite}
                                     className="aspect-square"
                                 />
                             </div>
