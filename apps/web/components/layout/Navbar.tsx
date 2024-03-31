@@ -13,23 +13,25 @@ export default function Navbar() {
     useEffect(() => {
         setAnimateHeader(true);
     }, []);
+
     const slideAnimation = useSpring({
         opacity: showMenu ? 1 : 0,
         transform: showMenu ? "translateX(0%)" : "translateX(-100%)",
-        config: config.wobbly,
+        config: { tension: 250, friction: 20 }, // Adjust these values for faster animation
     });
+
     const headerAnimation = useSpring({
         from: { opacity: 0, transform: "translateY(-100%) scale(0.5)" },
         to: {
             opacity: animateHeader ? 1 : 0,
             transform: animateHeader ? "translateY(0%) scale(1)" : "translateY(-100%) scale(0.5)",
         },
-        config: config.wobbly,
+        config: { tension: 250, friction: 20 }, // Adjust these values for faster animation
     });
 
     const fadeInAnimation = useSpring({
         opacity: showMenu ? 1 : 0,
-        config: config.slow,
+        config: { tension: 250, friction: 20 }, // Adjust these values for faster animation
         delay: showMenu ? 5 : 0,
     });
 

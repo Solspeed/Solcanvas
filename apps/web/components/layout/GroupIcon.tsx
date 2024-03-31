@@ -1,5 +1,5 @@
 import Image from "next/image";
-import groupIcon from "../../public/images/groupIcon.svg"
+import groupIcon from "../../public/images/map.png"
 
 export default function GroupIcon() {
     return (

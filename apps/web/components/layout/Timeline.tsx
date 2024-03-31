@@ -27,7 +27,7 @@ export default function Timeline() {
 
     return (
         <div>
-            <div ref={sectionRef} id='timeline' className="2xl:scale-[1] 2xl:mt-0 xl:-mt-32 lg:-mt-60 md:-mt-80 sm:-mt-96 scale-50  xl:scale-[0.9] lg:scale-[0.8] md:scale-[0.7] sm:scale-[0.6] sm:flex  sm:flex-col flex-row sm:items-center items-start h-fit sm:w-[88.2rem] z-0">
+            <div ref={sectionRef} id='timeline' className="hidden 2xl:scale-[1] 2xl:mt-0 xl:-mt-32 lg:-mt-60 md:-mt-80 sm:-mt-96 scale-50  xl:scale-[0.9] lg:scale-[0.8] md:scale-[0.7] sm:scale-[0.6] sm:flex  sm:flex-col flex-row sm:items-center items-start h-fit sm:w-[88.2rem] z-0">
                 {/* Framer Motion animations for the lines */}
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 0.2, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1.5, delay: 0.4, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />

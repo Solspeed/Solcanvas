@@ -26,9 +26,9 @@ export default function Projects(): JSX.Element {
   const chunks: Project[][] = splitIntoChunks(projectsData, 2);
 
   return (
-    <div className="flex flex-col xl:gap-16 place-items-center space-y-[4.688rem] xl:px-24 sm:px-12 px-6">
+    <div className="flex flex-col xl:gap-16 place-items-center space-y-[2.88rem] xl:px-24 sm:px-12 px-4">
       {chunks.map((chunk: Project[], rowIndex: number) => (
-        <Link href="/marketplace/cubik" key={rowIndex} className="flex sm:gap-12 gap-[4.688rem] justify-between w-full sm:flex-nowrap flex-wrap">
+        <Link href="/marketplace/cubik" key={rowIndex} className="flex sm:gap-12 gap-[2.88rem] justify-between w-full sm:flex-nowrap flex-wrap">
           {chunk.map((project: Project, colIndex: number) => (
             <Card
               key={`${rowIndex}_${colIndex}`}
@@ -39,7 +39,7 @@ export default function Projects(): JSX.Element {
             />
           ))}
           {chunk.length < 2 && (
-            <div className="w-[calc(50%-4.688rem)]"></div>
+            <div className="w-[calc(50%-4.688rem)] "></div>
           )}
         </Link>
       ))}

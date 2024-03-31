@@ -12,8 +12,8 @@ export default function Overview() {
             </b>
 
             <div className="flex flex-row items-start justify-start box-border max-w-full">
-                <button className="cursor-pointer [border:none] mq1000:py-[1.4rem] py-[1.6rem] px-12 mq1000:px-8 bg-white rounded-full flex flex-row items-center justify-center box-border max-w-full whitespace-nowrap hover:bg-[#e6e6e6] mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
-                    <b className="relative sm:text-[1.88rem] text-[0.5rem] mq1000:text-[1.6rem] tracking-[0.03em] leading-[1.88rem] capitalize font-inter text-[#867ad2] text-center z-[1]">
+                <button className="cursor-pointer [border:none] mq1000:py-[1.4rem] mq450:py-[0.8rem] py-[1.6rem] px-12 mq1000:px-8 bg-white rounded-full flex flex-row items-center justify-center box-border max-w-full whitespace-nowrap hover:bg-[#e6e6e6] mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
+                    <b className="relative sm:text-[1.88rem] mq450:text-[1.2rem]  mq1000:text-[1.6rem] tracking-[0.03em] leading-[1.88rem] capitalize font-inter text-[#867ad2] text-center z-[1]">
                         Explore Projects
                     </b>
                 </button>
