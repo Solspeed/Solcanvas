@@ -7,8 +7,6 @@ interface FormData {
   title: string;
   name: string;
   description: string;
-  creator: string;
-  imageUrl: string;
   bannerImageUrl: string;
   logoImageUrl: string;
   githubLink: string;
@@ -24,8 +22,6 @@ function MyComponent(): JSX.Element {
     title: "",
     name: "",
     description: "",
-    creator: "",
-    imageUrl: "",
     bannerImageUrl: "",
     logoImageUrl: "",
     githubLink: "",
@@ -43,29 +39,38 @@ function MyComponent(): JSX.Element {
     }));
   };  
 
-  // Function to upload an image to the specified bucket
-  const uploadImage = async (imageFile: File, bucketName: string): Promise<string | undefined> => {
-    const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
-
-    // Check if image size exceeds the limit
-    if (imageFile.size > MAX_IMAGE_SIZE) {
-      alert("Image size exceeds the limit of 5MB. Please choose a smaller image.");
-      return;
-    }
+  // Function to handle form submission
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    event.preventDefault();
 
     try {
-      // Upload the image to the specified bucket
-      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile);
+      // Insert the form data into the "project_listing" table
+      const { data, error } = await supabase.from("project_listing").insert([{ ...formData }]);
 
       if (error) {
         throw error;
       }
 
-      // Return the public URL of the uploaded image
-      return data?.publicUrl;
+      console.log("Project data saved successfully!");
+
+      // Clear the form fields after submission
+      setFormData({
+        title: "",
+        name: "",
+        description: "",
+        bannerImageUrl: "",
+        logoImageUrl: "",
+        githubLink: "",
+        discordLink: "",
+        twitterLink: "",
+        websiteLink: "",
+      });
+
+      // Redirect the user to the "/projectCard" page
+      window.location.href = "/projectCard";
     } catch (error) {
-      console.error(`Error uploading ${bucketName} image:`, error.message);
-      alert(`An error occurred while uploading the ${bucketName} image: ${error.message}`);
+      console.error("Error saving project data:", error.message);
+      alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
     }
   };
 
@@ -90,40 +95,29 @@ function MyComponent(): JSX.Element {
     }
   };
 
-  // Function to handle form submission
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault();
+  // Function to upload an image to the specified bucket
+  const uploadImage = async (imageFile: File, bucketName: string): Promise<string | undefined> => {
+    const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+
+    // Check if image size exceeds the limit
+    if (imageFile.size > MAX_IMAGE_SIZE) {
+      alert("Image size exceeds the limit of 5MB. Please choose a smaller image.");
+      return;
+    }
 
     try {
-      // Insert the form data into the "project_listing" table
-      const { data, error } = await supabase.from("project_listing").insert([{ ...formData }]);
+      // Upload the image to the specified bucket
+      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile);
 
       if (error) {
         throw error;
       }
 
-      console.log("Project data saved successfully!");
-
-      // Clear the form fields after submission
-      setFormData({
-        title: "",
-        name: "",
-        description: "",
-        creator: "",
-        imageUrl: "",
-        bannerImageUrl: "",
-        logoImageUrl: "",
-        githubLink: "",
-        discordLink: "",
-        twitterLink: "",
-        websiteLink: "",
-      });
-
-      // Redirect the user to the "/projectCard" page
-      window.location.href = "/projectCard";
+      // Return the public URL of the uploaded image
+      return data?.publicUrl;
     } catch (error) {
-      console.error("Error saving project data:", error.message);
-      alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
+      console.error(`Error uploading ${bucketName} image:`, error.message);
+      alert(`An error occurred while uploading the ${bucketName} image: ${error.message}`);
     }
   };
 
@@ -178,25 +172,7 @@ function MyComponent(): JSX.Element {
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 resize-none"
                   />
                 </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Creator Name</label>
-                  <textarea
-                    name="creator"
-                    value={formData.creator}
-                    onChange={handleChange}
-                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 resize-none"
-                  />
-                </div>
                 {/* Input fields for image URLs */}
-                <div className="flex flex-col">
-                  <label className="leading-loose">Image</label>
-                  <input
-                    type="file"
-                    name="image"
-                    onChange={(e) => handleImageChange(e, "imageUrl", "project_images")}
-                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                  />
-                </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Banner Image</label>
                   <input
