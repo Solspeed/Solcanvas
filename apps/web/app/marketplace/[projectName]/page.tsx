@@ -28,10 +28,10 @@ export default function ProjectDetails({
 
 
     const handleSeeAllCommitsClick = () => {
-        setShowAllCommits(true);
+        showAllCommits ? setShowAllCommits(false) : setShowAllCommits(true);
     };
     const handleSeeAllUpdatesClick = () => {
-        setShowAllUpdates(true);
+        showAllUpdates ? setShowAllUpdates(false) : setShowAllUpdates(true)
     };
 
     return (
@@ -125,14 +125,14 @@ export default function ProjectDetails({
                     </div>
                     <div className="flex xl:gap-0 sm:gap-5 items-center sm:flex-row flex-col xl:flex-col xl:justify-normal sm:justify-evenly sm:items-center xl:max-w-[395px] xl:w-[40%] 2xl:mr-16 xl:mt-0 mt-4">
                         <div className="flex gap-5 sm:w-full xl:justify-normal sm:justify-evenly">
-                            <div className="flex  justify-center items-center sm:px-7 sm:py-11 rounded-xl bg-neutral-900">
+                            <div className="flex  w-full justify-center items-center sm:px-7 sm:py-11 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     src={projectGithub}
                                     className="aspect-square"
                                 />
                             </div>
-                            <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
+                            <div className="flex  w-full justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     src={projectTwitter}
@@ -141,14 +141,14 @@ export default function ProjectDetails({
                             </div>
                         </div>
                         <div className="flex gap-5 xl:mt-8 sm:mt-0 mt-8 sm:w-full xl:justify-normal sm:justify-evenly ">
-                            <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
+                            <div className="flex w-full  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     src={projectDiscord}
                                     className="aspect-square "
                                 />
                             </div>
-                            <div className="flex  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
+                            <div className="flex w-full  justify-center items-center sm:px-7 sm:py-12 rounded-xl bg-neutral-900">
                                 <Image
                                     alt=""
                                     src={projectWebsite}
@@ -255,7 +255,7 @@ export default function ProjectDetails({
                     <div className="mx-2.5  sm:text-5xl mb-3 text-4xl tracking-tighter font-semibold sm:tracking-wider leading-8 text-white max-md:mt-10 max-md:max-w-full max-md:text-4xl">
                         Product Updates
                     </div>
-                    <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1390px] flex-wrap">
+                    <div className="flex scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1390px] flex-wrap">
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             Started their first round of funding
                         </div>
@@ -263,7 +263,7 @@ export default function ProjectDetails({
                             25 Jan, 2024
                         </div>
                     </div>
-                    <div className={`flex gap-5 ${showAllUpdates ? '' : 'blur-[3px]'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
+                    <div className={`flex scale-[0.8] gap-5 ${showAllUpdates ? '' : 'blur-[3px]'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             Started their first round of funding
                         </div>
@@ -271,7 +271,7 @@ export default function ProjectDetails({
                             25 Jan, 2024
                         </div>
                     </div>
-                    <div className={`flex gap-5 ${showAllUpdates ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
+                    <div className={`flex scale-[0.8] gap-5 ${showAllUpdates ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1350px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             Started their first round of funding
                         </div>
@@ -284,12 +284,17 @@ export default function ProjectDetails({
                             See all
                         </button>
                     )}
+                    {showAllUpdates && (
+                        <button onClick={handleSeeAllUpdatesClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
+                            See all
+                        </button>
+                    )}
                 </div>
-                <div className="flex flex-col sm:mt-64 mt-24 w-full">
+                <div className="flex flex-col   sm:mt-64 mt-24 w-full">
                     <div className="mx-2.5  sm:text-5xl mb-3 text-4xl tracking-tighter font-semibold sm:tracking-wider leading-8 text-white max-md:mt-10 max-md:max-w-full max-md:text-4xl">
                         Commits
                     </div>
-                    <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
+                    <div className="flex  scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             8bpx5gh7sg....
                         </div>
@@ -300,7 +305,7 @@ export default function ProjectDetails({
                             <div className="w-[18px] h-[18px] rounded-full bg-[#42FF00] inline-block "></div>
                         </div>
                     </div>
-                    <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
+                    <div className="flex scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             8bpx5gh7sg....
                         </div>
@@ -308,23 +313,7 @@ export default function ProjectDetails({
                             Past
                         </div>
                     </div>
-                    {/* <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
-                        <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
-                            8bpx5gh7sg....
-                        </div>
-                        <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
-                            Past
-                        </div>
-                    </div>
-                    <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
-                        <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
-                            8bpx5gh7sg....
-                        </div>
-                        <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
-                            Past
-                        </div>
-                    </div> */}
-                    <div className={`flex gap-5 ${showAllCommits ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap`}>
+                    <div className={`flex scale-[0.8] gap-5 ${showAllCommits ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             8bpx5gh7sg....
                         </div>
@@ -337,9 +326,14 @@ export default function ProjectDetails({
                             See all
                         </button>
                     )}
+                    {showAllCommits && (
+                        <button onClick={handleSeeAllCommitsClick} className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10">
+                            See less
+                        </button>
+                    )}
                 </div>
-                <div className="flex flex-col items-center  w-full font-medium  leading-8">
-                    <CustomButton text="Edit Project" property1="variant-2" className="flex hover:cursor-pointer  justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full  tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]" />
+                <div className="flex flex-col items-center px-6  w-full font-medium  leading-8">
+                    <CustomButton text="Edit Project" property1="variant-2" className="flex sm:scale-[1] scale-[0.8] hover:cursor-pointer  justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full  tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]" />
                     <div className="sm:mt-80 mt-36 sm:text-xl text-lg text-center text-white text-opacity-60">
                         All right reserved @solcanvas
                     </div>

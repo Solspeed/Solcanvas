@@ -29,7 +29,7 @@ export default function Recommendation() {
                             <Image
                                 src={drip}
                                 alt="drip"
-                                className="aspect-square sm:w-[188px] w-[86.2px]"
+                                className="aspect-square object-cover sm:w-[188px] w-[86.2px]"
                             />
                             <div className="mt-2.5">Drip</div>
                         </div>
