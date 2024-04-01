@@ -3,10 +3,10 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import supabase from "../../supabase";
 
 interface TeamMemberFormProps {
-  projectId: string; // Assuming you'll pass the projectId from the parent component
+  projectId: number; // Assuming you'll pass the projectId from the parent component
 }
 
-interface TeamMemberFormData {
+interface TeamMember {
   name: string;
   image_url: string;
   twitter: string;
@@ -14,7 +14,8 @@ interface TeamMemberFormData {
 }
 
 const TeamMemberForm: React.FC<TeamMemberFormProps> = ({ projectId }) => {
-  const [formData, setFormData] = useState<TeamMemberFormData>({
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [formData, setFormData] = useState<TeamMember>({
     name: "",
     image_url: "",
     twitter: "",
@@ -50,16 +51,20 @@ const TeamMemberForm: React.FC<TeamMemberFormProps> = ({ projectId }) => {
     event.preventDefault();
 
     try {
-      // Assuming you have a table called 'team_members' in your database
-      const { data, error } = await supabase
-        .from("team_members")
-        .insert([{ ...formData, project_id: projectId }]);
+      // Insert data into 'team_members' table
+      const { data, error } = await supabase.from("team_members").insert([
+        {
+          ...formData,
+          project_id: projectId,
+        },
+      ]);
 
       if (error) {
         throw error;
       }
 
       console.log("Team member added successfully!");
+      setTeamMembers([...teamMembers, formData]);
       setFormData({
         name: "",
         image_url: "",
@@ -124,6 +129,16 @@ const TeamMemberForm: React.FC<TeamMemberFormProps> = ({ projectId }) => {
           Add Team Member
         </button>
       </form>
+      <div className="mt-8">
+        {teamMembers.map((member, index) => (
+          <div key={index}>
+            <p>Name: {member.name}</p>
+            <p>Twitter: {member.twitter}</p>
+            <p>GitHub: {member.github}</p>
+            <img src={member.image_url} alt={member.name} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

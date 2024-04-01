@@ -5,7 +5,6 @@ import supabase from "../../supabase";
 // Define the structure of the form data
 interface FormData {
   title: string;
-  name: string;
   description: string;
   bannerImageUrl: string;
   logoImageUrl: string;
@@ -20,7 +19,6 @@ function MyComponent(): JSX.Element {
   // State to manage form data
   const [formData, setFormData] = useState<FormData>({
     title: "",
-    name: "",
     description: "",
     bannerImageUrl: "",
     logoImageUrl: "",
@@ -56,7 +54,6 @@ function MyComponent(): JSX.Element {
       // Clear the form fields after submission
       setFormData({
         title: "",
-        name: "",
         description: "",
         bannerImageUrl: "",
         logoImageUrl: "",
@@ -67,7 +64,7 @@ function MyComponent(): JSX.Element {
       });
 
       // Redirect the user to the "/projectCard" page
-      window.location.href = "/projectCard";
+      window.location.href = "/team";
     } catch (error) {
       console.error("Error saving project data:", error.message);
       alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
@@ -133,11 +130,11 @@ function MyComponent(): JSX.Element {
                 <p className="text-sm text-gray-500 font-normal leading-relaxed">
                   Enter the project details below.
                 </p>
-              </div>
+              </div>  
             </div>
             <form
               onSubmit={handleSubmit}
-              action="/projectCard"
+              action="/team"
               method="post"
               className="divide-y divide-gray-200"
             >
@@ -149,16 +146,6 @@ function MyComponent(): JSX.Element {
                     type="text"
                     name="title"
                     value={formData.title}
-                    onChange={handleChange}
-                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="leading-loose">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
                     onChange={handleChange}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
