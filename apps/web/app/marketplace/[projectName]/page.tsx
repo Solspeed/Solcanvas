@@ -54,7 +54,7 @@ export default function ProjectDetails({
                     width={220}
                     height={220}
                 />
-                <div className="flex gap-5 xl:flex-row flex-col sm:mt-12 mt-6 justify-between">
+                <div className="flex xl:gap-24 gap-5 xl:flex-row flex-col sm:mt-12 mt-6 justify-between">
                     <div className="flex flex-col grow font-semibold xl:max-w-[946px] xl:w-[60%] w-full">
                         <div className="flex items-center sm:gap-5 gap-2 self-start whitespace-nowrap">
                             <h1 className="flex-auto sm:text-5xl text-4xl tracking-wider leading-8 text-white max-md:text-4xl">
@@ -67,7 +67,7 @@ export default function ProjectDetails({
                         <p className="mt-2 sm:mt-4 sm:text-2xl text-xl tracking-wide leading-8 text-white text-opacity-70  font-semibold">
                             The genesis of leading Solana initiatives.
                         </p>
-                        <ul className="sm:mt-12 mt-6 md:leading-relaxed lg:leading-loose xl:leading-relaxed 2xl:leading-loose ml-2 sm:ml-4 text-base sm:text-[22px]  tracking-tight sm:tracking-[2%] leading-8 text-justify text-white list-disc">
+                        <ul className="sm:mt-12 mt-6 md:leading-relaxed font-medium lg:leading-loose xl:leading-relaxed 2xl:leading-loose ml-2 sm:ml-4 text-base sm:text-[22px]  tracking-tight sm:tracking-[2%] leading-8 text-justify text-white list-disc">
                             <li>
                                 Cubik is an innovative platform designed to revolutionize
                                 the way open-source projects are funded and supported. It is
@@ -168,7 +168,7 @@ export default function ProjectDetails({
                                 <img className=" z-0 w-[317px] object-fill h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" />
                                 <img className="Z-10 w-[265px] z-10 h-[265px] object-fill left-[109px] top-0 absolute rounded-full" src="/images/marketplace/projects/irfanAvatar.png" />
                             </div>
-                            <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold font-['Inter'] leading-[30px] tracking-wide">@Irfan<br /></div>
+                            <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold   leading-[30px] tracking-wide">@Irfan<br /></div>
                             <img className="z-100 w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/twitter.png' />
                             <img className="z-20 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/github.png' />
                         </div>
@@ -177,7 +177,7 @@ export default function ProjectDetails({
                                 <img className=" z-0 w-[317px] object-fill h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" />
                                 <img className="Z-10 w-[265px] z-10 h-[265px] object-fill left-[109px] top-0 absolute rounded-full" src="/images/marketplace/projects/dhruvAvatar.png" />
                             </div>
-                            <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold font-['Inter'] leading-[30px] tracking-wide">@Dhruv<br /></div>
+                            <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold   leading-[30px] tracking-wide">@Dhruv<br /></div>
                             <img className="z-100 w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/twitter.png' />
                             <img className="z-20 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/github.png' />
                         </div>
@@ -186,7 +186,7 @@ export default function ProjectDetails({
                                 <img className=" z-0 w-[317px] object-fill h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" />
                                 <img className="Z-10 w-[265px] z-10 h-[265px] object-fill left-[109px] top-0 absolute rounded-full" src="/images/marketplace/projects/irfanAvatar.png" />
                             </div>
-                            <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold font-['Inter'] leading-[30px] tracking-wide">@Junad<br /></div>
+                            <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold   leading-[30px] tracking-wide">@Junad<br /></div>
                             <img className="z-100 w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/twitter.png' />
                             <img className="z-20 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/github.png' />
                         </div>
@@ -308,7 +308,7 @@ export default function ProjectDetails({
                             Past
                         </div>
                     </div>
-                    <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
+                    {/* <div className="flex gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             8bpx5gh7sg....
                         </div>
@@ -323,7 +323,7 @@ export default function ProjectDetails({
                         <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
                             Past
                         </div>
-                    </div>
+                    </div> */}
                     <div className={`flex gap-5 ${showAllCommits ? '' : 'hidden'} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap`}>
                         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
                             8bpx5gh7sg....
@@ -339,8 +339,8 @@ export default function ProjectDetails({
                     )}
                 </div>
                 <div className="flex flex-col items-center  w-full font-medium  leading-8">
-                    <CustomButton text="Edit Project" property1="variant-2" className="flex hover:cursor-pointer sm:scale-[0.8] xl:scale-[1] scale-[0.7] justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full text-4xl tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]" />
-                    <div className="sm:mt-80 mt-36 sm:text-3xl text-xl text-center text-white text-opacity-60">
+                    <CustomButton text="Edit Project" property1="variant-2" className="flex hover:cursor-pointer  justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full  tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]" />
+                    <div className="sm:mt-80 mt-36 sm:text-xl text-lg text-center text-white text-opacity-60">
                         All right reserved @solcanvas
                     </div>
                 </div>

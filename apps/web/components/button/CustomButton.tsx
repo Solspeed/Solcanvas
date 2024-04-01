@@ -26,7 +26,7 @@ const CustomButton = ({ property1, className, text }: Props): JSX.Element => {
             }}
         >
             <div
-                className={`[font-family:'Inter',Helvetica] left-[110px] tracking-[0.70px] text-[35px] top-[34px] font-medium leading-[30px] whitespace-nowrap   ${state.property1 === "variant-2" ? "text-[#a965f7]" : "text-[#94949494]"
+                className={`  left-[110px] tracking-[0.70px] text-[35px] top-[34px] font-medium leading-[30px] whitespace-nowrap   ${state.property1 === "variant-2" ? "text-[#a965f7]" : "text-[#94949494]"
                     }`}
             >
                 {text} 

@@ -5,6 +5,7 @@
 /* Custom styles */
 body {
   @apply leading-[normal] m-0;
+  font-family: "Inter", sans-serif;
 }
 *,
 ::before,
@@ -40,5 +41,3 @@ body {
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
-
-

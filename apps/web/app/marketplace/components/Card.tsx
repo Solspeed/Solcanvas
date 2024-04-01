@@ -22,7 +22,7 @@ const Card: React.FC<CardProps> = ({ imageSrc, iconSrc, title, description }) =>
         <Image src={iconSrc} alt={`${title} icon`} width={90} height={90} className="shrink-0 flex aspect-square" />
         <div className="flex flex-col justify-center gap-2">
           <div className="text-white font-semibold text-[22px]">{title}</div>
-          <div className="text-[#B2B2B2] xl:tracking-normal md:tracking-tight tracking-tighter text-[15px] font-['Inter']">
+          <div className="text-[#B2B2B2] xl:tracking-normal md:tracking-tight tracking-tighter text-[15px]  ">
             {description}
           </div>
         </div>

@@ -55,8 +55,8 @@ export default function Timeline() {
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={animationTriggered ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.5, delay: 6.2, ease: 'easeOut' }} className=" self-start  w-[41.188rem] z-50 h-[23.125rem] top-0 -mt-[12rem] left-0 bg-[#151515] rounded-[15px]">
                     <div className=" top-0 left-0">
                         <Image className=" object-cover  top-0 left-0" alt="Rectangle" src={Cubik} />
-                        <Image className=" w-[7.5rem] h-[7.5rem] relative -top-12 object-cover" alt="Ellipse" src={CubikIcon} />
-                        <div className=" font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
+                        <Image className=" w-[7.5rem] h-[7.5rem] relative -top-16 left-9  object-cover" alt="Ellipse" src={CubikIcon} />
+                        <div className=" font-semibold text-white text-[35px] tracking-[0.70px] ml-10 relative bottom-7 leading-[30px] whitespace-nowrap">
                             Cubik
                         </div>
                     </div>
@@ -64,35 +64,35 @@ export default function Timeline() {
 
                 {/* Additional card and line on the left */}
 
-                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1, delay: 6.2, ease: 'linear' }} className=" h-0 w-[0.25rem] -mt-[12rem] bg-[#B2B2B2]" />
+                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "32.625rem" } : {}} transition={{ duration: 1, delay: 6.2, ease: 'linear' }} className=" h-0 w-[0.25rem] z-50 -mt-[12rem] bg-[#B2B2B2]" />
                 <div className=' w-[3rem] -mr-[2.75rem] flex justify-start'>
                     <motion.div initial={{ width: 0 }} animate={animationTriggered ? { width: '3rem' } : {}} transition={{ duration: 1, delay: 7.2, ease: 'linear' }} className=' h-[0.25rem] w-0 bg-[#B2B2B2] ' />
                 </div>
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={animationTriggered ? { opacity: 1, x: 0 } : {}} transition={{ duration: .5, delay: 8.2, ease: 'easeOut' }} className=" self-end w-[41.188rem] h-[23.125rem] top-0 -mt-[12rem] left-0 bg-[#151515] rounded-[15px]">
                     <div className=" w-[41.188rem] h-[15.75rem] top-0 left-0">
                         <Image className=" object-cover w-[41.188rem] h-[11.563rem] top-0 left-0" alt="Rectangle" src={Tinydancer} />
-                        <Image className=" w-[7.5rem] h-[7.5rem] relative -top-12 object-cover" alt="Ellipse" src={TinydancerIcon} />
-                        <div className=" font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
+                        <Image className=" w-[7.5rem] h-[7.5rem] relative -top-16 left-9 object-cover" alt="Ellipse" src={TinydancerIcon} />
+                        <div className=" font-semibold text-white text-[35px] tracking-[0.70px] ml-10 relative bottom-7 leading-[30px] whitespace-nowrap">
                             Tiny Dancer
                         </div>
                     </div>
                 </motion.div>
-                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1, delay: 8.7, ease: 'linear' }} className=" h-0 w-[0.25rem] -mt-[12rem] bg-[#B2B2B2]" />
+                <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "32.625rem" } : {}} transition={{ duration: 1, delay: 8.7, ease: 'linear' }} className=" h-0 w-[0.25rem] -mt-[12rem] bg-[#B2B2B2]" />
                 <div className=' w-[3rem] mr-[2.75rem] flex justify-end'>
                     <motion.div initial={{ width: 0 }} animate={animationTriggered ? { width: '3rem' } : {}} transition={{ duration: 1, delay: 9.7, ease: 'linear' }} className=' h-[0.25rem] w-0 bg-[#B2B2B2] ' />
                 </div>
-                <motion.div initial={{ opacity: 0, x: -20 }} animate={animationTriggered ? { opacity: 1, x: 0 } : {}} transition={{ duration: .5, delay: 10.8, ease: 'easeOut' }} className=" self-start w-[41.188rem] h-[23.125rem] top-0 -mt-[12rem] left-0 bg-[#151515] rounded-[15px]">
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={animationTriggered ? { opacity: 1, x: 0 } : {}} transition={{ duration: .5, delay: 10.8, ease: 'easeOut' }} className=" self-start w-[41.188rem]  h-[23.125rem] top-0 -mt-[12rem] left-0 bg-[#151515] rounded-[15px]">
                     <div className=" w-[41.188rem] h-[15.75rem] top-0 left-0">
                         <Image className=" object-cover w-[41.188rem] h-[11.563rem] top-0 left-0" alt="Rectangle" src={Drip} />
-                        <Image className=" w-[7.5rem] h-[7.5rem] relative -top-12 object-cover" alt="Ellipse" src={DripIcon} />
-                        <div className=" font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
-                            Drip
+                        <Image className=" w-[7.5rem] h-[7.5rem] relative -top-16 left-9 object-cover" alt="Ellipse" src={DripIcon} />
+                        <div className=" font-semibold text-white text-[35px] tracking-[0.70px] ml-10 relative bottom-7 leading-[30px] whitespace-nowrap">
+                            DRiP
                         </div>
                     </div>
                 </motion.div>
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1, delay: 11.3, ease: 'linear' }} className=" h-0 w-[0.25rem] -mt-[12rem] bg-[#B2B2B2]" />
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 12.1, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={animationTriggered ? { opacity: 1, y: 0 } : {}} transition={{ duration: .5, delay: 12.9, ease: 'easeOut' }} className="[font-family:'Inter',Helvetica] space-y-12 m-20 font-semibold text-white text-[50px] tracking-[1.00px] leading-[30px] whitespace-nowrap">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={animationTriggered ? { opacity: 1, y: 0 } : {}} transition={{ duration: .5, delay: 12.9, ease: 'easeOut' }} className="  space-y-12 m-20 font-semibold text-white text-[50px] tracking-[1.00px] leading-[30px] whitespace-nowrap">
                     Ways you can contribute
                 </motion.div>
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 13.4, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
@@ -102,7 +102,7 @@ export default function Timeline() {
                     <div className='flex flex-col items-center'>
                         <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 16.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                         <motion.div initial={{ opacity: 0 }} animate={animationTriggered ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 17.1, ease: 'easeOut' }} className="flex justify-center items-center w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
-                            <div className="[font-family:'Inter',Helvetica] font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
+                            <div className=" font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
                                 New Project
                             </div>
                         </motion.div>
@@ -111,7 +111,7 @@ export default function Timeline() {
                     <div className='flex flex-col items-center justify-center'>
                         <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 16.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                         <motion.div initial={{ opacity: 0 }} animate={animationTriggered ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 17.1, ease: 'easeOut' }} className="flex justify-center items-center w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
-                            <div className="[font-family:'Inter',Helvetica] font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
+                            <div className="p font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
                                 Edit Project
                             </div>
                         </motion.div>
@@ -120,7 +120,7 @@ export default function Timeline() {
                     <div className='flex flex-col items-center'>
                         <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "12.825rem" } : {}} transition={{ duration: 1, delay: 16.1, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                         <motion.div initial={{ opacity: 0 }} animate={animationTriggered ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 17.1, ease: 'easeOut' }} className="flex justify-center items-center   w-[352px] h-[123px] bg-black rounded-[15px] shadow-[2px_2px_30px_4px_#6946e240]">
-                            <div className="[font-family:'Inter',Helvetica] font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
+                            <div className=" font-semibold text-white text-[35px] tracking-[0.70px] leading-[30px] whitespace-nowrap">
                                 Post Updates
                             </div>
                         </motion.div>
@@ -133,7 +133,7 @@ export default function Timeline() {
                 </div>
                 <motion.div initial={{ height: 0 }} animate={animationTriggered ? { height: "25.625rem" } : {}} transition={{ duration: 1, delay: 19.6, ease: 'linear' }} className=" h-0 w-[0.25rem] bg-[#B2B2B2]" />
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.5, delay: 20.5, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={animationTriggered ? { opacity: 1, y: 0 } : {}} transition={{ duration: .5, delay: 21, ease: 'easeOut' }} className="[font-family:'Inter',Helvetica] font-semibold text-white  space-y-12 m-20 text-[80px] tracking-[1.60px] leading-[30px] whitespace-nowrap">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={animationTriggered ? { opacity: 1, y: 0 } : {}} transition={{ duration: .5, delay: 21, ease: 'easeOut' }} className="  font-semibold text-white  space-y-12 m-20 text-[80px] tracking-[1.60px] leading-[30px] whitespace-nowrap">
                     Rewards
                 </motion.div>
                 <motion.div initial={{ height: 0, width: 0 }} animate={animationTriggered ? { height: '1.5rem', width: '1.5rem' } : {}} transition={{ duration: 0.2, delay: 21.5, ease: 'circIn' }} className=" h-0 w-0 bg-[#B2B2B2] rounded-full" />

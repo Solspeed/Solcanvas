@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion"; // Import motion components
+import { motion, AnimatePresence } from "framer-motion"; 
 import logo from "../../../public/images/Icon.png";
 import hamburgermenu from "../../../public/images/marketplace/hamburger-menu.svg";
 import closemenu from "../../../public/images/marketplace/close.svg";
@@ -15,25 +15,25 @@ export default function Navbar() {
             {/* Navbar for larger screens */}
             <div className="bg-black hidden md:py-[3.2rem] py-6 md:flex items-center justify-center">
                 <div className="min-w-[1169px] h-[50px] flex gap-[6em] justify-center items-center">
-                    <a href="#" className="xl:block hidden text-[#B2B2B2] text-xl font-bold font-['Inter'] capitalize leading-[30px] tracking-[1%]">
+                    <a href="#" className="xl:block hidden text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         Digital Collectibles
                     </a>
-                    <a href="#" className="text-[#B2B2B2] text-xl font-bold font-['Inter'] capitalize leading-[30px] tracking-[1%]">
+                    <a href="#" className="text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         Trading
                     </a>
-                    <a href="#" className="text-[#B2B2B2] text-xl font-bold font-['Inter'] capitalize leading-[30px] tracking-[1%]">
+                    <a href="#" className="text-[#B2B2B2] text-xl font-bold capitalize leading-[30px] tracking-[1%]">
                         Wallet
                     </a>
                     <a href="/">
                         <Image src={logo} alt="logo" width={50} height={50} />
                     </a>
-                    <a href="#" className="text-[#B2B2B2] text-xl font-bold font-['Inter'] capitalize leading-[30px] tracking-[1%]">
+                    <a href="#" className="text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         DeFi
                     </a>
-                    <a href="#" className="text-[#B2B2B2] text-xl font-bold font-['Inter'] capitalize leading-[30px] tracking-[1%]">
+                    <a href="#" className="text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         Payments
                     </a>
-                    <a href="#" className="xl:block hidden text-[#B2B2B2] text-xl font-bold font-['Inter'] capitalize leading-[30px] tracking-[1%]">
+                    <a href="#" className="xl:block hidden text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         Developer Tools
                     </a>
                 </div>
@@ -71,12 +71,12 @@ export default function Navbar() {
                         exit={{ opacity: 0, x: "-100%" }}
                     >
                         <div className="flex justify-center items-center gap-2 flex-col p-4">
-                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold font-['Inter'] capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-transparent hover:border-purple-900">Digital Collectibles</Link>
-                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold font-['Inter'] capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-transparent hover:border-purple-900">Wallet</Link>
-                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold font-['Inter'] capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-transparent hover:border-purple-900">Trading</Link>
-                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold font-['Inter'] capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-white border-transparent hover:border-purple-900">Payments</Link>
-                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold font-['Inter'] capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-white border-transparent hover:border-purple-900">DeFi</Link>
-                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold font-['Inter'] capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-white border-transparent hover:border-purple-900">Developer Tools</Link>
+                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold  capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-transparent hover:border-purple-900">Digital Collectibles</Link>
+                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold  capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-transparent hover:border-purple-900">Wallet</Link>
+                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold  capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2 border-transparent hover:border-purple-900">Trading</Link>
+                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold  capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2  border-transparent hover:border-purple-900">Payments</Link>
+                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold  capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2  border-transparent hover:border-purple-900">DeFi</Link>
+                            <Link href="#" className="text-[#B2B2B2] text-lg font-bold  capitalize leading-[30px] tracking-tight py-2 px-4 hover:text-purple-600  border-b-2  border-transparent hover:border-purple-900">Developer Tools</Link>
                         </div>
                     </motion.div>
                 )}
