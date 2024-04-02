@@ -4,7 +4,7 @@ import arrowTop from "../../public/images/arrow_top.png";
 
 export default function Interaction1() {
     return (
-        <div className="self-stretch rounded-full bg-black shadow-[4px_3px_50px_1px_rgba(134,_122,_210,_0.6)] flex flex-row items-center justify-between  pt-[0.4rem] pb-[0.4rem] sm:py-[1.595rem] box-border gap-[1.25rem] max-w-full text-left text-[2.5rem] text-white font-inter mq450:flex-wrap">
+        <div className="self-stretch rounded-full bg-black shadow-[4px_3px_50px_1px_rgba(134,_122,_210,_0.6)] flex flex-row items-center justify-between  pt-[0.4rem] pb-[0.4rem] sm:py-[1.595rem] box-border gap-[1.25rem] max-w-full text-left text-[2.5rem] text-white  mq450:flex-wrap">
             <div className="flex flex-row items-center justify-start pl-2 sm:pl-5 gap-2">
                 <Image
                     className="w-12 h-12 sm:h-20 sm:w-20 relative rounded-[50%] object-cover z-[1]"

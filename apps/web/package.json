@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@repo/ui": "*",
+    "framer-motion": "^11.0.24",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-fast-marquee": "^1.6.4",
     "react-icons": "^5.0.1",
     "react-intersection-observer": "^9.8.0",
     "react-spring": "^9.7.3"
