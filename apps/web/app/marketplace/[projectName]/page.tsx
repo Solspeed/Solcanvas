@@ -70,10 +70,6 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                     get back to marketplace
                 </Link>
                 <Overview projectsList={projectData.projectList} />
-                <Team />
-                <Tweets />
-                <Updates />
-                <Commits />
                 <div className="flex flex-col items-center px-6 w-full font-medium leading-8">
                     <CustomButton
                         text="Edit Project"

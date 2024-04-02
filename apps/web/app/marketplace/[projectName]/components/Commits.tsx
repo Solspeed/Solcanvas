@@ -9,7 +9,6 @@ export default function Commits() {
         showAllCommits ? setShowAllCommits(false) : setShowAllCommits(true);
     };
     return (
-
         <div className="flex flex-col   sm:mt-64 mt-24 w-full">
             <div className="mx-2.5  sm:text-5xl mb-3 text-4xl tracking-tighter font-semibold sm:tracking-wider leading-8 text-white max-md:mt-10 max-md:max-w-full max-md:text-4xl">
                 Commits
