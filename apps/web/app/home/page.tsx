@@ -238,4 +238,3 @@ function MyComponent(): JSX.Element {
 }
 
 export default MyComponent;
-u
