@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import supabase from "../../supabase";
 
@@ -35,7 +35,7 @@ function MyComponent(): JSX.Element {
       ...prevState,
       [name]: value,
     }));
-  };  
+  };
 
   // Function to handle form submission
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -43,7 +43,7 @@ function MyComponent(): JSX.Element {
 
     try {
       // Insert the form data into the "project_listing" table
-      const { data, error } = await supabase.from("project_listing").insert([{ ...formData }]);
+      const { error } = await supabase.from("project_listing").insert([{ ...formData }]);
 
       if (error) {
         throw error;
@@ -63,36 +63,40 @@ function MyComponent(): JSX.Element {
         websiteLink: "",
       });
 
-      // Redirect the user to the "/projectCard" page
+      // Redirect the user to the "/team" page
       window.location.href = "/team";
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error saving project data:", error.message);
       alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
     }
   };
 
   // Function to handle changes in image inputs
-  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>, fieldName: string, bucketName: string): Promise<void> => {
+  const handleImageChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+    fieldName: string,
+    bucketName: string
+  ): Promise<void> => {
     const imageFile = event.target.files?.[0];
 
     if (!imageFile) return;
 
     // Read the image file as a data URL
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const imageUrl = e.target?.result as string;
       setFormData((prevState) => ({ ...prevState, [fieldName]: imageUrl }));
+
+      // Upload the image and get its URL
+      const uploadedImageUrl = await uploadImage(imageFile, bucketName);
+      if (uploadedImageUrl) {
+        setFormData((prevState) => ({ ...prevState, [fieldName]: uploadedImageUrl }));
+      }
     };
     reader.readAsDataURL(imageFile);
-
-    // Upload the image file to the specified bucket and update form data with the image URL
-    const uploadedImageUrl = await uploadImage(imageFile, bucketName);
-    if (uploadedImageUrl) {
-      setFormData((prevState) => ({ ...prevState, [fieldName]: uploadedImageUrl }));
-    }
   };
 
-  // Function to upload an image to the specified bucket
+  // Function to upload an image to the specified bucket and return its URL
   const uploadImage = async (imageFile: File, bucketName: string): Promise<string | undefined> => {
     const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 
@@ -104,15 +108,22 @@ function MyComponent(): JSX.Element {
 
     try {
       // Upload the image to the specified bucket
-      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile);
+      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile, {
+        cacheControl: '3600', // Cache control for the uploaded file, optional
+        upsert: false, // If true, will overwrite the file if it already exists, optional
+      });
 
       if (error) {
         throw error;
       }
 
       // Return the public URL of the uploaded image
-      return data?.publicUrl;
-    } catch (error) {
+      if (data) {
+        return data.path; // Return the path of the uploaded image
+      } else {
+        throw new Error('No data returned from Supabase storage upload.');
+      }
+    } catch (error:any) {
       console.error(`Error uploading ${bucketName} image:`, error.message);
       alert(`An error occurred while uploading the ${bucketName} image: ${error.message}`);
     }
@@ -130,14 +141,9 @@ function MyComponent(): JSX.Element {
                 <p className="text-sm text-gray-500 font-normal leading-relaxed">
                   Enter the project details below.
                 </p>
-              </div>  
+              </div>
             </div>
-            <form
-              onSubmit={handleSubmit}
-              action="/team"
-              method="post"
-              className="divide-y divide-gray-200"
-            >
+            <form onSubmit={handleSubmit} action="/team" method="post" className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 {/* Input fields for project details */}
                 <div className="flex flex-col">

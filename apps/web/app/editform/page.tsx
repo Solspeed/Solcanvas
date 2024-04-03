@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import supabase from "../../supabase";
 
 interface ProjectData {
@@ -16,19 +16,19 @@ interface ProjectData {
 }
 
 const UpdateProjectForm: React.FC = () => {
-  const [projectName, setProjectName] = useState("");
+  const [projectName, setProjectName] = useState<string>("");
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setProjectName(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       const { data, error } = await supabase
-        .from<ProjectData>("project_listing")
+        .from("project_listing")
         .select("*")
         .eq("name", projectName);
 
@@ -43,22 +43,33 @@ const UpdateProjectForm: React.FC = () => {
         alert("Project not found!");
       }
     } catch (error) {
-      console.error("Error fetching project data:", error.message);
-      alert(`An error occurred while fetching project data: ${error.message}`);
+      console.error("Error fetching project data:", (error as Error).message);
+      alert(`An error occurred while fetching project data: ${(error as Error).message}`);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (projectData) {
-      setProjectData((prevData) => ({
-        ...prevData,
+      setProjectData((prevData: ProjectData | null) => ({
+        ...(prevData as ProjectData),
         [name]: value,
       }));
     }
   };
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    if (projectData) {
+      setProjectData((prevData: ProjectData | null) => ({
+        ...(prevData as ProjectData),
+        [name]: value,
+      }));
+    }
+  };
+
+
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>, fieldName: string) => {
     const imageFile = e.target.files?.[0];
 
     if (!imageFile) return;
@@ -67,8 +78,8 @@ const UpdateProjectForm: React.FC = () => {
     reader.onload = (e) => {
       const imageUrl = e.target?.result as string;
       if (projectData) {
-        setProjectData((prevData) => ({
-          ...prevData,
+        setProjectData((prevData: ProjectData | null) => ({
+          ...(prevData as ProjectData),
           [fieldName]: imageUrl,
         }));
       }
@@ -80,7 +91,7 @@ const UpdateProjectForm: React.FC = () => {
     if (projectData) {
       try {
         const { error } = await supabase
-          .from<ProjectData>("project_listing")
+          .from("project_listing")
           .update(projectData)
           .eq("name", projectName);
 
@@ -90,7 +101,7 @@ const UpdateProjectForm: React.FC = () => {
 
         console.log("Project data updated successfully!");
         // Optionally, you can redirect the user to another page after successful update
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error updating project data:", error.message);
         alert(`An error occurred while updating project data: ${error.message}`);
       }
@@ -130,7 +141,7 @@ const UpdateProjectForm: React.FC = () => {
             id="description"
             name="description"
             value={projectData.description}
-            onChange={handleChange}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleDescriptionChange(e)}
             style={{ width: "100%", padding: "8px", marginBottom: "10px", fontSize: "16px", minHeight: "100px" }}
           ></textarea>
 

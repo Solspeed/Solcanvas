@@ -71,7 +71,7 @@ const TeamMemberForm: React.FC<TeamMemberFormProps> = ({ projectId }) => {
         twitter: "",
         github: "",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error adding team member:", error.message);
       alert(
         `An error occurred while adding the team member. Please try again later: ${error.message}`
