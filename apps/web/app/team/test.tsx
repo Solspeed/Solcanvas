@@ -2,7 +2,9 @@
 // import React, { useState, ChangeEvent, FormEvent } from "react";
 // import supabase from "../../supabase";
 
-
+// interface TeamMemberFormProps {
+//   projectId: number; // Assuming you'll pass the projectId from the parent component
+// }
 
 // interface TeamMember {
 //   name: string;
@@ -11,7 +13,7 @@
 //   github: string;
 // }
 
-// const TeamMemberForm: React.FC = ({ projectId }: any) => {
+// const TeamMemberForm: React.FC<TeamMemberFormProps> = ({ projectId }) => {
 //   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
 //   const [formData, setFormData] = useState<TeamMember>({
 //     name: "",
@@ -69,7 +71,7 @@
 //         twitter: "",
 //         github: "",
 //       });
-//     } catch (error:any) {
+//     } catch (error: any) {
 //       console.error("Error adding team member:", error.message);
 //       alert(
 //         `An error occurred while adding the team member. Please try again later: ${error.message}`

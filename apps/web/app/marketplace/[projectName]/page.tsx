@@ -64,7 +64,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
     };
 
     return (
-        <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:py-16 sm:py-12 py-6 bg-black">
+        <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:py-16 sm:py-12 py-6 h-full bg-black">
             <div className="flex flex-col w-full max-md:px-5 max-md:max-w-full">
                 <Link href="/marketplace" className="text-white text-opacity-60 text-lg font-semibold">
                     get back to marketplace

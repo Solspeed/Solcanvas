@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import supabase from "../../supabase";
+import supabase from "../../../../supabase";
 
 interface ProjectData {
   id: number;
