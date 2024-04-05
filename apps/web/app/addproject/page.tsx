@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import supabase from "../../supabase";
 
 // Define the structure of the form data
 interface FormData {
+  name: string;
   title: string;
   description: string;
   bannerImageUrl: string;
@@ -18,6 +19,7 @@ interface FormData {
 function MyComponent(): JSX.Element {
   // State to manage form data
   const [formData, setFormData] = useState<FormData>({
+    name: "",
     title: "",
     description: "",
     bannerImageUrl: "",
@@ -28,8 +30,13 @@ function MyComponent(): JSX.Element {
     websiteLink: "",
   });
 
+  // State to manage success message
+  const [successMessage, setSuccessMessage] = useState<string>("");
+
   // Function to handle changes in form inputs
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -38,21 +45,27 @@ function MyComponent(): JSX.Element {
   };
 
   // Function to handle form submission
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
     try {
       // Insert the form data into the "project_listing" table
-      const { error } = await supabase.from("project_listing").insert([{ ...formData }]);
+      const { error } = await supabase
+        .from("project_listing")
+        .insert([{ ...formData }]);
 
       if (error) {
         throw error;
       }
 
       console.log("Project data saved successfully!");
+      setSuccessMessage("Project data saved successfully!");
 
       // Clear the form fields after submission
       setFormData({
+        name: "",
         title: "",
         description: "",
         bannerImageUrl: "",
@@ -62,12 +75,11 @@ function MyComponent(): JSX.Element {
         twitterLink: "",
         websiteLink: "",
       });
-
-      // Redirect the user to the "/team" page
-      window.location.href = "/team";
     } catch (error: any) {
       console.error("Error saving project data:", error.message);
-      alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
+      alert(
+        `An error occurred while saving the project data. Please try again later: ${error.message}`
+      );
     }
   };
 
@@ -90,28 +102,38 @@ function MyComponent(): JSX.Element {
       // Upload the image and get its URL
       const uploadedImageUrl = await uploadImage(imageFile, bucketName);
       if (uploadedImageUrl) {
-        setFormData((prevState) => ({ ...prevState, [fieldName]: uploadedImageUrl }));
+        setFormData((prevState) => ({
+          ...prevState,
+          [fieldName]: uploadedImageUrl,
+        }));
       }
     };
     reader.readAsDataURL(imageFile);
   };
 
   // Function to upload an image to the specified bucket and return its URL
-  const uploadImage = async (imageFile: File, bucketName: string): Promise<string | undefined> => {
+  const uploadImage = async (
+    imageFile: File,
+    bucketName: string
+  ): Promise<string | undefined> => {
     const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 
     // Check if image size exceeds the limit
     if (imageFile.size > MAX_IMAGE_SIZE) {
-      alert("Image size exceeds the limit of 5MB. Please choose a smaller image.");
+      alert(
+        "Image size exceeds the limit of 5MB. Please choose a smaller image."
+      );
       return;
     }
 
     try {
       // Upload the image to the specified bucket
-      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile, {
-        cacheControl: '3600', // Cache control for the uploaded file, optional
-        upsert: false, // If true, will overwrite the file if it already exists, optional
-      });
+      const { data, error } = await supabase.storage
+        .from(bucketName)
+        .upload(imageFile.name, imageFile, {
+          cacheControl: "3600", // Cache control for the uploaded file, optional
+          upsert: false, // If true, will overwrite the file if it already exists, optional
+        });
 
       if (error) {
         throw error;
@@ -121,11 +143,13 @@ function MyComponent(): JSX.Element {
       if (data) {
         return data.path; // Return the path of the uploaded image
       } else {
-        throw new Error('No data returned from Supabase storage upload.');
+        throw new Error("No data returned from Supabase storage upload.");
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.error(`Error uploading ${bucketName} image:`, error.message);
-      alert(`An error occurred while uploading the ${bucketName} image: ${error.message}`);
+      alert(
+        `An error occurred while uploading the ${bucketName} image: ${error.message}`
+      );
     }
   };
 
@@ -143,9 +167,27 @@ function MyComponent(): JSX.Element {
                 </p>
               </div>
             </div>
-            <form onSubmit={handleSubmit} action="/team" method="post" className="divide-y divide-gray-200">
+            <form
+              onSubmit={handleSubmit}
+              action="/team"
+              method="post"
+              className="divide-y divide-gray-200"
+            >
+              {successMessage && (
+                <div className="text-green-500">{successMessage}</div>
+              )}
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 {/* Input fields for project details */}
+                <div className="flex flex-col">
+                  <label className="leading-loose">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  />
+                </div>
                 <div className="flex flex-col">
                   <label className="leading-loose">Title</label>
                   <input
@@ -171,7 +213,9 @@ function MyComponent(): JSX.Element {
                   <input
                     type="file"
                     name="bannerImage"
-                    onChange={(e) => handleImageChange(e, "bannerImageUrl", "banner_image")}
+                    onChange={(e) =>
+                      handleImageChange(e, "bannerImageUrl", "banner_image")
+                    }
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
@@ -180,7 +224,9 @@ function MyComponent(): JSX.Element {
                   <input
                     type="file"
                     name="logoImage"
-                    onChange={(e) => handleImageChange(e, "logoImageUrl", "logo_image")}
+                    onChange={(e) =>
+                      handleImageChange(e, "logoImageUrl", "logo_image")
+                    }
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
@@ -215,6 +261,7 @@ function MyComponent(): JSX.Element {
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
+
                 <div className="flex flex-col">
                   <label className="leading-loose">Website Link</label>
                   <input
