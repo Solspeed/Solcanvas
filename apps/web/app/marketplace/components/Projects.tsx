@@ -1,12 +1,12 @@
-import React from "react";
+'use client'
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
-import projectsData from "../data/projectsData.json";
-import Link from "next/link";
+import supabase from "../../../supabase";
 
 interface Project {
-  imageSrc: string;
-  iconSrc: string;
-  title: string;
+  bannerImageUrl: string;
+  logoImageUrl: string;
+  name: string;
   description: string;
 }
 
@@ -22,26 +22,49 @@ function splitIntoChunks<T>(array: T[], chunkSize: number): T[][] {
 }
 
 export default function Projects(): JSX.Element {
-  // Split the projectsData into chunks of two
-  const chunks: Project[][] = splitIntoChunks(projectsData, 2);
+  const [projectData, setProjectData] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetchProjectData();
+  }, []);
+
+  const fetchProjectData = async () => {
+    try {
+      const { data: allProjects, error: projectError } = await supabase
+        .from('project_listing')
+        .select('*');
+
+      if (projectError) {
+        throw projectError;
+      }
+      console.log(allProjects)
+      setProjectData(allProjects || []);
+    } catch (error: any) {
+      console.error('Error fetching project data:', error.message);
+    }
+  };
+
+  // Split the projectData into chunks of two
+  const chunks: Project[][] = splitIntoChunks(projectData, 2);
 
   return (
     <div className="flex flex-col xl:gap-16 place-items-center space-y-[2.88rem] xl:px-24 sm:px-12 px-4">
       {chunks.map((chunk: Project[], rowIndex: number) => (
-        <Link href="/marketplace/cubik" key={rowIndex} className="flex sm:gap-12 gap-[2.88rem] justify-between w-full sm:flex-nowrap flex-wrap">
+        <div key={rowIndex} className="flex sm:gap-12 gap-[2.88rem] justify-between w-full md:flex-nowrap flex-wrap">
           {chunk.map((project: Project, colIndex: number) => (
             <Card
               key={`${rowIndex}_${colIndex}`}
-              imageSrc={project.imageSrc}
-              iconSrc={project.iconSrc}
-              title={project.title}
+              imageSrc={project.bannerImageUrl}
+              iconSrc={project.logoImageUrl}
+              title={project.name}
               description={project.description}
+              url={project.name}
             />
           ))}
           {chunk.length < 2 && (
-            <div className="w-[calc(50%-4.688rem)] "></div>
+            <div key={`empty_${rowIndex}`} className="w-[calc(50%-4.688rem)]"></div>
           )}
-        </Link>
+        </div>
       ))}
     </div>
   );

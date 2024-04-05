@@ -43,7 +43,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
             if (teamMemberError) {
                 throw teamMemberError;
             }
-             console.log(allProjects)
+            console.log(allProjects)
             const filteredProjects = allProjects.filter((project: Project) => {
                 if (project.name) {
                     return project.name.toLowerCase() === params.projectName.toLowerCase();
@@ -61,25 +61,21 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
     };
 
     return (
-        <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:py-16 sm:py-12 py-6 h-full bg-black min-h-screen">
+        <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:pt-16 sm:pt-12 pt-6 h-full bg-black min-h-screen">
             <div className="flex flex-col w-full max-md:px-5 max-md:max-w-full">
                 <Link href="/marketplace" className="text-white text-opacity-60 text-lg font-semibold">
                     get back to marketplace
                 </Link>
                 <Overview projectsList={projectData.projectList} />
-                <div className="flex flex-col items-center px-6 w-full font-medium leading-8">
-                    <Link href={`/marketplace/${params.projectName}/editform`}>
-                     
-                            <CustomButton
-                                text="Edit Project"
-                                property1="variant-2"
-                                className="flex sm:scale-[1] scale-[0.8] hover:cursor-pointer justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]"
-                            />
-                       
-                    </Link>
-                    <div className="sm:mt-80 mt-36 sm:text-xl text-lg text-center text-white text-opacity-60">
-                        All right reserved @solcanvas
-                    </div>
+                <Link href={`/marketplace/${params.projectName}/editform`} className="flex w-full justify-center ">
+                    <CustomButton
+                        text="Edit Project"
+                        property1="variant-2"
+                        className="flex sm:scale-[1] scale-[0.8] hover:cursor-pointer justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]"
+                    />
+                </Link>
+                <div className="sm:mt-80 mt-36 pb-4 sm:text-xl text-lg text-center text-white text-opacity-60">
+                    All right reserved @solcanvas
                 </div>
             </div>
         </div>
