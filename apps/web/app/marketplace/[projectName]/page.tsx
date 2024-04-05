@@ -43,7 +43,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
             if (teamMemberError) {
                 throw teamMemberError;
             }
-
+             console.log(allProjects)
             const filteredProjects = allProjects.filter((project: Project) => {
                 if (project.name) {
                     return project.name.toLowerCase() === params.projectName.toLowerCase();

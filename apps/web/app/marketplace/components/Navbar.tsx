@@ -24,7 +24,7 @@ export default function Navbar() {
                     <a href="#" className="text-[#B2B2B2] text-xl font-bold capitalize leading-[30px] tracking-[1%]">
                         Wallet
                     </a>
-                    <a href="/">
+                    <a href="/marketplace">
                         <Image src={logo} alt="logo" width={50} height={50} />
                     </a>
                     <a href="#" className="text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
