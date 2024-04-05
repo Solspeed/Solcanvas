@@ -42,11 +42,11 @@ const UpdateProjectForm: React.FC = () => {
         setProjectData(data[0]);
       } else {
         setProjectData(null);
-        toast.error("Project not found!"); // Display error toast if project not found
+        toast.error("Project not found!");
       }
     } catch (error) {
       console.error("Error fetching project data:", (error as Error).message);
-      toast.error(`An error occurred while fetching project data: ${(error as Error).message}`); // Display error toast if fetching data fails
+      toast.error(`An error occurred while fetching project data: ${(error as Error).message}`); 
     }
   };
 
@@ -102,11 +102,10 @@ const UpdateProjectForm: React.FC = () => {
         }
 
         console.log("Project data updated successfully!");
-        toast.success("Project data updated successfully!"); // Display success toast upon successful update
-        // Optionally, you can redirect the user to another page after successful update
+        toast.success("Project data updated successfully!");
       } catch (error: any) {
         console.error("Error updating project data:", error.message);
-        toast.error(`An error occurred while updating project data: ${error.message}`); // Display error toast if update fails
+        toast.error(`An error occurred while updating project data: ${error.message}`); 
       }
     }
   };
