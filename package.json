@@ -20,5 +20,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@supabase/supabase-js": "^2.42.0",
+    "react-toastify": "^10.0.5"
+  }
 }

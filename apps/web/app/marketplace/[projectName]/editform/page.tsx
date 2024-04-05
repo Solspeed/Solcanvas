@@ -1,6 +1,8 @@
 "use client"
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import supabase from "../../../../supabase";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ProjectData {
   id: number;
@@ -40,11 +42,11 @@ const UpdateProjectForm: React.FC = () => {
         setProjectData(data[0]);
       } else {
         setProjectData(null);
-        alert("Project not found!");
+        toast.error("Project not found!"); // Display error toast if project not found
       }
     } catch (error) {
       console.error("Error fetching project data:", (error as Error).message);
-      alert(`An error occurred while fetching project data: ${(error as Error).message}`);
+      toast.error(`An error occurred while fetching project data: ${(error as Error).message}`); // Display error toast if fetching data fails
     }
   };
 
@@ -100,28 +102,29 @@ const UpdateProjectForm: React.FC = () => {
         }
 
         console.log("Project data updated successfully!");
+        toast.success("Project data updated successfully!"); // Display success toast upon successful update
         // Optionally, you can redirect the user to another page after successful update
       } catch (error: any) {
         console.error("Error updating project data:", error.message);
-        alert(`An error occurred while updating project data: ${error.message}`);
+        toast.error(`An error occurred while updating project data: ${error.message}`); // Display error toast if update fails
       }
     }
   };
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", maxWidth: "600px", margin: "0 auto" }}>
-      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-        <label htmlFor="projectName" style={{ display: "block", marginBottom: "5px" }}>Project Name:</label>
-        <input
-          type="text"
-          id="projectName"
-          name="projectName"
-          value={projectName}
-          onChange={handleNameChange}
-          style={{ width: "100%", padding: "8px", marginBottom: "10px", fontSize: "16px" }}
-        />
-        <button type="submit" style={{ background: "#007bff", color: "#fff", border: "none", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>Fetch Project Data</button>
-      </form>
+    <div style={{ fontFamily: "Arial, sans-serif", maxWidth: "600px", margin: "0 auto", backgroundColor: "#f5f5f5" }}>
+    <form onSubmit={handleSubmit} style={{ marginBottom: "20px", backgroundColor: "#e0e0e0", padding: "20px", borderRadius: "5px" }}>
+      <label htmlFor="projectName" style={{ display: "block", marginBottom: "5px", color: "#333" }}>Project Name:</label>
+      <input
+        type="text"
+        id="projectName"
+        name="projectName"
+        value={projectName}
+        onChange={handleNameChange}
+        style={{ width: "100%", padding: "8px", marginBottom: "10px", fontSize: "16px", backgroundColor: "#fff", color: "#333" }}
+      />
+      <button type="submit" style={{ background: "#007bff", color: "#fff", border: "none", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>Fetch Project Data</button>
+    </form>
 
       {projectData && (
         <div style={{ border: "1px solid #ccc", padding: "20px", borderRadius: "5px" }}>
