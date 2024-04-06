@@ -37,7 +37,7 @@ export default function ItemBar({ isWalletClicked, onWalletClick }: ItemBarProps
             Wallet
           </a>
           <div className="border border-solid bg-zinc-400 border-zinc-400 h-[30px] " />
-          <div className="shrink-0">Submit Project</div>
+          <a href="/addproject" className="shrink-0">Submit Project</a>
           <div className="border border-solid bg-zinc-400 border-zinc-400 h-[30px] " />
           <Image
             src={profile}
