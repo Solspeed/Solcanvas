@@ -15,6 +15,15 @@ interface FormData {
   discordLink: string;
   twitterLink: string;
   websiteLink: string;
+  teamMembers: TeamMember[]; // Array of team members
+}
+
+// Define the structure of a team member
+interface TeamMember {
+  name: string;
+  image_url: string;
+  twitter: string;
+  github: string;
 }
 
 // Main component for creating a project
@@ -30,14 +39,42 @@ function MyComponent(): JSX.Element {
     discordLink: "",
     twitterLink: "",
     websiteLink: "",
+    teamMembers: [{ name: "", image_url: "", twitter: "", github: "" }],
   });
 
   // Function to handle changes in form inputs
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index?: number): void => {
     const { name, value } = e.target;
+    if (index !== undefined) {
+      const updatedTeamMembers = [...formData.teamMembers];
+      updatedTeamMembers[index][name] = value;
+      setFormData((prevState) => ({
+        ...prevState,
+        teamMembers: updatedTeamMembers,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
+
+  // Function to add a new team member input field
+  const addTeamMember = (): void => {
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      teamMembers: [...prevState.teamMembers, { name: "", image_url: "", twitter: "", github: "" }],
+    }));
+  };
+
+  // Function to remove a team member input field
+  const removeTeamMember = (index: number): void => {
+    const updatedTeamMembers = [...formData.teamMembers];
+    updatedTeamMembers.splice(index, 1);
+    setFormData((prevState) => ({
+      ...prevState,
+      teamMembers: updatedTeamMembers,
     }));
   };
 
@@ -47,7 +84,7 @@ function MyComponent(): JSX.Element {
 
     try {
       // Insert the form data into the "project_listing" table
-      const { error } = await supabase.from("project_listing").insert([{ ...formData }]);
+      const { data, error } = await supabase.from("project_listing").insert([{ ...formData }]);
 
       if (error) {
         throw error;
@@ -69,17 +106,55 @@ function MyComponent(): JSX.Element {
         discordLink: "",
         twitterLink: "",
         websiteLink: "",
+        teamMembers: [{ name: "", image_url: "", twitter: "", github: "" }],
       });
 
-      // Redirect the user to the "/team" page
-  
     } catch (error: any) {
       console.error("Error saving project data:", error.message);
       alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
     }
   };
 
-  // Function to handle changes in image inputs
+  // Function to handle changes in image inputs for banner image
+  const handleBannerImageChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    handleImageChange(event, "bannerImageUrl", "banner_image");
+  };
+
+  // Function to handle changes in image inputs for logo image
+  const handleLogoImageChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    handleImageChange(event, "logoImageUrl", "logo_image");
+  };
+
+  // Function to handle changes in image inputs for team members
+  const handleTeamMemberImageChange = async (
+    event: ChangeEvent<HTMLInputElement>,
+    index: number
+  ): Promise<void> => {
+    const imageFile = event.target.files?.[0];
+
+    if (!imageFile) return;
+
+    // Read the image file as a data URL
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const imageUrl = e.target?.result as string;
+      const updatedTeamMembers = [...formData.teamMembers];
+      updatedTeamMembers[index].image_url = imageUrl;
+      updatedTeamMembers[index].imageFile = imageFile;
+      setFormData((prevState) => ({ ...prevState, teamMembers: updatedTeamMembers }));
+
+      // Upload the image to the "teamMembersImage" bucket
+      const uploadedImageUrl = await uploadImage(imageFile, "teamMembersImage");
+      if (uploadedImageUrl) {
+        const updatedTeamMembers = [...formData.teamMembers];
+        updatedTeamMembers[index].image_url = uploadedImageUrl;
+        setFormData((prevState) => ({ ...prevState, teamMembers: updatedTeamMembers }));
+      }
+    };
+    reader.readAsDataURL(imageFile);
+  };
+
+  // Function to handle image changes
   const handleImageChange = async (
     event: ChangeEvent<HTMLInputElement>,
     fieldName: string,
@@ -187,22 +262,23 @@ function MyComponent(): JSX.Element {
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 resize-none"
                   />
                 </div>
-                {/* Input fields for image URLs */}
+                {/* Input fields for banner image */}
                 <div className="flex flex-col">
                   <label className="leading-loose">Banner Image</label>
                   <input
                     type="file"
                     name="bannerImage"
-                    onChange={(e) => handleImageChange(e, "bannerImageUrl", "banner_image")}
+                    onChange={handleBannerImageChange}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
+                {/* Input fields for logo image */}
                 <div className="flex flex-col">
                   <label className="leading-loose">Logo Image</label>
                   <input
                     type="file"
                     name="logoImage"
-                    onChange={(e) => handleImageChange(e, "logoImageUrl", "logo_image")}
+                    onChange={handleLogoImageChange}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
@@ -247,6 +323,60 @@ function MyComponent(): JSX.Element {
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
                 </div>
+                {/* Input fields for team members */}
+                {formData.teamMembers.map((teamMember, index) => (
+                  <div key={index} className="flex flex-col space-y-4">
+                    <div className="flex items-center space-x-4">
+                      <label className="leading-loose">Team Member {index + 1}</label>
+                      <button
+                        type="button"
+                        className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none"
+                        onClick={() => removeTeamMember(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                    <input
+                      type="text"
+                      name="name"
+                      value={teamMember.name}
+                      onChange={(e) => handleChange(e, index)}
+                      placeholder="Name"
+                      className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                    />
+                    <input
+                      type="text"
+                      name="image_url"
+                      value={teamMember.image_url}
+                      onChange={(e) => handleChange(e, index)}
+                      placeholder="Image URL"
+                      className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                    />
+                    <input
+                      type="text"
+                      name="twitter"
+                      value={teamMember.twitter}
+                      onChange={(e) => handleChange(e, index)}
+                      placeholder="Twitter Link"
+                      className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                    />
+                    <input
+                      type="text"
+                      name="github"
+                      value={teamMember.github}
+                      onChange={(e) => handleChange(e, index)}
+                      placeholder="GitHub Link"
+                      className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                    />
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addTeamMember}
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+                >
+                  Add Team Member
+                </button>
               </div>
               {/* Submit button */}
               <div className="pt-4 flex items-center space-x-4">
