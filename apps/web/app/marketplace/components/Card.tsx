@@ -55,6 +55,7 @@ Card.propTypes = {
   iconSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired, 
 };
 
 export default Card;

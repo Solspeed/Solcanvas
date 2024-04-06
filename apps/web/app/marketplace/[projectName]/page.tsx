@@ -14,7 +14,7 @@ interface Project {
 }
 
 export default function ProjectDetails({ params }: ProjectDetailsProps) {
-    const [loading, setLoading] = useState(true); // State to track loading status
+    const [loading, setLoading] = useState(true); 
     const [projectData, setProjectData] = useState<{
         projectList: Project[];
         teamMemberList: any[];
