@@ -15,7 +15,7 @@ import { useInView } from 'react-intersection-observer';
 
 export default function Timeline() {
     const [sectionRef, inView] = useInView({
-        threshold: 0.5,
+        threshold: 0.2,
     });
     const [animationTriggered, setAnimationTriggered] = useState(false);
 
