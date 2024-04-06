@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import supabase from "../../supabase";
 
 // Define the structure of the form data
@@ -43,15 +43,20 @@ function MyComponent(): JSX.Element {
   });
 
   // Function to handle changes in form inputs
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index?: number): void => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    index?: number
+  ): void => {
     const { name, value } = e.target;
     if (index !== undefined) {
       const updatedTeamMembers = [...formData.teamMembers];
-      updatedTeamMembers[index][name] = value;
-      setFormData((prevState) => ({
-        ...prevState,
-        teamMembers: updatedTeamMembers,
-      }));
+      if (updatedTeamMembers[index]) {
+        updatedTeamMembers[index][name as keyof TeamMember] = value;
+        setFormData((prevState) => ({
+          ...prevState,
+          teamMembers: updatedTeamMembers,
+        }));
+      }
     } else {
       setFormData((prevState) => ({
         ...prevState,
@@ -64,7 +69,10 @@ function MyComponent(): JSX.Element {
   const addTeamMember = (): void => {
     setFormData((prevState) => ({
       ...prevState,
-      teamMembers: [...prevState.teamMembers, { name: "", image_url: "", twitter: "", github: "" }],
+      teamMembers: [
+        ...prevState.teamMembers,
+        { name: "", image_url: "", twitter: "", github: "" },
+      ],
     }));
   };
 
@@ -79,12 +87,16 @@ function MyComponent(): JSX.Element {
   };
 
   // Function to handle form submission
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
     try {
       // Insert the form data into the "project_listing" table
-      const { data, error } = await supabase.from("project_listing").insert([{ ...formData }]);
+      const { data, error } = await supabase
+        .from("project_listing")
+        .insert([{ ...formData }]);
 
       if (error) {
         throw error;
@@ -108,20 +120,25 @@ function MyComponent(): JSX.Element {
         websiteLink: "",
         teamMembers: [{ name: "", image_url: "", twitter: "", github: "" }],
       });
-
     } catch (error: any) {
       console.error("Error saving project data:", error.message);
-      alert(`An error occurred while saving the project data. Please try again later: ${error.message}`);
+      alert(
+        `An error occurred while saving the project data. Please try again later: ${error.message}`
+      );
     }
   };
 
   // Function to handle changes in image inputs for banner image
-  const handleBannerImageChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleBannerImageChange = async (
+    event: ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
     handleImageChange(event, "bannerImageUrl", "banner_image");
   };
 
   // Function to handle changes in image inputs for logo image
-  const handleLogoImageChange = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleLogoImageChange = async (
+    event: ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
     handleImageChange(event, "logoImageUrl", "logo_image");
   };
 
@@ -139,16 +156,29 @@ function MyComponent(): JSX.Element {
     reader.onload = async (e) => {
       const imageUrl = e.target?.result as string;
       const updatedTeamMembers = [...formData.teamMembers];
-      updatedTeamMembers[index].image_url = imageUrl;
-      updatedTeamMembers[index].imageFile = imageFile;
-      setFormData((prevState) => ({ ...prevState, teamMembers: updatedTeamMembers }));
+      if (updatedTeamMembers[index]) {
+        updatedTeamMembers[index].image_url = imageUrl;
+        // updatedTeamMembers[index].imageFile = imageFile; // Add 'imageFile' property
+        setFormData((prevState) => ({
+          ...prevState,
+          teamMembers: updatedTeamMembers,
+        }));
 
-      // Upload the image to the "teamMembersImage" bucket
-      const uploadedImageUrl = await uploadImage(imageFile, "teamMembersImage");
-      if (uploadedImageUrl) {
-        const updatedTeamMembers = [...formData.teamMembers];
-        updatedTeamMembers[index].image_url = uploadedImageUrl;
-        setFormData((prevState) => ({ ...prevState, teamMembers: updatedTeamMembers }));
+        // Upload the image to the "teamMembersImage" bucket
+        const uploadedImageUrl = await uploadImage(
+          imageFile,
+          "teamMembersImage"
+        );
+        if (uploadedImageUrl) {
+          const updatedTeamMembers = [...formData.teamMembers];
+          if (updatedTeamMembers[index]) {
+            updatedTeamMembers[index].image_url = uploadedImageUrl;
+            setFormData((prevState) => ({
+              ...prevState,
+              teamMembers: updatedTeamMembers,
+            }));
+          }
+        }
       }
     };
     reader.readAsDataURL(imageFile);
@@ -173,28 +203,38 @@ function MyComponent(): JSX.Element {
       // Upload the image and get its URL
       const uploadedImageUrl = await uploadImage(imageFile, bucketName);
       if (uploadedImageUrl) {
-        setFormData((prevState) => ({ ...prevState, [fieldName]: uploadedImageUrl }));
+        setFormData((prevState) => ({
+          ...prevState,
+          [fieldName]: uploadedImageUrl,
+        }));
       }
     };
     reader.readAsDataURL(imageFile);
   };
 
   // Function to upload an image to the specified bucket and return its URL
-  const uploadImage = async (imageFile: File, bucketName: string): Promise<string | undefined> => {
+  const uploadImage = async (
+    imageFile: File,
+    bucketName: string
+  ): Promise<string | undefined> => {
     const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 
     // Check if image size exceeds the limit
     if (imageFile.size > MAX_IMAGE_SIZE) {
-      alert("Image size exceeds the limit of 5MB. Please choose a smaller image.");
+      alert(
+        "Image size exceeds the limit of 5MB. Please choose a smaller image."
+      );
       return;
     }
 
     try {
       // Upload the image to the specified bucket
-      const { data, error } = await supabase.storage.from(bucketName).upload(imageFile.name, imageFile, {
-        cacheControl: '3600', // Cache control for the uploaded file, optional
-        upsert: false, // If true, will overwrite the file if it already exists, optional
-      });
+      const { data, error } = await supabase.storage
+        .from(bucketName)
+        .upload(imageFile.name, imageFile, {
+          cacheControl: "3600", // Cache control for the uploaded file, optional
+          upsert: false, // If true, will overwrite the file if it already exists, optional
+        });
 
       if (error) {
         throw error;
@@ -206,11 +246,13 @@ function MyComponent(): JSX.Element {
         const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucketName}/${data.path}`;
         return imageUrl;
       } else {
-        throw new Error('No data returned from Supabase storage upload.');
+        throw new Error("No data returned from Supabase storage upload.");
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.error(`Error uploading ${bucketName} image:`, error.message);
-      alert(`An error occurred while uploading the ${bucketName} image: ${error.message}`);
+      alert(
+        `An error occurred while uploading the ${bucketName} image: ${error.message}`
+      );
       return; // Return undefined in case of error
     }
   };
@@ -230,7 +272,12 @@ function MyComponent(): JSX.Element {
                 </p>
               </div>
             </div>
-            <form onSubmit={handleSubmit} action="/team" method="post" className="divide-y divide-gray-200">
+            <form
+              onSubmit={handleSubmit}
+              action="/team"
+              method="post"
+              className="divide-y divide-gray-200"
+            >
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 {/* Input fields for project details */}
                 <div className="flex flex-col">
@@ -327,7 +374,9 @@ function MyComponent(): JSX.Element {
                 {formData.teamMembers.map((teamMember, index) => (
                   <div key={index} className="flex flex-col space-y-4">
                     <div className="flex items-center space-x-4">
-                      <label className="leading-loose">Team Member {index + 1}</label>
+                      <label className="leading-loose">
+                        Team Member {index + 1}
+                      </label>
                       <button
                         type="button"
                         className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none"
@@ -345,13 +394,12 @@ function MyComponent(): JSX.Element {
                       className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                     />
                     <input
-                      type="text"
+                      type="file"
                       name="image_url"
-                      value={teamMember.image_url}
-                      onChange={(e) => handleChange(e, index)}
-                      placeholder="Image URL"
+                      onChange={(e) => handleTeamMemberImageChange(e, index)}
                       className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                     />
+
                     <input
                       type="text"
                       name="twitter"
