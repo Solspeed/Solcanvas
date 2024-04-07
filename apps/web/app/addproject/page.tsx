@@ -92,6 +92,30 @@ function MyComponent(): JSX.Element {
   ): Promise<void> => {
     event.preventDefault();
 
+
+
+ // Validate form fields
+ if (
+  formData.name.trim() === "" ||
+  formData.title.trim() === "" ||
+  formData.description.trim() === "" ||
+  formData.bannerImageUrl.trim() === "" ||
+  formData.logoImageUrl.trim() === "" ||
+  formData.githubLink.trim() === "" ||
+  formData.twitterLink.trim() === "" ||
+  formData.websiteLink.trim() === ""
+) {
+  // Display error message to user indicating required fields are missing
+  alert("Please fill in all required fields.");
+  return;
+}
+
+
+
+
+
+
+
     try {
       // Insert the form data into the "project_listing" table
       const { data, error } = await supabase
