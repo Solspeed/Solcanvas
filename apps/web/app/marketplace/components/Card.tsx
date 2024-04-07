@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({ imageSrc, iconSrc, title, description , url
           alt={`${title} icon`}
           width={90}
           height={90}
-          className="shrink-0 flex aspect-square"
+          className="shrink-0 flex aspect-circle rounded-full"
         />
         <div className="flex flex-col justify-center gap-2">
           <div className="text-white font-semibold text-[22px]">{title}</div>

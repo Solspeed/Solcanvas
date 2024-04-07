@@ -9,11 +9,11 @@ export default function Overview({ projectsList }: { projectsList: any[] }) {
     const descriptionLines = project.description.split(/\n/);
 
     return (
-        <div>
+        <div className="">
             <Image
                 alt="cubik banner"
                 src={project.bannerImageUrl}
-                className="w-full  object-cover"
+                className=" h-[500px] mx-auto object-cover object-right"
                 width={1920}
                 height={365}
             />
