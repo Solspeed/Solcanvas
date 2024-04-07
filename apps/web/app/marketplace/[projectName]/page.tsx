@@ -1,7 +1,9 @@
+// ProjectDetails.tsx
 'use client'
 import CustomButton from "../../../components/button/CustomButton";
 import Link from "next/link";
 import Overview from "./components/Overview";
+import Team from "./components/Team"; // Import Team component
 import { useState, useEffect } from "react";
 import supabase from "../../../supabase";
 import back from "../../../public/images/marketplace/projects/Left_Arrow_Alt.png"
@@ -13,16 +15,15 @@ interface ProjectDetailsProps {
 
 interface Project {
     name: string;
+    teamMembers: []; 
 }
 
 export default function ProjectDetails({ params }: ProjectDetailsProps) {
     const [loading, setLoading] = useState(true);
     const [projectData, setProjectData] = useState<{
-        projectList: Project[];
-        teamMemberList: any[];
+        projectList: Project[]
     }>({
-        projectList: [],
-        teamMemberList: [],
+        projectList: []
     });
 
     useEffect(() => {
@@ -34,18 +35,12 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
             const { data: allProjects, error: projectError } = await supabase
                 .from('project_listing')
                 .select('*');
-            const { data: teamMembers, error: teamMemberError } = await supabase
-                .from('team_members')
-                .select('*');
+
 
             if (projectError) {
                 throw projectError;
             }
-
-            if (teamMemberError) {
-                throw teamMemberError;
-            }
-            console.log(allProjects)
+            console.log(allProjects);
             const filteredProjects = allProjects.filter((project: Project) => {
                 if (project.name) {
                     return project.name.toLowerCase() === params.projectName.toLowerCase();
@@ -54,8 +49,8 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
             });
 
             setProjectData({
-                projectList: filteredProjects || [],
-                teamMemberList: teamMembers || [],
+                projectList: filteredProjects || []
+
             });
             setLoading(false);
         } catch (error: any) {
@@ -78,6 +73,8 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                     <Image src={back} alt="back" className="" />
                 </Link>
                 <Overview projectsList={projectData.projectList} />
+                {/* Pass teamMembers to Team component */}
+                {projectData.projectList[0]?.teamMembers && <Team teamMembers={projectData.projectList[0].teamMembers} />}
                 <Link href={`/marketplace/${params.projectName}/editform`} className="flex w-full justify-center ">
                     <CustomButton
                         text="Edit Project"
