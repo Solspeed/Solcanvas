@@ -1,4 +1,3 @@
-// ProjectDetails.tsx
 'use client'
 import CustomButton from "../../../components/button/CustomButton";
 import Link from "next/link";
@@ -15,7 +14,7 @@ interface ProjectDetailsProps {
 
 interface Project {
     name: string;
-    teamMembers: []; 
+    teamMembers: [];
 }
 
 export default function ProjectDetails({ params }: ProjectDetailsProps) {
