@@ -51,7 +51,7 @@ function MyComponent(): JSX.Element {
     if (index !== undefined) {
       const updatedTeamMembers = [...formData.teamMembers];
       if (updatedTeamMembers[index]) {
-        updatedTeamMembers[index][name as keyof TeamMember] = value;
+        updatedTeamMembers[index]![name as keyof TeamMember] = value;
         setFormData((prevState) => ({
           ...prevState,
           teamMembers: updatedTeamMembers,
@@ -157,7 +157,7 @@ function MyComponent(): JSX.Element {
       const imageUrl = e.target?.result as string;
       const updatedTeamMembers = [...formData.teamMembers];
       if (updatedTeamMembers[index]) {
-        updatedTeamMembers[index].image_url = imageUrl;
+        updatedTeamMembers[index]!.image_url = imageUrl;
         // updatedTeamMembers[index].imageFile = imageFile; // Add 'imageFile' property
         setFormData((prevState) => ({
           ...prevState,
@@ -172,7 +172,7 @@ function MyComponent(): JSX.Element {
         if (uploadedImageUrl) {
           const updatedTeamMembers = [...formData.teamMembers];
           if (updatedTeamMembers[index]) {
-            updatedTeamMembers[index].image_url = uploadedImageUrl;
+            updatedTeamMembers[index]!.image_url = uploadedImageUrl;
             setFormData((prevState) => ({
               ...prevState,
               teamMembers: updatedTeamMembers,
@@ -243,7 +243,7 @@ function MyComponent(): JSX.Element {
       // Return the public URL of the uploaded image
       if (data) {
         // Construct the URL based on the bucket name and the file path
-        const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucketName}/${data.path}`;
+        const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucketName}/${encodeURIComponent(data.path)}`;
         return imageUrl;
       } else {
         throw new Error("No data returned from Supabase storage upload.");
@@ -314,7 +314,7 @@ function MyComponent(): JSX.Element {
                   <label className="leading-loose">Banner Image</label>
                   <input
                     type="file"
-                    name="bannerImage"
+                    name="bannerImageUrl"
                     onChange={handleBannerImageChange}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />
@@ -324,7 +324,7 @@ function MyComponent(): JSX.Element {
                   <label className="leading-loose">Logo Image</label>
                   <input
                     type="file"
-                    name="logoImage"
+                    name="logoImageUrl"
                     onChange={handleLogoImageChange}
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                   />

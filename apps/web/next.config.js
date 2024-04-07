@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  transpilePackages: ["@repo/ui"],
+  images: {
+    domains: ['kiihrbkcxamkxvjwcgbo.supabase.co'],
+  },
+  transpileModules: ["@repo/ui"],
 };
