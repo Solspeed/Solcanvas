@@ -51,7 +51,7 @@ function MyComponent(): JSX.Element {
     if (index !== undefined) {
       const updatedTeamMembers = [...formData.teamMembers];
       if (updatedTeamMembers[index]) {
-        updatedTeamMembers[index][name as keyof TeamMember] = value;
+        updatedTeamMembers[index]![name as keyof TeamMember] = value;
         setFormData((prevState) => ({
           ...prevState,
           teamMembers: updatedTeamMembers,
@@ -157,7 +157,7 @@ function MyComponent(): JSX.Element {
       const imageUrl = e.target?.result as string;
       const updatedTeamMembers = [...formData.teamMembers];
       if (updatedTeamMembers[index]) {
-        updatedTeamMembers[index].image_url = imageUrl;
+        updatedTeamMembers[index]!.image_url = imageUrl;
         // updatedTeamMembers[index].imageFile = imageFile; // Add 'imageFile' property
         setFormData((prevState) => ({
           ...prevState,
@@ -172,7 +172,7 @@ function MyComponent(): JSX.Element {
         if (uploadedImageUrl) {
           const updatedTeamMembers = [...formData.teamMembers];
           if (updatedTeamMembers[index]) {
-            updatedTeamMembers[index].image_url = uploadedImageUrl;
+            updatedTeamMembers[index]!.image_url = uploadedImageUrl;
             setFormData((prevState) => ({
               ...prevState,
               teamMembers: updatedTeamMembers,
