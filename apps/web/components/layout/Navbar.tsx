@@ -17,7 +17,7 @@ export default function Navbar() {
     const slideAnimation = useSpring({
         opacity: showMenu ? 1 : 0,
         transform: showMenu ? "translateX(0%)" : "translateX(-100%)",
-        config: { tension: 250, friction: 20 }, // Adjust these values for faster animation
+        config: { tension: 250, friction: 20 }, 
     });
 
     const headerAnimation = useSpring({
@@ -26,7 +26,7 @@ export default function Navbar() {
             opacity: animateHeader ? 1 : 0,
             transform: animateHeader ? "translateY(0%) scale(1)" : "translateY(-100%) scale(0.5)",
         },
-        config: { tension: 250, friction: 20 }, // Adjust these values for faster animation
+        config: { tension: 250, friction: 20 }, 
     });
 
     const fadeInAnimation = useSpring({

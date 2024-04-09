@@ -1,8 +1,9 @@
+'use client'
 import Image from "next/image"
 import wallet from "../../../public/images/wallet.png"
-import UserLayout from "../layout";
-import { useState } from "react";
-
+import Wallet from "../test"
+import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+require('@solana/wallet-adapter-react-ui/styles.css');
 export default function ConnectWallet() {
 
   return (
@@ -18,14 +19,16 @@ export default function ConnectWallet() {
       <div className="mt-8 text-2xl font-medium tracking-wide leading-8 text-white text-opacity-50 max-w-full">
         Get connect by your solana wallet.
       </div>
-      <div className="flex gap-5 xl:ml-96 self-end sm:px-6 py-3.5 sm:mt-60 max-w-full text-3xl font-medium uppercase whitespace-nowrap rounded-2xl bg-neutral-900 text-white text-opacity-50 sm:w-[515px] sm:flex-nowrap flex-wrap px-5 mt-10">
+
+      <div className="flex sm:gap-5 xl:ml-96 self-end sm:px-6 py-3.5 sm:mt-60 max-w-full text-3xl font-medium uppercase whitespace-nowrap rounded-2xl bg-neutral-900 text-white text-opacity-50 sm:w-[515px] sm:flex-nowrap flex-wrap px-5 mt-10">
         <Image
           alt=""
           loading="lazy"
           src={wallet}
           className=" aspect-square w-[68px]"
         />
-        <div className="flex-auto sm:ml-12 my-auto">Connect</div>
+        <div className="flex-auto sm:ml-12 my-auto">              <WalletMultiButton style={{ backgroundColor: '#171717', color: 'white', borderRadius: '5px', opacity: 0.5, fontSize: '20px' }} />    
+        </div>
       </div>
     </div>
   );
