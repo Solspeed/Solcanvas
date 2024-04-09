@@ -4,8 +4,26 @@ import wallet from "../../../public/images/wallet.png"
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 require('@solana/wallet-adapter-react-ui/styles.css');
 import { useWallet } from '@solana/wallet-adapter-react';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function ConnectWallet() {
   const { connected } = useWallet();
+  const [redirecting, setRedirecting] = useState(false);
+  const router = useRouter(); // Import useRouter for navigation
+
+  useEffect(() => {
+    if (connected && !redirecting) {
+      setRedirecting(true);
+
+      const timeoutId = setTimeout(() => {
+        router.push("/useronboarding"); // Use Next.js router for redirection
+      }, 1000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [connected, redirecting]);
+  
   console.log(connected);
 
   return (
@@ -29,7 +47,7 @@ export default function ConnectWallet() {
           className=" aspect-square w-[68px]"
         />
         <div className="flex-auto sm:ml-12 my-auto">
-        <WalletMultiButton style={{ backgroundColor: '#171717', color: 'white', borderRadius: '5px', opacity: 0.5, fontSize: '20px' }}  />
+          <WalletMultiButton style={{ backgroundColor: '#171717', color: 'white', borderRadius: '5px', opacity: 0.5, fontSize: '20px' }} />
         </div>
       </div>
     </div>

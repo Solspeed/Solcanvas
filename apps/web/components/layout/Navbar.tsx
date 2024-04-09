@@ -4,13 +4,20 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "../../public/images/Icon.png";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useSpring, animated, config } from "react-spring";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useSpring, animated } from "react-spring";
+import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
     const [animateHeader, setAnimateHeader] = useState(false);
+    const [connected, setConnected] = useState(false);
     const wallet = useWallet();
+    const connection = useConnection();
+    useEffect(() => {
+        if (wallet.connected) {
+            setConnected(true);
+        }
+    }, [connection, wallet]);
     useEffect(() => {
         setAnimateHeader(true);
     }, []);
@@ -32,7 +39,7 @@ export default function Navbar() {
 
     const fadeInAnimation = useSpring({
         opacity: showMenu ? 1 : 0,
-        config: { tension: 250, friction: 20 }, // Adjust these values for faster animation
+        config: { tension: 250, friction: 20 },
         delay: showMenu ? 5 : 0,
     });
 
@@ -110,7 +117,6 @@ export default function Navbar() {
                     >
                         Explore
                     </a>
-                    {/* Conditional anchor tag */}
                     {wallet.connected ? (
                         <a
                             href="/addproject"
