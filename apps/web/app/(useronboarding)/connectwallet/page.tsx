@@ -10,20 +10,16 @@ import { useRouter } from "next/navigation";
 export default function ConnectWallet() {
   const { connected } = useWallet();
   const [redirecting, setRedirecting] = useState(false);
-  const router = useRouter(); // Import useRouter for navigation
+  const router = useRouter();
+  console.log(connected);
 
   useEffect(() => {
-    if (connected && !redirecting) {
+    if (connected) {
       setRedirecting(true);
-
-      const timeoutId = setTimeout(() => {
-        router.push("/useronboarding"); // Use Next.js router for redirection
-      }, 1000);
-
-      return () => clearTimeout(timeoutId);
+      router.push("/useronboarding");
     }
   }, [connected, redirecting]);
-  
+
   console.log(connected);
 
   return (

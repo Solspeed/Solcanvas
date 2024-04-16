@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
 
-  const endpoint = web3.clusterApiUrl('devnet');
+  const endpoint = web3.clusterApiUrl('mainnet-beta');
 
   const wallets = [
     new walletAdapterWallets.PhantomWalletAdapter(),
