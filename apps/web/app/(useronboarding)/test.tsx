@@ -15,9 +15,10 @@ const Starter = () => {
         new walletAdapterWallets.PhantomWalletAdapter(),
     ];
 
-    const { connection } = useConnection();
-    const { publicKey } = useWallet();
-
+    // const  connection  = useConnection();
+    // const publicKey  = useWallet();
+    // console.log(connection);
+    // console.log(publicKey?.toBase58());
     return (
         <>
             <walletAdapterReact.ConnectionProvider endpoint={endpoint}>

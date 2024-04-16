@@ -6,13 +6,15 @@ import logo from "../../public/images/Icon.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useSpring, animated } from "react-spring";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
     const [animateHeader, setAnimateHeader] = useState(false);
     const [connected, setConnected] = useState(false);
-    const wallet = useWallet();
+    const { publicKey } = useWallet();
     const connection = useConnection();
+    const wallet = useWallet();
     useEffect(() => {
         if (wallet.connected) {
             setConnected(true);
@@ -60,7 +62,6 @@ export default function Navbar() {
                 </b>
             </div>
             <div className="flex items-center justify-center lg:justify-between gap-[1.94rem]">
-                {/* Show menu icon on smaller screens */}
                 <div className="sm:hidden">
                     <button onClick={toggleMenu} className="text-white">
                         {showMenu ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -86,7 +87,6 @@ export default function Navbar() {
                                 >
                                     Explore
                                 </animated.a>
-                                {/* Conditional anchor tag */}
                                 {wallet.connected ? (
                                     <animated.a
                                         href="/addproject"
@@ -104,12 +104,16 @@ export default function Navbar() {
                                         Add project
                                     </animated.a>
                                 )}
+                                <animated.div
+                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                                    style={fadeInAnimation}
+                                >
+                                    <WalletMultiButton />
+                                </animated.div>
                             </div>
                         </animated.div>
                     </animated.div>
                 )}
-
-                {/* Links for larger screens */}
                 <div className="hidden sm:flex items-baseline justify-center lg:justify-between gap-[1.94rem]">
                     <a
                         href="/marketplace"
@@ -136,6 +140,7 @@ export default function Navbar() {
                             </div>
                         </a>
                     )}
+
                 </div>
             </div>
         </animated.header>
