@@ -6,11 +6,14 @@ import required from "../../../public/images/required.png";
 import next from "../../../public/images/next.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import supabase from '../../../supabase'
 
 export default function UserOnBoarding() {
     const [name, setName] = useState('');
     const [bio, setBio] = useState('');
+
     const router = useRouter();
+
     const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         if (inputValue.length <= 45) setName(inputValue);
@@ -26,10 +29,26 @@ export default function UserOnBoarding() {
         isClose: "bg-zinc-400"
     }
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+    
+        try {
+          const { data, error } = await supabase.from('onboarding').insert([{ name, bio }]);
+          if (error) {
+            throw error;
+          }
+          console.log('Data inserted successfully:', data);
+          // You can add further logic here like showing success message, resetting form, etc.
+        } catch (error:any) {
+          console.error('Error inserting data:', error.message);
+        }
+      };
+
+
     const nameCharacterCount = name.length;
     const bioCharacterCount = bio.length;
     return (
-        <form className="flex flex-col self- sm:mt-24 max-w-full mt-10 " action={"/addproject/"}>
+        <form className="flex flex-col self- sm:mt-24 max-w-full mt-10 " action={"/addproject/"} onSubmit={handleSubmit}>
             <div className="flex gap-2.5 self-start">
                 <div className="shrink-0 rounded-2xl bg-zinc-400 h-[17px] w-[38px]" />
                 <div className="shrink-0 w-14 bg-blue-600 rounded-2xl h-[17px]" />
