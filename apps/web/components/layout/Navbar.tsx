@@ -55,9 +55,9 @@ export default function Navbar() {
             style={headerAnimation}
         >
             <div className="h-[4.88rem] w-[64.44rem] rounded-3xl bg-black shadow-[0px 4px 50px rgba(134, 122, 210, 0.2)] hidden max-w-full" />
-            <div className="flex items-center justify-start gap-[0.44rem]">
-                <Image src={logo} alt="solcanvas logo" className="sm:w-8 w-6" />
-                <b className="relative tracking-[0.03em] leading-[1.88rem] uppercase z-[1]">
+            <div className="flex items-center justify-start gap-[0.44rem] font-nunito">
+                <Image src={logo} alt="solcanvas logo" className="sm:w-8 w-6 " />
+                <b className="relative tracking-[0.03em]  leading-[1.88rem] uppercase z-[1]">
                     SolCanvas
                 </b>
             </div>
