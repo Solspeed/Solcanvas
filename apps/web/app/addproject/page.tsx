@@ -111,11 +111,6 @@ function MyComponent(): JSX.Element {
 }
 
 
-
-
-
-
-
     try {
       // Insert the form data into the "project_listing" table
       const { data, error } = await supabase
