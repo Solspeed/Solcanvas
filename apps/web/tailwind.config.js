@@ -21,6 +21,12 @@ module.exports = {
           raw: "screen and (max-width: 450px)",
         },
       },
+      fontFamily: {
+        inter: "Inter",
+        nunito: "Nunito",
+        archivo: "Archivo",
+        silkscreen: "Silkscreen",
+      },
     },
   },
   plugins: [],
