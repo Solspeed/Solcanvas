@@ -17,7 +17,7 @@ export default function Features() {
   const handleButtonClick = (buttonName: string) => {
     setActiveButton(buttonName);
     setAnimationTrigger(true);
-    setTimeout(() => setAnimationTrigger(false), 500); // Reset animation trigger after 500ms
+    setTimeout(() => setAnimationTrigger(false), 500);
   };
 
   const getButtonShadow = (buttonName: string) => {
@@ -37,7 +37,7 @@ export default function Features() {
               button.name
             )} flex flex-row items-center justify-center box-border min-w-[9.31rem]  mq1000:flex-1`}
           >
-            <div className="relative text-[1.88rem] tracking-[0.02em] leading-[1.88rem] font-medium  text-white text-left z-[1] mq450:text-[1.13rem] mq450:leading-[1.13rem] mq1000:text-[1.4rem] mq1000:leading-[1.5rem]">
+            <div className="relative text-[1.25rem] tracking-[0.02em] leading-[1.875rem] font-medium font-nunito text-white  inline-block  z-[1] mq450:text-[1rem] mq450:leading-[1.5rem]">
               {button.label}
             </div>
           </button>

@@ -57,9 +57,9 @@ export default function Navbar() {
             <div className="h-[4.88rem] w-[64.44rem] rounded-3xl bg-black shadow-[0px 4px 50px rgba(134, 122, 210, 0.2)] hidden max-w-full" />
             <div className="flex items-center justify-start gap-[0.44rem] font-nunito">
                 <Image src={logo} alt="solcanvas logo" className="sm:w-8 w-6 " />
-                <b className="relative tracking-[0.03em]  leading-[1.88rem] uppercase z-[1]">
-                    SolCanvas
-                </b>
+                <b className="relative tracking-[0.03em] leading-[1.875rem] uppercase inline-block ">
+              SolCanvas
+            </b>
             </div>
             <div className="flex items-center justify-center lg:justify-between gap-[1.94rem]">
                 <div className="sm:hidden">
@@ -67,7 +67,6 @@ export default function Navbar() {
                         {showMenu ? <FaTimes size={24} /> : <FaBars size={24} />}
                     </button>
                 </div>
-
                 {showMenu && (
                     <animated.div
                         className="sm:hidden fixed inset-0 bg-black bg-opacity-80 rounded-full z-50 "

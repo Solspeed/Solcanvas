@@ -1,51 +1,81 @@
 import Image from "next/image";
-import superteam from "../../public/images/superteam.png";
-import solana from "../../public/images/solana.png";
-import twitter from "../../public/images/twitter.png"
-import github from "../../public/images/github.png"
+import twitter from "../../public/Twitter.svg"
+import github from "../../public/Github.svg"
 
 export default function Footer() {
     return (
-        <div className="flex xl:px-20 px-6 sm:py-12 whitespace-nowrap space-y-6 sm:space-y-0 sm:flex-nowrap flex-wrap sm:justify-between container">
-            <div className="flex sm:scale-[0.8] scale-[0.7] lg:scale-[1] lg:gap-20 gap-12  justify-between my-auto w-full sm:w-auto text-xl font-semibold tracking-wide leading-8 text-white uppercase max-md:flex-wrap max-md:max-w-full">
-                <a href="https://solana.com/" className="flex gap-4 hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={solana}
-                        alt="image"
-                        className="shrink-0 my-auto max-w-full aspect-[6.67] w-[175px]"
-                    />
-                </a>
-                <a href="https://superteam.fun/" className="flex gap-4 hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={superteam}
-                        alt="image"
-                        className="shrink-0 w-10 aspect-square"
-                    />
-                    <div className="flex-auto my-auto">Superteam</div>
-                </a>
+        <footer className="self-stretch bg-black flex flex-col items-start justify-between pt-[6rem] px-[7.5rem] pb-[4.75rem] box-border max-w-full gap-[1.25rem] z-[4] text-left text-[1rem] text-mediumorchid font-nunito mq450:pt-[3.875rem] mq450:px-[1.25rem] mq450:pb-[3.063rem] mq450:box-border mq725:pl-[3.75rem] mq725:pr-[3.75rem] mq725:box-border mq1000:flex-wrap">
+            <div className="w-full flex flex-col gap-12">
+                <div className="w-full bg grid grid-cols-3 gap-[4.75rem] max-w-full mq450:gap-[2.375rem] mq725:flex-wrap">
+                    <div className="flex flex-col items-start justify-start gap-[1.188rem] text-plum-100">
+                        <div className="relative tracking-[0.05em] inline-block min-w-[3.75rem] z-[1]">
+                            Navigate
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[3.75rem] z-[1]">
+                            Explore
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[2.25rem] z-[1]">
+                            Earn
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[2.813rem] z-[1]">
+                            Learn
+                        </div>
+
+                    </div>
+                    <div className="flex flex-col items-start justify-start gap-[1.188rem] text-plum-100">
+                        <div className="relative tracking-[0.05em] inline-block min-w-[2.125rem] z-[1]">
+                            Help
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[2.125rem] z-[1]">
+                            FAQ
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[3.813rem] z-[1]">
+                            Contact
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[3.063rem] z-[1]">
+                            About
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-start justify-start gap-[1.188rem] text-plum-100">
+                        <div className="relative tracking-[0.05em] inline-block min-w-[2.125rem] z-[1]">
+                            Legal
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[2.125rem] z-[1]">
+                            Privacy
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[3.813rem] z-[1]">
+                            Terms
+                        </div>
+                        <div className="relative tracking-[0.05em] inline-block min-w-[3.063rem] z-[1]">
+                            Cookies
+                        </div>
+
+                    </div>
+                </div>
+                <div className="flex justify-between sm:gap-0 gap-4">
+                    <div className="relative tracking-[0.05em] font-archivo text-plum-100 z-[1]">
+                        © 2024 Solcanvas. All Rights Reserved.
+                    </div>
+
+                    <div className=" flex flex-row items-start justify-end">
+                        <div className="w-[4.5rem] flex flex-row items-start justify-between gap-[1.25rem]">
+                            <Image
+                                className="h-[1.25rem] w-[1.25rem] relative overflow-hidden shrink-0 min-h-[1.25rem] z-[1]"
+                                loading="lazy"
+                                alt=""
+                                src={twitter}
+                            />
+                            <Image
+                                className="h-[1.231rem] w-[1.25rem] relative min-h-[1.25rem] z-[1]"
+                                loading="lazy"
+                                alt=""
+                                src={github}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="flex lg:gap-20  sm:scale-[0.8] scale-[0.7] lg:scale-[1] w-full justify-between sm:w-auto text-2xl font-medium tracking-wide leading-8 text-zinc-400">
-                <a href="https://github.com/Solspeed" className="flex gap-4 py-1 bg-black hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={github}
-                        alt="image"
-                        className="shrink- aspect-square w-[54px]  object-cover"
-                    />
-                    <div className="flex-auto my-auto">Github</div>
-                </a>
-                <a href="https://twitter.com/Sol_canvas" className="flex py-px bg-black hover:scale-[1.05] transform duration-300 transition-all ease-in">
-                    <Image
-                        loading="lazy"
-                        src={twitter}
-                        alt="image"
-                        className="shrink- aspect-square w-[58px] object-cover"
-                    />
-                    <div className="flex-auto my-auto">Twitter</div>
-                </a>
-            </div>
-        </div>
+        </footer>
     );
 };
+
