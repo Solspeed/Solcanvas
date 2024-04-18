@@ -3,8 +3,9 @@ import Overview from "../components/layout/Overview";
 import GroupIcon from "../components/layout/GroupIcon";
 import Features from "../components/layout/Features";
 import Footer from "../components/layout/Footer";
-import GroupComponent1 from "../components/layout/Faqs";
-import GroupComponent2 from "../components/layout/GetStarted";
+import Faqs from "../components/layout/Faqs";
+import GetStarted from "../components/layout/GetStarted";
+import Community from "../components/layout/Community";
 
 export default function Home() {
   return (
@@ -24,8 +25,9 @@ export default function Home() {
           </div>
         </section>
         <Features />
-        <GroupComponent2 />
-        <GroupComponent1 />
+        <Community />
+        <GetStarted />
+        <Faqs />
         <Footer />
       </div>
     </main>

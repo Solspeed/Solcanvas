@@ -1,6 +1,6 @@
 export default function Faqs() {
     return (
-        <section className="flex justify-center  sm:px-16 px-4 w-full bg-black max-md:px-5 max-md:max-w-full ">
+        <section className="flex justify-center  sm:px-16 px-10 mq450:px-6 w-full bg-black max-md:px-5 max-md:max-w-full ">
             <div className="flex flex-col w-full max-w-[1200px] max-md:max-w-full sm:space-y-24 space-y-12">
                 <h1 className="text-[48px] leading-[2.5rem]  font-silkscreen text-[#954AD2] font-normal font-inherit  max-w-full z-[1] mq450:text-[1.53rem] mq450:leading-[1.5rem] mq1000:text-[2.1rem] mq1000:leading-[2rem]">
                     Common Questions

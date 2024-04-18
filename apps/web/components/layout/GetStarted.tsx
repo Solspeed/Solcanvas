@@ -1,7 +1,7 @@
 
-export default function GroupComponent2() {
+export default function GetStarted() {
     return (
-        <section className="self-stretch bg-black flex text-[#954AD2] flex-col items-center justify-start mq450:px-4  px-[1.25rem]  box-border gap-[4.313rem] max-w-full z-[2] text-left text-[3rem] text-darkorchid-200 font-silkscreen mq450:gap-[2.125rem]  mq725:box-border">
+        <section className="self-stretch bg-black flex text-[#954AD2] flex-col items-center justify-start mq450:px-6  px-[1.25rem]  box-border gap-[4.313rem] max-w-full z-[2] text-left text-[3rem] text-darkorchid-200 font-silkscreen mq450:gap-[2.125rem]  mq725:box-border">
             <div className="w-[75rem] h-[37.5rem] relative bg-black hidden max-w-full" />
             <div className="flex flex-row items-start justify-start py-[0rem] px-[1.813rem] box-border max-w-full">
                 <h1 className="m-0 relative text-inherit leading-[2.5rem] font-normal font-inherit whitespace-nowrap z-[2] mq450:text-[1.813rem] mq450:leading-[1.5rem] mq1000:text-[2.375rem] mq1000:leading-[2rem]">
