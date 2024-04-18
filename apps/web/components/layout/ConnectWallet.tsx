@@ -18,7 +18,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="w-full max-w-[936px] ">
                 <div className="flex sm:gap-5 sm:flex-row flex-col-reverse ">
                     <div className="flex flex-1 flex-col md:w-[62%]">
-                        <div className="flex flex-col self-stretch my-auto text-purple-600">
+                        <div className="flex flex-col self-stretch my-auto text-[#954AD2]">
                             <h1 className="text-3xl leading-10 font-silkscreen">{title}</h1>
                             <p className="sm:mt-14 mt-8 mq450:mt-6 text-base font-nunito leading-8">
                                 {description}

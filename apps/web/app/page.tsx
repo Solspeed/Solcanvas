@@ -7,6 +7,7 @@ import Faqs from "../components/layout/Faqs";
 import GetStarted from "../components/layout/GetStarted";
 import Community from "../components/layout/Community";
 import ConnectWallet from "../components/layout/ConnectWallet";
+import Solana from "../components/layout/Solana";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
           </div>
         </section>
         <Features />
+        <Solana />
         <ConnectWallet />
         <Community />
         <GetStarted />
