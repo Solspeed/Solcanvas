@@ -6,6 +6,7 @@ import Footer from "../components/layout/Footer";
 import Faqs from "../components/layout/Faqs";
 import GetStarted from "../components/layout/GetStarted";
 import Community from "../components/layout/Community";
+import ConnectWallet from "../components/layout/ConnectWallet";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           </div>
         </section>
         <Features />
+        <ConnectWallet />
         <Community />
         <GetStarted />
         <Faqs />
