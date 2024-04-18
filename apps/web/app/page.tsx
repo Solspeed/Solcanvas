@@ -4,6 +4,7 @@ import GroupIcon from "../components/layout/GroupIcon";
 import Features from "../components/layout/Features";
 import Footer from "../components/layout/Footer";
 import GroupComponent1 from "../components/layout/Faqs";
+import GroupComponent2 from "../components/layout/GetStarted";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           </div>
         </section>
         <Features />
+        <GroupComponent2 />
         <GroupComponent1 />
         <Footer />
       </div>
