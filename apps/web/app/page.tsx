@@ -3,6 +3,7 @@ import Overview from "../components/layout/Overview";
 import GroupIcon from "../components/layout/GroupIcon";
 import Features from "../components/layout/Features";
 import Footer from "../components/layout/Footer";
+import GroupComponent1 from "../components/layout/Faqs";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           </div>
         </section>
         <Features />
+        <GroupComponent1 />
         <Footer />
       </div>
     </main>
