@@ -27,7 +27,7 @@ export default function Features() {
   };
 
   return (
-    <div className="w-[65.44rem] flex flex-col items-center justify-start pt-[0rem] px-[1.25rem] pb-[4.25rem] box-border gap-[7.31rem] max-w-full text-left text-[2.38rem] text-white  mq725:gap-[7.31rem] mq450:pb-[2.75rem] mq450:box-border mq1050:gap-[7.31rem]">
+    <div className="w-[65.44rem] flex flex-col items-center justify-start pt-[0rem] px-[1.25rem]  box-border gap-[7.31rem] max-w-full text-left text-[2.38rem] text-white  mq725:gap-[7.31rem] mq450:pb-[2.75rem] mq450:box-border mq1050:gap-[7.31rem]">
       <div className="self-stretch flex flex-row items-start justify-center gap-[1.81rem] mq1000:flex-wrap">
         {buttons.map(button => (
           <button

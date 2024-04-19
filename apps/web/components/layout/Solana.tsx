@@ -37,7 +37,7 @@ const MyComponent: React.FC = () => {
   return (
     <section className=" flex justify-center  sm:px-16 px-10 mq450:px-6 w-full bg-black text-[#954AD2]">
       <div className="relative flex flex-col w-full max-w-[936px] sm:space-y-24 space-y-12">
-      <img src={star.src} alt="Star" className=" absolute sm:top-44 top-36 right-0  w-[344px] h-[344px]  object-cover" />
+      <img src={star.src} alt="Star" className=" absolute sm:top-44 top-36 sm:right-12 right-0 w-[344px] h-[344px]  object-cover" />
         {textSections.map((section, index) => (
           <TextSection key={index} title={section.title} paragraphs={section.paragraphs} />
         ))}
