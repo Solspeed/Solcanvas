@@ -81,7 +81,7 @@ export default function Navbar() {
                             <div className="flex flex-col items-center justify-center h-6">
                                 <animated.a
                                     href="/marketplace"
-                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-blue-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                     style={fadeInAnimation}
                                 >
                                     Explore
@@ -92,7 +92,7 @@ export default function Navbar() {
                                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                         style={fadeInAnimation}
                                     >
-                                        Add project
+                                        Add Project
                                     </animated.a>
                                 ) : (
                                     <animated.a
@@ -100,7 +100,7 @@ export default function Navbar() {
                                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                         style={fadeInAnimation}
                                     >
-                                        Add project
+                                        Connect Wallet
                                     </animated.a>
                                 )}
                                 <animated.div
@@ -135,7 +135,7 @@ export default function Navbar() {
                             className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                         >
                             <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
-                                Add project
+                                Connect Wallet
                             </div>
                         </a>
                     )}
