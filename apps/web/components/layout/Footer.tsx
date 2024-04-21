@@ -39,7 +39,7 @@ function Footer() {
     return (
         <footer className="flex justify-center items-center sm:px-16 pb-6 mq450:px-6  w-full bg-black max-md:px-5 max-md:max-w-full">
             <div className="flex flex-col mt-5 w-full max-w-[936px] max-md:max-w-full">
-                <div className="flex gap-2 text-base tracking-wider text-purple-300  max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
+                <div className="flex gap-2 text-base tracking-wider text-purple-300 whitespace-nowrap max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
                     {footerData.map((data, index) => (
                         <FooterLink key={index} title={data.title} links={data.links} />
                     ))}

@@ -81,7 +81,7 @@ export default function Navbar() {
                             <div className="flex flex-col items-center justify-center h-6">
                                 <animated.a
                                     href="/marketplace"
-                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-blue-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                                     style={fadeInAnimation}
                                 >
                                     Explore
