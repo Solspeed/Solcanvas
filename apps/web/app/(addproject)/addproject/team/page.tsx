@@ -30,8 +30,17 @@ export default function Team(): JSX.Element {
     };
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number, field: keyof Member): void => {
-        
+        const { value } = event.target;
+        setMembers((prevMembers) => {
+            const newMembers = [...prevMembers];
+            const member = newMembers[index] || { name: "", github: "", twitter: "", image: null };
+            // Update the specific field of the member based on the 'field' parameter
+            member[field] = value;
+            newMembers[index] = member;
+            return newMembers;
+        });
     };
+    
 
 
     const removeImage = (index: number): void => {
