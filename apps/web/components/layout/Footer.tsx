@@ -10,9 +10,9 @@ interface FooterLinkProps {
 const FooterLink: React.FC<FooterLinkProps> = ({ title, links }) => {
     return (
         <div className="flex flex-col flex-1">
-            <a href={`/${title.toLowerCase()}`} className="font-bold text-purple-400">{title}</a>
+            <a href={`/$#`} className="font-bold text-purple-400">{title}</a>
             {links.map((link, index) => (
-                <a href={`/${link.toLowerCase()}`} key={index} className={`mt-${index === 0 ? 6 : 4}`}>
+                <a href={`/#`} key={index} className={`mt-${index === 0 ? 6 : 4}`}>
                     {link}
                 </a>
             ))}
@@ -49,18 +49,22 @@ function Footer() {
                         © 2024 Solcanvas. All Rights Reserved.
                     </div>
                     <div className="flex gap-5 justify-between self-start">
-                        <Image
-                            loading="lazy"
-                            src={twitter}
-                            alt="Social media icon"
-                            className="shrink-0 w-5 aspect-square"
-                        />
-                        <Image
-                            loading="lazy"
-                            src={github}
-                            alt="Social media icon"
-                            className="shrink-0 w-5 aspect-square fill-purple-600"
-                        />
+                        <a href="https://twitter.com/Sol_canvas">
+                            <Image
+                                loading="lazy"
+                                src={twitter}
+                                alt="Social media icon"
+                                className="shrink-0 w-5 aspect-square"
+                            />
+                        </a>
+                        <a href="https://github.com/solspeed">
+                            <Image
+                                loading="lazy"
+                                src={github}
+                                alt="Social media icon"
+                                className="shrink-0 w-5 aspect-square fill-purple-600"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>
