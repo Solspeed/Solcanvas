@@ -12,7 +12,7 @@ export default function Navbar() {
     const [showMenu, setShowMenu] = useState(false);
     const [animateHeader, setAnimateHeader] = useState(false);
     const [connected, setConnected] = useState(false);
-    const { publicKey } = useWallet();
+    // const { publicKey } = useWallet();
     const connection = useConnection();
     const wallet = useWallet();
     useEffect(() => {
