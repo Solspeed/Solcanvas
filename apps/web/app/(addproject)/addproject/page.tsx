@@ -82,8 +82,8 @@ export default function ProjectListing() {
                     required
                 />
                 <div className="flex gap-5 justify-end  w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-                    <a href="/addproject/banner" className="flex gap-5  font-nunito justify-between  items-center sm:-mr-12 px-3 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
-                        <div>Finish</div>
+                    <a href="/addproject/banner" className="flex gap-5  font-nunito justify-between  items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
+                        <div>Next</div>
                         <Image
                             alt=""
                             width={100}

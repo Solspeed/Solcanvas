@@ -68,7 +68,7 @@ export default function ProjectBanner() {
                         />
                     </div>
                 </div>
-                <div className="flex py-[15px] pr-3.5 pl-7 mt-8 bg-purple-300 rounded-xl max-md:flex-wrap max-md:pl-5" onDrop={(e) => handleDrop(e, "logo")} onDragOver={(e) => e.preventDefault()}>
+                <div className="flex py-[15px] pr-3.5 pl-7 mt-8 bg-[#DCA7FB] rounded-xl max-md:flex-wrap max-md:pl-5" onDrop={(e) => handleDrop(e, "logo")} onDragOver={(e) => e.preventDefault()}>
                     <div className="cursor-pointer flex">
                         <img
                             loading="lazy"
@@ -124,7 +124,7 @@ export default function ProjectBanner() {
                         />
                     </div>
                 </div>
-                <div className="flex py-[15px] pr-3.5 pl-7 mt-8 bg-purple-300 rounded-xl max-md:flex-wrap max-md:pl-5" onDrop={(e) => handleDrop(e, "banner")} onDragOver={(e) => e.preventDefault()}>
+                <div className="flex py-[15px] pr-3.5 pl-7 mt-8 bg-[#DCA7FB] rounded-xl max-md:flex-wrap max-md:pl-5" onDrop={(e) => handleDrop(e, "banner")} onDragOver={(e) => e.preventDefault()}>
                     <div className="cursor-pointer flex">
                         <img
                             loading="lazy"
@@ -171,8 +171,8 @@ export default function ProjectBanner() {
                     <a href="/addproject" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
                         <div>Back</div>
                     </a>
-                    <a href="/addproject/banner" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-3 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
-                        <div>Finish</div>
+                    <a href="/addproject/team" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
+                        <div>Next</div>
                         <Image
                             alt=""
                             width={100}

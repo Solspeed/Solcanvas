@@ -38,7 +38,7 @@ export default function ConnectWallet() {
         <div className="self-center mt-5 font-nunito text-base tracking-normal leading-8 text-white text-opacity-50">
           Get connect by your solana wallet.
         </div>
-        <div className="justify-center font-nunito items-center px-14 py-1 text-nowrap mt-32 text-base font-medium tracking-wide leading-8 bg-purple-300 rounded-xl text-black text-opacity-80">
+        <div className="justify-center font-nunito items-center px-14 py-1 text-nowrap mt-32 text-base font-medium tracking-wide leading-8 bg-[#DCA7FB] rounded-xl text-black text-opacity-80">
         <WalletMultiButton style={{ backgroundColor: 'transparent', color: '#000', borderRadius: '999px', padding: '12px 24px', fontSize: '16px', fontWeight: 'bold', textTransform: 'uppercase' }}>
          <span className="font-nunito text-opacity-80 leading-8 tracking-wide font-medium text-base"> Get Connecting </span>
         </WalletMultiButton>
