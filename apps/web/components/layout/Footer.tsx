@@ -49,7 +49,10 @@ function Footer() {
                         © 2024 Solcanvas. All Rights Reserved.
                     </div>
                     <div className="flex gap-5 justify-between self-start">
-                        <a href="https://twitter.com/Sol_canvas">
+                        <a href="https://twitter.com/Sol_canvas"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
                             <Image
                                 loading="lazy"
                                 src={twitter}
@@ -57,7 +60,10 @@ function Footer() {
                                 className="shrink-0 w-5 aspect-square"
                             />
                         </a>
-                        <a href="https://github.com/solspeed">
+                        <a href="https://github.com/solspeed"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
                             <Image
                                 loading="lazy"
                                 src={github}
@@ -70,6 +76,6 @@ function Footer() {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

@@ -57,7 +57,7 @@ export default function UserOnBoarding() {
             console.log('Data inserted successfully:', data);
 
             // Redirect to add project page
-            router.push("/");
+            router.push("/comingsoon");
         } catch (error: any) {
             console.error('Error inserting data:', error.message);
             // Optionally, provide feedback to the user
