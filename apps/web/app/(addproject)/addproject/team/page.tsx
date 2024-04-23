@@ -34,19 +34,18 @@ export default function Team(): JSX.Element {
         setMembers((prevMembers) => {
             const newMembers = [...prevMembers];
             const member = newMembers[index] || { name: "", github: "", twitter: "", image: null };
-            // Update the specific field of the member based on the 'field' parameter
             member[field] = value;
             newMembers[index] = member;
             return newMembers;
         });
     };
-    
+
 
 
     const removeImage = (index: number): void => {
         setMembers((prevMembers) => {
             const newMembers = [...prevMembers];
-                newMembers[index]!.image = null;
+            newMembers[index]!.image = null;
             return newMembers;
         });
     };
@@ -136,15 +135,16 @@ export default function Team(): JSX.Element {
                     </div>
                 ))}
                 <div
-                    className="justify-center text-center items-center self-center px-16 py-4 mt-12 w-full text-xl font-medium tracking-wide leading-8 bg-[#DCA7FB] rounded-xl border border-dashed border-white border-opacity-30 max
-
--w-[879px] text-black text-opacity-80 max-md:px-5 max-md:mt-10 max-md:max-w-full cursor-pointer"
+                    className="justify-center text-center items-center self-center px-16 py-4 mt-12 w-full text-xl font-medium tracking-wide leading-8 bg-[#DCA7FB] rounded-xl border border-dashed border-white border-opacity-30 max-w-[879px] text-black text-opacity-80 max-md:px-5 max-md:mt-10 max-md:max-w-full cursor-pointer"
                     onClick={addMember}
                 >
                     Add Another Member
                 </div>
-                <div className="flex gap-5 justify-end w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-                    <a href="/addproject/banner" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
+                <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
+                    <a href="/addproject/banner" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
+                        <div>Back</div>
+                    </a>
+                    <a href="/addproject/links" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
                         <div>Next</div>
                         <Image
                             alt=""
