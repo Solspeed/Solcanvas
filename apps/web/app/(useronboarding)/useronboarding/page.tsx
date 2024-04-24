@@ -47,15 +47,27 @@ export default function UserOnBoarding() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
+            // Check if a profile with the same wallet ID already exists
+            const { data: existingProfile, error: existingProfileError } = await supabase
+                .from('onboarding')
+                .select('id')
+                .eq('wallet_id', publicKey?.toString())
+                .single();
+            
+            if (existingProfile || existingProfileError) {
+                throw new Error('A profile with the same wallet ID already exists.');
+            }
+    
             // Save name, bio, and wallet ID
             const { data, error } = await supabase.from('onboarding').insert([
                 { name, bio, wallet_id: publicKey?.toString() } // Added null check for publicKey
             ]);
+    
             if (error) {
                 throw error;
             }
             console.log('Data inserted successfully:', data);
-
+    
             // Redirect to add project page
             router.push("/comingsoon");
         } catch (error: any) {
@@ -64,6 +76,7 @@ export default function UserOnBoarding() {
             alert("Failed to insert data. Please try again later.");
         }
     };
+    
 
     return (
         <form className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10 " onSubmit={handleSubmit}>
