@@ -15,7 +15,6 @@
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.91.4",
-    "@supabase/supabase-js": "^2.42.0",
     "framer-motion": "^11.0.24",
     "next": "^14.0.4",
     "react": "^18.2.0",
@@ -23,7 +22,9 @@
     "react-fast-marquee": "^1.6.4",
     "react-icons": "^5.0.1",
     "react-intersection-observer": "^9.8.0",
-    "react-spring": "^9.7.3"
+    "react-spring": "^9.7.3",
+    "@supabase/supabase-js": "^2.42.0",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.0.4",
