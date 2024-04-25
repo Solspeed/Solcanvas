@@ -15,7 +15,7 @@ const metadata = {
   title: "SolCanvas",
   description: "SolCanvas is a decentralized platform.",
   openGraph: {
-    url: 'https://solcanvas.vercel.app/',
+    url: 'https://solcanvas.xyz/',
     images: {
       url: 'og.png',
       alt: 'About Acme',
@@ -48,6 +48,13 @@ export default function RootLayout({
         <meta property="og:image:width" content={metadata.openGraph.images.width.toString()} />
         <meta property="og:image:height" content={metadata.openGraph.images.height.toString()} />
         <meta property="og:image:alt" content={metadata.openGraph.images.alt} />
+        
+        {/* Twitter Card meta tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metadata.title} />
+        <meta name="twitter:description" content={metadata.description} />
+        <meta name="twitter:image" content={metadata.openGraph.images.url} />
+        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
       </head>
       <walletAdapterReact.ConnectionProvider endpoint={endpoint}>
