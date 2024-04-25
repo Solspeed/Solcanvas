@@ -47,13 +47,22 @@ export default function Navbar() {
 
     const LargeScreenNavbar = () => (
         <div className="hidden sm:flex items-baseline justify-center lg:justify-between gap-[1.94rem]">
-            <a
-                href="/#"
-                className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-            >
-                Coming Soon
-            </a>
             {wallet.connected ? (
+                <a
+                    href="/comingsoon"
+                    className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                >
+                    Coming Soon
+                </a>
+            ) : (
+                <a
+                    href="/connectwallet"
+                    className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                >
+                    Coming Soon
+                </a>
+            )}
+            {/* {wallet.connected ? (
                 <a
                     href="/comingsoon"
                     className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
@@ -71,7 +80,7 @@ export default function Navbar() {
                         Add project
                     </div>
                 </a>
-            )}
+            )} */}
         </div>
     );
 
@@ -79,13 +88,22 @@ export default function Navbar() {
         <div className="sm:hidden fixed -top-12 -left-6 h-screen   bg-black  z-50 ">
             <div className="flex flex-col items-center justify-center pr-12 pl-8 pt-7">
 
-                <a
-                    href="/#"
-                    className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
-                >
-                    Coming Soon
-                </a>
                 {wallet.connected ? (
+                    <a
+                        href="/#"
+                        className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                    >
+                        Coming Soon
+                    </a>
+                ) : (
+                    <a
+                        href="/#"
+                        className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
+                    >
+                        Coming Soon
+                    </a>
+                )}
+                {/* {wallet.connected ? (
                     <a
                         href="/comingsoon"
                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
@@ -99,7 +117,7 @@ export default function Navbar() {
                     >
                         Add project
                     </a>
-                )}
+                )} */}
                 {/* <div className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md">
                     <WalletMultiButton />
                 </div> */}
