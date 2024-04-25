@@ -52,14 +52,14 @@ export default function Navbar() {
                     href="/comingsoon"
                     className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                 >
-                    Coming Soon
+                onboarding
                 </a>
             ) : (
                 <a
                     href="/connectwallet"
                     className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                 >
-                    Coming Soon
+                onboarding
                 </a>
             )}
             {/* {wallet.connected ? (
@@ -93,14 +93,14 @@ export default function Navbar() {
                         href="/#"
                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                     >
-                        Coming Soon
+                    useronBoarding
                     </a>
                 ) : (
                     <a
                         href="/#"
                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                     >
-                        Coming Soon
+                    useronBoarding
                     </a>
                 )}
                 {/* {wallet.connected ? (
