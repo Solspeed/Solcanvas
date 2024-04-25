@@ -40,7 +40,7 @@ const UserOnBoarding = () => {
             await supabase.from('onboarding').insert([{ ...formData, wallet_id: walletId }]);
         } catch (error: any) {
             console.error('Error inserting data:', error.message);
-            alert(error.message);
+            // alert(error.message);
             router.push("/comingsoon");
         }
     };
