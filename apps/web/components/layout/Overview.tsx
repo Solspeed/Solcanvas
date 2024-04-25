@@ -29,13 +29,13 @@ export default function Overview() {
                 
                 <a href="/comingsoon" className="cursor-pointer [border:none] mq1000:py-[1.4rem] mq450:py-[0.8rem] py-[1.05rem] px-10 mq1000:px-8 bg-[#DCA7FB] hover:bg-[#a875c7] rounded-full flex flex-row items-center justify-center box-border max-w-full whitespace-nowrap mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
                     <div className="w-[10.938rem] relative text-[1.5rem] tracking-[0.03em] leading-[1.875rem] capitalize font-medium font-nunito text-black text-center inline-block z-[1]">
-                        Coming Soon
+                     Onboard
                     </div>
                 </a>
                 ): (
                     <a href="/connectwallet" className="cursor-pointer [border:none] mq1000:py-[1.4rem] mq450:py-[0.8rem] py-[1.05rem] px-10 mq1000:px-8 bg-[#DCA7FB] hover:bg-[#a875c7] rounded-full flex flex-row items-center justify-center box-border max-w-full whitespace-nowrap mq450:pl-[1.25rem] mq450:pr-[1.25rem] mq450:box-border">
                     <div className="w-[10.938rem] relative text-[1.5rem] tracking-[0.03em] leading-[1.875rem] capitalize font-medium font-nunito text-black text-center inline-block z-[1]">
-                        Coming Soon
+                     Onboard
                     </div>
                 </a>  
                 )}
