@@ -59,7 +59,7 @@ export default function Navbar() {
                     href="/connectwallet"
                     className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                 >
-                useronBoarding
+                onboarding
                 </a>
             )}
             {/* {wallet.connected ? (
