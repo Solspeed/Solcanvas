@@ -27,7 +27,7 @@ export default function ComingSoon() {
                         <span className="">SOLCANVAS</span>
                         <span className="sm:text-xl text-md text-red-600">beta</span>
                     </div>
-                    <div className="mt-2 text-3xl text-neutral-700 font-silkscreen">Coming soon...</div>
+                    <div className="mt-2 text-3xl text-neutral-700 font-silkscreen">Thanks for onboarding, The product beta phase will be launching soon.</div>
                 </div>
             </div>
         </div>
