@@ -16,9 +16,9 @@ interface TextProps {
 }
 
 const Text: React.FC<TextProps> = ({ title, description }) => (
-    <div className="flex flex-col text-[#954AD2] max-md:mt-10 max-md:max-w-full font-nunito">
+    <div className="flex flex-col text-[#954AD2]  max-md:max-w-full font-nunito">
         <h2 className="text-3xl leading-10 max-md:max-w-full font-silkscreen">{title}</h2>
-        <p className="mt-14 mq450:mt-6 text-base leading-8 max-md:mt-10 max-md:max-w-full">{description}</p>
+        <p className="mt-14 mq450:mt-6 text-base leading-8">{description}</p>
     </div>
 );
 
@@ -36,8 +36,8 @@ const MyComponent: React.FC = () => {
     };
 
     return (
-        <section className="relative flex justify-center items-center sm:px-16 px-10 mq450:px-6  w-full bg-black max-md:px-5 max-md:max-w-full">
-            <div className="mb-8 w-full max-w-[936px] max-md:mt-10 max-md:max-w-full relative z-10">
+        <section className="relative flex justify-center items-center sm:px-16 px-10 mq450:px-6  w-full bg-black max-md:px-5 ">
+            <div className="mb-8 w-full max-w-[936px] relative z-10">
                 <div className="grid md:grid-cols-2 gap-5 max-md:flex-col max-md:gap-0">
                     <Image src={data.image.src} alt={data.image.alt} />
                     <div className="flex flex-col justify-end">

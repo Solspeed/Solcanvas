@@ -1,6 +1,5 @@
 "use client";
 import next from "../../../../public/images/next.png";
-import required from "../../../../public/images/required.png";
 import Image from "next/image";
 import { ChangeEvent, useState } from 'react';
 
@@ -19,7 +18,7 @@ export default function Description() {
     const descriptionCharacterCount = projectDescription.length;
 
     return (
-        <form className="flex  flex-col self- sm:mt-24 font-nunito max-w-full mt-10">
+        <form className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10">
             <div className="flex gap-2.5 self-start">
                 <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px]  w-[38px]" />
                 <div className="shrink-0 w-14 bg-[#954AD2] rounded-2xl h-[11px]" />
