@@ -7,17 +7,21 @@ import Image from "next/image";
 import upload from "../../../../public/images/upload.png";
 import  supabase  from "../../../../supabase";
 
+
+
+
 export default function ProjectBanner() {
   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
 
+
   const handleFileSelect = (file: File, fileType: string) => {
     if (fileType === "logo") {
-      setLogoFile(file);
+        setLogoFile(file);
     } else if (fileType === "banner") {
-      setBannerFile(file);
+        setBannerFile(file);
     }
-  };
+};
 
   const handleDrop = (
     event: React.DragEvent<HTMLDivElement>,
@@ -57,39 +61,53 @@ export default function ProjectBanner() {
     }
     return data;
   };
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     try {
-      if (logoFile && bannerFile) {
-        // Upload logo and banner images to storage
-        const logoUrl = await uploadImage(logoFile, "logo_image");
-        const bannerUrl = await uploadImage(bannerFile, "banner_image");
+      // Image uploads
+      const logoUploadResult = logoFile
+          ? await supabase.storage.from('logo_image').upload(`project_logo_${Date.now()}`, logoFile)
+          : null;
 
-        // Insert data into 'project_listing' table
-        const { data, error } = await supabase.from("project_listing").insert([
-          {
-            logoImageUrl: logoUrl,
-            bannerImageUrl: bannerUrl,
-          },
-        ]);
+      const bannerUploadResult = bannerFile
+          ? await supabase.storage.from('banner_image').upload(`project_banner_${Date.now()}`, bannerFile)
+          : null;
 
-        if (error) {
-          throw error;
-        }
-
-        console.log("Data inserted successfully:", data);
-        // Redirect or perform additional actions upon successful insertion
-      } else {
-        throw new Error("Please select logo and banner images.");
+      if (logoUploadResult?.error || bannerUploadResult?.error) {
+          throw new Error('Image upload failed.');
       }
-    } catch (error:any) {
-      console.error("Error inserting data:", error.message);
-      // Optionally, provide feedback to the user
-      alert("Failed to insert data. Please try again later.");
-    }
+
+      // Construct Image Paths
+      const logoImagePath = logoUploadResult 
+          ? constructImageUrl('logo_image', logoUploadResult.data.path)
+          : null; 
+
+      const bannerImagePath = bannerUploadResult 
+          ? constructImageUrl('banner_image', bannerUploadResult.data.path)
+          : null;
+
+      // Database insert
+      const { data, error } = await supabase.from('project_listing').insert({
+          logoImageUrl: logoImagePath,
+          bannerImageUrl: bannerImagePath,
+          // ... other project details
+      });
+
+      if (error) throw error;
+
+      console.log('Project created:', data); 
+      setLogoFile(null);
+      setBannerFile(null);
+  } catch (error) {
+      console.error('Error submitting data:', error);
+  }
+};
+
+  const constructImageUrl = (bucketName: string, imagePath: string) => {
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
   };
-''
 
 
 
@@ -244,7 +262,7 @@ export default function ProjectBanner() {
           </a>
           <button type="submit">
           <a
-            href="/addproject/team"
+            // href="/addproject/team"
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Next</div>
@@ -263,3 +281,4 @@ export default function ProjectBanner() {
     </form>
   );
 }
+    
