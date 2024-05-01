@@ -1,5 +1,5 @@
-'use client'
 
+"use client"
 import React, { useState, ChangeEvent } from "react";
 import required from "../../../../public/images/required.png";
 import next from "../../../../public/images/next.png";
@@ -42,7 +42,7 @@ export default function Team(): JSX.Element {
             }
         }
     };
-    
+
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number, field: keyof Member): void => {
         const { value } = event.target;
         setMembers((prevMembers) => {
@@ -71,7 +71,7 @@ export default function Team(): JSX.Element {
 
     const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
-    
+
         try {
             const teamData = members.map((member) => ({
                 name: member.name,
@@ -79,13 +79,13 @@ export default function Team(): JSX.Element {
                 twitter: member.twitter,
                 image: member.image || null, // Store image URL or null
             }));
-    
+
             const { data, error } = await supabase.from("project_listing").insert({ teamMembers: teamData });
-    
+
             if (error) {
                 throw error;
             }
-    
+
             console.log("Data inserted successfully:", data);
             // Handle success, redirect or display a success message
         } catch (error : any) {

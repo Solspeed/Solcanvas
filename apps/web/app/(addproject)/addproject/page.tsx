@@ -8,16 +8,16 @@ import supabase from "../../../supabase";
 
 export default function ProjectListing() {
   const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
+  const [tagline, setTagline] = useState("");
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (inputValue.length <= 45) setName(inputValue);
   };
 
-  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleTaglineChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    if (inputValue.length <= 80) setTitle(inputValue);
+    if (inputValue.length <= 80) setTagline(inputValue);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,7 +27,7 @@ export default function ProjectListing() {
       // Insert data into 'project_listing' table
       const { data, error } = await supabase
         .from("project_listing")
-        .insert([{ name, title }]);
+        .insert([{ name, tagline }]);
 
       if (error) {
         throw error;
@@ -43,7 +43,7 @@ export default function ProjectListing() {
     }
   };
   const nameCharacterCount = name.length;
-  const bioCharacterCount = title.length;
+  const bioCharacterCount = tagline.length;
 
   return (
     <form
@@ -89,7 +89,7 @@ export default function ProjectListing() {
         />
         <div className="flex gap-5  w-full text-[16px] tracking-wide leading-8 whitespace-nowrap flex-wrap mt-10 max-w-full">
           <div className="flex flex-1  self-start text-white text-opacity-80">
-            <div>Title</div>
+            <div>Tagline</div>
             <Image
               alt=""
               width={100}
@@ -105,15 +105,15 @@ export default function ProjectListing() {
         </div>
         <input
           className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[12px] text-[16px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70 "
-          placeholder="Give a short title for your project."
-          value={title}
-          onChange={handleTitleChange}
+          placeholder="Give a short tagline for your project."
+          value={tagline}
+          onChange={handleTaglineChange}
           required
         />
         <button type="submit">
           <div className="flex gap-5 justify-end  w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
             <a
-              href="/addproject/banner"
+              // href="/addproject/banner"
               className="flex gap-5  font-nunito justify-between  items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl"
             >
               <div>Next</div>
