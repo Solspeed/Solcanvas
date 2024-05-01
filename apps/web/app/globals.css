@@ -86,3 +86,24 @@ body {
 	  box-shadow: 0em -2.6em 0em 0em rgba(255,255,255, 0.2), 1.8em -1.8em 0 0em rgba(255,255,255, 0.2), 2.5em 0em 0 0em rgba(255,255,255, 0.2), 1.75em 1.75em 0 0em rgba(255,255,255, 0.2), 0em 2.5em 0 0em rgba(255,255,255, 0.2), -1.8em 1.8em 0 0em rgba(255,255,255, 0.5), -2.6em 0em 0 0em rgba(255,255,255, 0.7), -1.8em -1.8em 0 0em #ffffff;
 	}
   }
+
+
+  /* Styles for scrollbar */
+textarea::-webkit-scrollbar {
+	width: 10px; /* Width of the scrollbar */
+	z-index: -1;
+}
+
+textarea::-webkit-scrollbar-track {
+	background: #555; 
+	z-index: -1;/* Color of the track */
+}
+
+textarea::-webkit-scrollbar-thumb {
+	background: #888; /* Color of the scrollbar */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+	background: #555; /* Color of the scrollbar on hover */
+  }
+  

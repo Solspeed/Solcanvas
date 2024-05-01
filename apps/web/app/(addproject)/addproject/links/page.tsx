@@ -133,7 +133,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           </a>
           <button type="submit">
           <a
-            // href="/addproject/description"
+            href="/addproject/description"
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Next</div>
