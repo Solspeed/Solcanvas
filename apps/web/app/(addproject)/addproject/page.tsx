@@ -5,42 +5,54 @@ import required from "../../../public/images/required.png";
 import next from "../../../public/images/next.png";
 import Image from "next/image";
 import supabase from "../../../supabase";
+import { useRouter } from "next/navigation";
+import { useFormData } from './context/FormDataContext';
+
 
 export default function ProjectListing() {
-  const [name, setName] = useState("");
-  const [tagline, setTagline] = useState("");
-
+  const { formData, updateFormData } = useFormData();
+  console.log("FormData:", formData);
+  const [name, setName] = useState(formData.name || "");
+  const [tagline, setTagline] = useState(formData.tagline || "");
+  const router = useRouter();
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {value} = event.target;
     const inputValue = event.target.value;
+    updateFormData({ name: value });
     if (inputValue.length <= 45) setName(inputValue);
   };
 
   const handleTaglineChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {value} = event.target;
+    updateFormData({ tagline: value });
     const inputValue = event.target.value;
     if (inputValue.length <= 80) setTagline(inputValue);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // console.log("FormData:", formData);
+    // try {
+    //   // Insert data into 'project_listing' table
+    //   const { data, error } = await supabase
+    //     .from("project_listing")
+    //     .insert([{ name, tagline }]);
 
-    try {
-      // Insert data into 'project_listing' table
-      const { data, error } = await supabase
-        .from("project_listing")
-        .insert([{ name, tagline }]);
+    //   if (error) {
+    //     throw error;
+    //   }
 
-      if (error) {
-        throw error;
-      }
+    //   console.log("Data inserted successfully:", data);
 
-      console.log("Data inserted successfully:", data);
+    //   // Redirect or perform additional actions upon successful insertion
+    // } catch (error: any) {
+    //   console.error("Error inserting data:", error.message);
+    //   // Optionally, provide feedback to the user
+    //   alert("Failed to insert data. Please try again later.");
+    // } finally {
+     router.push("/addproject/banner");
 
-      // Redirect or perform additional actions upon successful insertion
-    } catch (error: any) {
-      console.error("Error inserting data:", error.message);
-      // Optionally, provide feedback to the user
-      alert("Failed to insert data. Please try again later.");
-    }
+    // }
   };
   const nameCharacterCount = name.length;
   const bioCharacterCount = tagline.length;
