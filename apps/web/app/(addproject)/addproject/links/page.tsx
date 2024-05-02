@@ -10,7 +10,7 @@ import { useFormData } from '../context/FormDataContext';
 export default function Links() {
   const { formData, updateFormData } = useFormData();
   const router = useRouter();
-
+console.log("FormData:", formData);
   const [email, setEmail] = useState(formData.email || "");
   const [website, setWebsite] = useState(formData.website || "");
   const [github, setGithub] = useState(formData.github || "");
