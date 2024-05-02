@@ -8,15 +8,15 @@ import next from '../../../../public/images/next.png';
 export default function Description() {
   const { formData, updateFormData } = useFormData();
   const [description, setDescription] = useState(formData.description || "");
-console.log("FormData:", formData);
+
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const newDescription = event.target.value;
     if (newDescription.length <= 1000) {
       setDescription(newDescription);
-      updateFormData({ description: newDescription }); // Update formData context
+      updateFormData({ description: newDescription });
     } else {
       setDescription(newDescription.slice(0, 1000));
-      updateFormData({ description: newDescription.slice(0, 1000) }); // Update formData context
+      updateFormData({ description: newDescription.slice(0, 1000) });
     }
   };
 
@@ -24,13 +24,27 @@ console.log("FormData:", formData);
     e.preventDefault();
 
     try {
-      // Insert data into 'project_listing' table
-      const { data, error } = await supabase.from("project_listing").insert([
-        {
-          description,
-          // Add more fields as needed
-        },
-      ]);
+      const projectName = localStorage.getItem('projectName') || '';
+      const projectTagline = localStorage.getItem('projectTagline') || '';
+      const logoImageUrl = localStorage.getItem('logoImageUrl') || '';
+      const bannerImageUrl = localStorage.getItem('bannerImageUrl') || '';
+      const teamMembers = JSON.parse(localStorage.getItem('teamMembers') || '[]');
+
+      const projectData = {
+        name: formData.name,
+        tagline: formData.tagline,
+        email: formData.email, // Assuming you have an email field in your form data
+        description: formData.description,
+        logoImageUrl: formData.logoImageUrl,
+        bannerImageUrl: formData.bannerImageUrl,
+        githubLink: formData.github, // Assuming you have a githubLink field in your form data
+        websiteLink: formData.website, // Assuming you have a websiteLink field in your form data
+        twitterLink: formData.twitter, // Assuming you have a twitterLink field in your form data
+        teamMembers: formData.teamMembers,
+        // Add more fields as needed
+      };
+
+      const { data, error } = await supabase.from("project_listing").insert([projectData]);
 
       if (error) {
         throw error;
@@ -38,7 +52,11 @@ console.log("FormData:", formData);
 
       console.log("Data inserted successfully:", data);
 
+      // Clear localStorage after successful insertion
+      localStorage.clear();
+
       // Optionally, redirect or show success message
+      alert("Project data inserted successfully!");
 
     } catch (error: any) {
       console.error("Error inserting data:", error.message);
@@ -47,6 +65,7 @@ console.log("FormData:", formData);
   };
 
   const descriptionCharacterCount = description.length;
+
 
   return (
     <form className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10" onSubmit={handleSubmit}>

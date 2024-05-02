@@ -42,29 +42,30 @@ export default function Links() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      // Insert data into 'project_listing' table
-      const { data, error } = await supabase.from("project_listing").insert([
-        {
-          email,
-          githubLink: github,
-          twitterLink: twitter,
-          websiteLink: website,
-        },
-      ]);
+    // try {
+    //   // Insert data into 'project_listing' table
+    //   const { data, error } = await supabase.from("project_listing").insert([
+    //     {
+    //       email,
+    //       githubLink: github,
+    //       twitterLink: twitter,
+    //       websiteLink: website,
+    //     },
+    //   ]);
 
-      if (error) {
-        throw error;
-      }
+    //   if (error) {
+    //     throw error;
+    //   }
 
-      console.log("Data inserted successfully:", data);
-      // Redirect or perform additional actions upon successful insertion
-      router.push("/addproject/description");
-    } catch (error:any) {
-      console.error("Error inserting data:", error.message);
-      // Optionally, provide feedback to the user
-      alert("Failed to insert data. Please try again later.");
-    }
+    //   console.log("Data inserted successfully:", data);
+    //   // Redirect or perform additional actions upon successful insertion
+    //   router.push("/addproject/description");
+    // } catch (error:any) {
+    //   console.error("Error inserting data:", error.message);
+    //   // Optionally, provide feedback to the user
+    //   alert("Failed to insert data. Please try again later.");
+    // }
+    router.push("/addproject/description");
   };
 
   return (

@@ -32,26 +32,27 @@ export default function ProjectListing() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // console.log("FormData:", formData);
-    try {
-      // Insert data into 'project_listing' table
-      const { data, error } = await supabase
-        .from("project_listing")
-        .insert([{ name, tagline }]);
+    // try {
+    //   // Insert data into 'project_listing' table
+    //   const { data, error } = await supabase
+    //     .from("project_listing")
+    //     .insert([{ name, tagline }]);
 
-      if (error) {
-        throw error;
-      }
+    //   if (error) {
+    //     throw error;
+    //   }
 
-      console.log("Data inserted successfully:", data);
+    //   console.log("Data inserted successfully:", data);
 
-      // Redirect or perform additional actions upon successful insertion
-    } catch (error: any) {
-      console.error("Error inserting data:", error.message);
-      // Optionally, provide feedback to the user
-      alert("Failed to insert data. Please try again later.");
-    } finally {
-      router.push("/addproject/banner");
-    }
+    //   // Redirect or perform additional actions upon successful insertion
+    // } catch (error: any) {
+    //   console.error("Error inserting data:", error.message);
+    //   // Optionally, provide feedback to the user
+    //   alert("Failed to insert data. Please try again later.");
+    // } finally {
+     router.push("/addproject/banner");
+
+    // }
   };
   const nameCharacterCount = name.length;
   const bioCharacterCount = tagline.length;
