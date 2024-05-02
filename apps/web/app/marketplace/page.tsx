@@ -37,7 +37,7 @@ export default function page() {
                     {state.contentToShow === "walletContent" && <Balance />}
                 </div>
                 <div className="xl:pt-36">
-                    {/* {state.contentToShow === "recommendations" && <Projects />} */}
+                    {state.contentToShow === "recommendations" && <Projects />}
                     {state.contentToShow === "walletContent" && <Transactions />}
                 </div>
             </div>
