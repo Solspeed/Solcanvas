@@ -4,29 +4,43 @@ import required from "../../../../public/images/required.png";
 import next from "../../../../public/images/next.png";
 import Image from "next/image";
 import supabase from "../../../../supabase";
-import { handleClientScriptLoad } from "next/script";
+import { useRouter } from "next/navigation";
+import { useFormData } from '../context/FormDataContext';
+
 export default function Links() {
-  const [email, setEmail] = useState("");
-  const [website, setWebsite] = useState("");
-const [github, setGithub] = useState("");
-const [twitter, setTwitter] = useState("");
-const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-};
+  const { formData, updateFormData } = useFormData();
+  const router = useRouter();
 
-const handleWebsiteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWebsite(event.target.value);
-};
+  const [email, setEmail] = useState(formData.email || "");
+  const [website, setWebsite] = useState(formData.website || "");
+  const [github, setGithub] = useState(formData.github || "");
+  const [twitter, setTwitter] = useState(formData.twitter || "");
 
-const handleGithubChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGithub(event.target.value);
-};
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = event.target.value;
+    setEmail(newEmail);
+    updateFormData({ email: newEmail });
+  };
 
-const handleTwitterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTwitter(event.target.value);
-};
+  const handleWebsiteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newWebsite = event.target.value;
+    setWebsite(newWebsite);
+    updateFormData({ website: newWebsite });
+  };
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleGithubChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newGithub = event.target.value;
+    setGithub(newGithub);
+    updateFormData({ github: newGithub });
+  };
+
+  const handleTwitterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newTwitter = event.target.value;
+    setTwitter(newTwitter);
+    updateFormData({ twitter: newTwitter });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       // Insert data into 'project_listing' table
@@ -45,12 +59,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
       console.log("Data inserted successfully:", data);
       // Redirect or perform additional actions upon successful insertion
+      router.push("/addproject/description");
     } catch (error:any) {
       console.error("Error inserting data:", error.message);
       // Optionally, provide feedback to the user
       alert("Failed to insert data. Please try again later.");
     }
   };
+
   return (
     <form
       className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10 "
@@ -84,6 +100,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           </div>
         </div>
         <input
+          type="email"
           className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[16px] text-[18px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70 "
           placeholder="Email"
           value={email}
@@ -131,11 +148,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           >
             <div>Back</div>
           </a>
-          <button type="submit">
-          <a
-            href="/addproject/description"
-            className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
-          >
+          <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
             <div>Next</div>
             <Image
               alt=""
@@ -145,7 +158,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               src={next}
               className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
             />
-          </a>
           </button>
         </div>
       </div>

@@ -6,23 +6,126 @@ import next from "../../../../public/images/next.png";
 import Image from "next/image";
 import upload from "../../../../public/images/upload.png";
 import  supabase  from "../../../../supabase";
-
-
-
+import { useRouter } from "next/navigation";
+import {useFormData} from '../context/FormDataContext'
 
 export default function ProjectBanner() {
+//   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
+//   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
+//   const { formData, updateFormData } = useFormData();
+// const router = useRouter()
+// const {formData, updateFormData} = useFormData();
+//   console.log("FormData:", formData);
+//   const handleFileSelect = (file: File, fileType: string) => {
+//     if (fileType === "logo") {
+//         setLogoFile(file);
+//     } else if (fileType === "banner") {
+//         setBannerFile(file);
+//     }
+// };
+
+//   const handleDrop = (
+//     event: React.DragEvent<HTMLDivElement>,
+//     fileType: string
+//   ) => {
+//     event.preventDefault();
+//     const droppedFile = event.dataTransfer.files?.[0];
+//     if (droppedFile) {
+//       handleFileSelect(droppedFile, fileType);
+//     }
+//   };
+
+//   const handleInputChange = (
+//     event: ChangeEvent<HTMLInputElement>,
+//     fileType: string
+//   ) => {
+//     const selectedFile = event.target.files?.[0];
+//     if (selectedFile) {
+//       handleFileSelect(selectedFile, fileType);
+//     }
+//   };
+
+//   const clearFile = (fileType: string) => {
+//     if (fileType === "logo") {
+//       setLogoFile(null);
+//     } else if (fileType === "banner") {
+//       setBannerFile(null);
+//     }
+//   };
+
+//   const uploadImage = async (file: File, storagePath: string) => {
+//     const { data, error } = await supabase.storage
+//       .from("bucketName")
+//       .upload(storagePath, file);
+//     if (error) {
+//       throw error;
+//     }
+//     return data;
+//   };
+//   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+//     event.preventDefault();
+
+//     try {
+//       // Image uploads
+//       const logoUploadResult = logoFile
+//           ? await supabase.storage.from('logo_image').upload(`project_logo_${Date.now()}`, logoFile)
+//           : null;
+
+//       const bannerUploadResult = bannerFile
+//           ? await supabase.storage.from('banner_image').upload(`project_banner_${Date.now()}`, bannerFile)
+//           : null;
+
+//       if (logoUploadResult?.error || bannerUploadResult?.error) {
+//           throw new Error('Image upload failed.');
+//       }
+
+//       // Construct Image Paths
+//       const logoImagePath = logoUploadResult 
+//           ? constructImageUrl('logo_image', logoUploadResult.data.path)
+//           : null; 
+
+//       const bannerImagePath = bannerUploadResult 
+//           ? constructImageUrl('banner_image', bannerUploadResult.data.path)
+//           : null;
+
+//       // Database insert
+//       const { data, error } = await supabase.from('project_listing').insert({
+//           logoImageUrl: logoImagePath,
+//           bannerImageUrl: bannerImagePath,
+//           // ... other project details
+//       });
+
+//       if (error) throw error;
+
+//       console.log('Project created:', data); 
+//       setLogoFile(null);
+//       setBannerFile(null);
+//   } catch (error) {
+//       console.error('Error submitting data:', error);
+//   }
+//   finally{
+//     router.push("/addproject/team")
+//   }
+// };
+
+//   const constructImageUrl = (bucketName: string, imagePath: string) => {
+//         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+//         return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
+//   };
+
+
+ const { formData, updateFormData } = useFormData();
   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
-
+  const router = useRouter();
 
   const handleFileSelect = (file: File, fileType: string) => {
-    if (fileType === "logo") {
-        setLogoFile(file);
-    } else if (fileType === "banner") {
-        setBannerFile(file);
+    if (fileType === 'logo') {
+      setLogoFile(file);
+    } else if (fileType === 'banner') {
+      setBannerFile(file);
     }
-};
-
+  };
   const handleDrop = (
     event: React.DragEvent<HTMLDivElement>,
     fileType: string
@@ -34,10 +137,7 @@ export default function ProjectBanner() {
     }
   };
 
-  const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    fileType: string
-  ) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, fileType: string) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       handleFileSelect(selectedFile, fileType);
@@ -45,68 +145,56 @@ export default function ProjectBanner() {
   };
 
   const clearFile = (fileType: string) => {
-    if (fileType === "logo") {
+    if (fileType === 'logo') {
       setLogoFile(null);
-    } else if (fileType === "banner") {
+    } else if (fileType === 'banner') {
       setBannerFile(null);
     }
   };
 
-  const uploadImage = async (file: File, storagePath: string) => {
-    const { data, error } = await supabase.storage
-      .from("bucketName")
-      .upload(storagePath, file);
-    if (error) {
-      throw error;
-    }
-    return data;
-  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       // Image uploads
       const logoUploadResult = logoFile
-          ? await supabase.storage.from('logo_image').upload(`project_logo_${Date.now()}`, logoFile)
-          : null;
+        ? await supabase.storage.from('logo_image').upload(`project_logo_${Date.now()}`, logoFile)
+        : null;
 
       const bannerUploadResult = bannerFile
-          ? await supabase.storage.from('banner_image').upload(`project_banner_${Date.now()}`, bannerFile)
-          : null;
+        ? await supabase.storage.from('banner_image').upload(`project_banner_${Date.now()}`, bannerFile)
+        : null;
 
       if (logoUploadResult?.error || bannerUploadResult?.error) {
-          throw new Error('Image upload failed.');
+        throw new Error('Image upload failed.');
       }
 
       // Construct Image Paths
-      const logoImagePath = logoUploadResult 
-          ? constructImageUrl('logo_image', logoUploadResult.data.path)
-          : null; 
+      const logoImagePath = logoUploadResult
+        ? constructImageUrl('logo_image', logoUploadResult.data.path)
+        : undefined;
 
-      const bannerImagePath = bannerUploadResult 
-          ? constructImageUrl('banner_image', bannerUploadResult.data.path)
-          : null;
+      const bannerImagePath = bannerUploadResult
+        ? constructImageUrl('banner_image', bannerUploadResult.data.path)
+        : undefined;
 
-      // Database insert
-      const { data, error } = await supabase.from('project_listing').insert({
-          logoImageUrl: logoImagePath,
-          bannerImageUrl: bannerImagePath,
-          // ... other project details
-      });
+      // Update form data with logo and banner image URLs
+      updateFormData({
+        logoImageUrl: logoImagePath,
+        bannerImageUrl: bannerImagePath,
+      });  
 
-      if (error) throw error;
-
-      console.log('Project created:', data); 
-      setLogoFile(null);
-      setBannerFile(null);
-  } catch (error) {
+      // Redirect to the next step
+      router.push('/addproject/team');
+    } catch (error) {
       console.error('Error submitting data:', error);
-  }
-};
+      // Handle error state or provide feedback to the user
+    }
+  };
 
   const constructImageUrl = (bucketName: string, imagePath: string) => {
-        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
   };
 
 

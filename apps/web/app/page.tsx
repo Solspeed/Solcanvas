@@ -8,9 +8,13 @@ import GetStarted from "../components/layout/GetStarted";
 import Community from "../components/layout/Community";
 import ConnectWallet from "../components/layout/ConnectWallet";
 import Solana from "../components/layout/Solana";
+import { AppProps } from "next/app";
+
 
 export default function Home() {
+
   return (
+    
     <main className=" bg-black">
       <div className="w-full relative bg-black overflow-hidden flex flex-col items-center justify-start sm:pt-[5.81rem] pt-[3.6rem] px-[0rem] pb-[0rem] box-border gap-[14.19rem] tracking-[normal] mq725:gap-[6rem] mq450:gap-[4rem] mq1000:gap-[8.19rem]">
         <section className="w-[82.5rem] flex flex-row items-start justify-start py-[0rem] pr-[2.13rem] pl-[1.25rem] mq450:pr-[0.9rem] mq450:pl-[0.1rem] box-border max-w-full">
@@ -26,6 +30,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+       
+
         <Features />
         <Solana />
         <ConnectWallet />
@@ -33,7 +39,9 @@ export default function Home() {
         <GetStarted />
         <Faqs />
         <Footer />
+       
       </div>
     </main>
+    
   );
 }
