@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion"; 
-import logo from "../../../public/images/marketplace/logo.png";
+import logo from "../../../public/logo.svg"
 import hamburgermenu from "../../../public/images/marketplace/hamburger-menu.svg";
 import closemenu from "../../../public/images/marketplace/close.svg";
 

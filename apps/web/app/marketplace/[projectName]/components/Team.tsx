@@ -14,7 +14,7 @@ interface TeamProps {
 export default function Team({ teamMembers }: TeamProps) {
     return (
         <div>
-            <h2 className="self-start sm:mt-40 mt-24 sm:text-5xl text-4xl font-semibold tracking-wider leading-8 text-white max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
+            <h2 className="self-start font-silkscreen sm:mt-40 mt-24 sm:text-5xl text-4xl font-semibold tracking-wider leading-8 text-[#954AD2] max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
                 Team
             </h2>
             <div className="grid lg:grid-cols-2 place-items-center lg:mr-0  -ml-16 sm:gap-16 sm:mt-12 mt-6">
@@ -24,12 +24,12 @@ export default function Team({ teamMembers }: TeamProps) {
                             <img className="z-0 w-[317px] object-fill h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" alt="avatar background" />
                             <img className="z-10 w-[265px] h-[265px] object-fill left-[109px] top-0 absolute rounded-full" src={member.image_url} alt={`${member.name} avatar`} />
                         </div>
-                        <div className="z-50 left-[450px] top-[123px] absolute text-white text-opacity-70 text-[26px] font-semibold leading-[30px] tracking-wide">@{member.name}<br /></div>
+                        <div className="z-50 left-[450px] top-[123px] absolute text-[#954AD2] text-opacity-70 text-[26px] font-semibold leading-[30px] tracking-wide">@{member.name}<br /></div>
                         <a href={member.twitter} target="_blank" rel="noopener noreferrer">
-                            <img className="z-100 w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/twitter.png' alt="twitter icon" />
+                            <img className="z-100 w-[37px] h-[37px] left-[410px] top-[121px] absolute" src='/images/Twitter.svg' alt="twitter icon" />
                         </a>
                         <a href={member.github} target="_blank" rel="noopener noreferrer">
-                            <img className="z-20 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/github.png' alt="github icon" />
+                            <img className="z-20 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/images/Github.svg' alt="github icon" />
                         </a>
                     </div>
                 ))}

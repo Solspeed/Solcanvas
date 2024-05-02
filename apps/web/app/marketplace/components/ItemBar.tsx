@@ -1,6 +1,6 @@
 import Image from "next/image";
 import search from "../../../public/images/search.svg";
-import profile from "../../../public/images/profile.svg";
+import window from "../../../public/images/marketplace/window.svg";
 import { useState } from "react";
 
 interface ItemBarProps {
@@ -40,7 +40,7 @@ export default function ItemBar({ isWalletClicked, onWalletClick }: ItemBarProps
           <a href="/addproject" className="shrink-0">Submit Project</a>
           <div className="border border-solid bg-zinc-400 border-zinc-400 h-[30px] " />
           <Image
-            src={profile}
+            src={window}
             className="shrink-0 aspect-[0.86] w-[31px]"
             alt="Submit Icon"
           />

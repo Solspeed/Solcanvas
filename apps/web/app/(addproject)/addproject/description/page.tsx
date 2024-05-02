@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import supabase from "../../../../supabase";
@@ -40,7 +40,7 @@ console.log("FormData:", formData);
 
       // Optionally, redirect or show success message
 
-    } catch (error : any) {
+    } catch (error: any) {
       console.error("Error inserting data:", error.message);
       alert("Failed to insert data. Please try again.");
     }
@@ -80,18 +80,16 @@ console.log("FormData:", formData);
           >
             <div>Back</div>
           </a>
-          <button type="submit">
-            <div className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
-              <div>Finish</div>
-              <Image
-                alt=""
-                width={100}
-                height={100}
-                loading="lazy"
-                src={next}
-                className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
-              />
-            </div>
+          <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
+            <div>Finish</div>
+            <Image
+              alt=""
+              width={100}
+              height={100}
+              loading="lazy"
+              src={next}
+              className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
+            />
           </button>
         </div>
       </div>

@@ -4,7 +4,7 @@ import ItemBar from "./components/ItemBar";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Recommendation from "./components/Recommendation";
-import Footer from "../../components/layout/Footer";
+import Footer from "./components/Footer";
 import { useState } from "react";
 import Balance from "./components/Balance";
 import Transactions from "./components/Transactions";
@@ -25,7 +25,7 @@ export default function page() {
     }
 
     return (
-        <div className="bg-black overflow-x-hidden">
+        <div className="bg-black font-nunito overflow-x-hidden h-screen">
             <Navbar />
             <div className="space-y-16">
                 <ItemBar
@@ -37,7 +37,7 @@ export default function page() {
                     {state.contentToShow === "walletContent" && <Balance />}
                 </div>
                 <div className="xl:pt-36">
-                    {state.contentToShow === "recommendations" && <Projects />}
+                    {/* {state.contentToShow === "recommendations" && <Projects />} */}
                     {state.contentToShow === "walletContent" && <Transactions />}
                 </div>
             </div>

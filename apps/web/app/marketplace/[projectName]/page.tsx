@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import supabase from "../../../supabase";
 import back from "../../../public/images/marketplace/projects/Left_Arrow_Alt.png"
 import Image from "next/image";
+import Updates from "./components/Updates";
+import Commits from "./components/Commits";
 
 interface ProjectDetailsProps {
     params: { projectName: string };
@@ -66,7 +68,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
     }
 
     return (
-        <div className="flex flex-col xl:px-14 sm:px-10 px-4 xl:pt-16 sm:pt-12 pt-6 h-full bg-black min-h-screen">
+        <div className="flex font-nunito flex-col xl:px-14 sm:px-10 px-4 xl:pt-16 sm:pt-12 pt-6 h-full bg-black min-h-screen">
             <div className="flex flex-col w-full max-md:px-5 max-md:max-w-full">
                 <Link href="/marketplace" className="flex items-center gap-2 m-2">
                     <Image src={back} alt="back" className="" />
@@ -74,6 +76,8 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                 <Overview projectsList={projectData.projectList} />
                 {/* Pass teamMembers to Team component */}
                 {projectData.projectList[0]?.teamMembers && <Team teamMembers={projectData.projectList[0].teamMembers} />}
+                <Updates />
+                <Commits />
                 <Link href={`/marketplace/${params.projectName}/editform`} className="flex w-full justify-center ">
                     <CustomButton
                         text="Edit Project"
