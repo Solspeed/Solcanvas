@@ -10,7 +10,7 @@ import Link from "next/link"
 export default function Recommendation() {
     return (
         <div className="flex xl:px-24 font-nunito  sm:px-12 px-6   overflow-hidden flex-col justify-center font-medium text-white capitalize min-h-[380px]">
-            <div className="bg-cover bg-center px- bg-no-repeat rounded-3xl" style={{ backgroundImage: `url(${bgImage.src})` }}>
+            <div className="bg-cover bg-center px- bg-no-repeat rounded-3xl bg-[#151515]" >
                 <div className="flex relative flex-col sm:px-10 px-4 sm:py-12 py-6 w-full rounded-2xl bg-black bg-opacity-30  max-md:px-5 max-md:max-w-full">
                     <div className="text-xl font-silkscreen tracking-wide leading-8 max-md:max-w-full">
                         RECOMMENDED
