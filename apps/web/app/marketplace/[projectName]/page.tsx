@@ -78,7 +78,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
                 {/* Pass teamMembers to Team component */}
                 {projectData.projectList[0]?.teamMembers && <Team teamMembers={projectData.projectList[0].teamMembers} />}
                 <Updates />
-                {/* <Commits /> */}
+                <Commits />
                 <Link href={`/marketplace/${params.projectName}/editform`} className="flex w-full justify-center mb-6">
                     <CustomButton
                         text="Edit Project"

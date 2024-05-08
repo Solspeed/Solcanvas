@@ -33,15 +33,15 @@ export default function Description() {
       const projectData = {
         name: formData.name,
         tagline: formData.tagline,
-        email: formData.email, // Assuming you have an email field in your form data
+        email: formData.email, 
         description: formData.description,
         logoImageUrl: formData.logoImageUrl,
         bannerImageUrl: formData.bannerImageUrl,
-        githubLink: formData.github, // Assuming you have a githubLink field in your form data
-        websiteLink: formData.website, // Assuming you have a websiteLink field in your form data
-        twitterLink: formData.twitter, // Assuming you have a twitterLink field in your form data
+        githubLink: formData.github, 
+        websiteLink: formData.website, 
+        twitterLink: formData.twitter, 
         teamMembers: formData.teamMembers,
-        // Add more fields as needed
+       
       };
 
       const { data, error } = await supabase.from("project_listing").insert([projectData]);
@@ -52,10 +52,9 @@ export default function Description() {
 
       console.log("Data inserted successfully:", data);
 
-      // Clear localStorage after successful insertion
+    
       localStorage.clear();
 
-      // Optionally, redirect or show success message
       alert("Project data inserted successfully!");
 
     } catch (error: any) {
