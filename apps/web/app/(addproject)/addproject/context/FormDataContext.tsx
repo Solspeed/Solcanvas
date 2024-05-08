@@ -1,6 +1,4 @@
-
-"use client"
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Define types for team member
 type Member = {
@@ -10,57 +8,64 @@ type Member = {
   image: string | null;
 };
 
-// Define types for form data including team members
+// Define types for project update
+type ProjectUpdate = {
+  date: string; // Format: DD/MM/YY
+  update: string;
+};
+
+// Define types for form data including team members and project updates
 type FormData = {
   name: string;
   tagline: string;
   bannerImageUrl: string;
   logoImageUrl: string;
   teamMembers: Member[];
-  // Add more fields as needed
   email: string;
   website: string;
   github: string;
   twitter: string;
   description: string;
+  projectUpdates: ProjectUpdate[]; // Array of project updates
 };
 
-// Define context type
 type FormDataContextType = {
   formData: FormData;
   updateFormData: (newData: Partial<FormData>) => void;
+  addProjectUpdate: (update: ProjectUpdate) => void;
 };
 
-// Create a new context for form data
-const FormDataContext = createContext<FormDataContextType | undefined>(undefined);
+const FormDataContext = createContext<FormDataContextType | undefined>(
+  undefined
+);
 
-// Custom hook to access the form data context
 export const useFormData = (): FormDataContextType => {
   const context = useContext(FormDataContext);
   if (!context) {
-    throw new Error('useFormData must be used within a FormDataProvider');
+    throw new Error("useFormData must be used within a FormDataProvider");
   }
   return context;
 };
 
-// Form Data Provider component
 type FormDataProviderProps = {
   children: ReactNode;
 };
 
-export const FormDataProvider: React.FC<FormDataProviderProps> = ({ children }) => {
+export const FormDataProvider: React.FC<FormDataProviderProps> = ({
+  children,
+}) => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    tagline: '',
-    bannerImageUrl: '',
-    logoImageUrl: '',
-    teamMembers: [], // Initialize with an empty array
-    email: '',
-    website: '',
-    github: '',
-    twitter: '',
-    // Initialize other form fields here
-    description: '',
+    name: "",
+    tagline: "",
+    bannerImageUrl: "",
+    logoImageUrl: "",
+    teamMembers: [],
+    email: "",
+    website: "",
+    github: "",
+    twitter: "",
+    description: "",
+    projectUpdates: [], // Initialize with an empty array of project updates
   });
 
   const updateFormData = (newData: Partial<FormData>): void => {
@@ -70,8 +75,15 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({ children }) 
     }));
   };
 
+  const addProjectUpdate = (update: ProjectUpdate): void => {
+    setFormData((prevData) => ({
+      ...prevData,
+      projectUpdates: [...prevData.projectUpdates, update],
+    }));
+  };
+
   return (
-    <FormDataContext.Provider value={{ formData, updateFormData }}>
+    <FormDataContext.Provider value={{ formData, updateFormData, addProjectUpdate }}>
       {children}
     </FormDataContext.Provider>
   );
