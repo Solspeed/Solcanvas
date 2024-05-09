@@ -1,8 +1,9 @@
 "use client"
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import supabase from "../../../../supabase";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useWallet } from "@solana/wallet-adapter-react";
 
 interface ProjectData {
   id: number;
@@ -21,8 +22,10 @@ interface ProjectDetailsProps {
   params: { projectName: string };
 }
 
-const UpdateProjectForm = ({ params }: ProjectDetailsProps) => {
+const UpdateProjectForm: React.FC<ProjectDetailsProps> = ({ params }) => {
   const [projectData, setProjectData] = useState<ProjectData | null>(null);
+
+  const { publicKey } = useWallet(); // Get the wallet address
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -51,22 +54,11 @@ const UpdateProjectForm = ({ params }: ProjectDetailsProps) => {
     fetchProjectData();
   }, [params.projectName]);
 
-  console.log(projectData)
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (projectData) {
       setProjectData((prevData: ProjectData | null) => ({
-        ...(prevData as ProjectData),
-        [name]: value,
-      }));
-    }
-  };
-
-  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    if (projectData) {
-      setProjectData((prevData: ProjectData | null) => ({
-        ...(prevData as ProjectData),
+        ...prevData as ProjectData,
         [name]: value,
       }));
     }
@@ -101,7 +93,7 @@ const UpdateProjectForm = ({ params }: ProjectDetailsProps) => {
         if (error) {
           throw error;
         }
-
+        localStorage.setItem('walletAddress', publicKey?.toBase58() || '');
         console.log("Project data updated successfully!");
         toast.success("Project data updated successfully!");
       } catch (error: any) {
@@ -132,7 +124,7 @@ const UpdateProjectForm = ({ params }: ProjectDetailsProps) => {
               id="description"
               name="description"
               value={projectData.description}
-              onChange={handleDescriptionChange}
+              onChange={handleChange}
               className="w-full px-4 py-2 mb-4 bg-gray-800 rounded-lg text-white resize-none"
               rows={4}
             />
