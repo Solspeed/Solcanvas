@@ -1,4 +1,4 @@
-import twitter from "../../../public/Twitter.svg"
+import twitter from "../../../public/twitter.svg"
 import github from "../../../public/Github.svg"
 import Image from "next/image";
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import twitter from "../../../../public/Twitter.svg"
+import twitter from "../../../../public/twitter.svg"
 import github from "../../../../public/Github.svg"
 import website from "../../../../public/images/marketplace/projects/website.svg"
 import mail from "../../../../public/images/marketplace/projects/Mail.svg"
