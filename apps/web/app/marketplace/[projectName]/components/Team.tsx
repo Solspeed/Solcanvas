@@ -14,7 +14,7 @@ interface TeamProps {
 export default function Team({ teamMembers }: TeamProps) {
     return (
         <div>
-            <h2 className="self-start font-silkscreen sm:mt-40 mt-24 text-center  sm:text-[60px] text-4xl font-semibold tracking-wider leading-8 text-[#954AD2] max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
+            <h2 className="self-start font-silkscreen  mt-24 text-center  sm:text-[60px] text-4xl font-semibold tracking-wider leading-8 text-[#954AD2] max-md:mt-10 max-md:ml-2.5 max-md:text-4xl">
                 Team
             </h2>
             <div className="grid lg:grid-cols-2 place-items-center lg:mr-0  -ml-16 sm:gap-16 sm:mt-24 mt-6">

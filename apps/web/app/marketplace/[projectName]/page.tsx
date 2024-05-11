@@ -5,7 +5,6 @@ import Overview from "./components/Overview";
 import Team from "./components/Team"; // Import Team component
 import { useState, useEffect } from "react";
 import supabase from "../../../supabase";
-import back from "../../../public/images/marketplace/projects/Left_Arrow_Alt.png"
 import Image from "next/image";
 import Updates from "./components/Updates";
 import Commits from "./components/Commits";
@@ -71,7 +70,7 @@ export default function ProjectDetails({ params }: ProjectDetailsProps) {
 
     return (
         <div className="flex font-nunito flex-col xl:px-14 sm:px-10 px-4 xl:pt-16 sm:pt-12 pt-6 h-full bg-black min-h-screen">
-            <div className="flex flex-col w-full max-md:px-5 max-md:max-w-full sm:space-y-56">
+            <div className="flex flex-col w-full max-md:px-5 max-md:max-w-full sm:space-y-56 space-y-7">
                 <Overview projectsList={projectData.projectList} />
                 {/* Pass teamMembers to Team component */}
                 {projectData.projectList[0]?.teamMembers && <Team teamMembers={projectData.projectList[0].teamMembers} />}
