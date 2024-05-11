@@ -17,30 +17,24 @@ export default function Commits() {
   };
   return (
     <div className="flex flex-col   sm:mt-64 mt-24 w-full">
-      <div className="mx-2.5  sm:text-5xl mb-3 text-4xl tracking-tighter font-semibold sm:tracking-wider leading-8 text-white max-md:mt-10 max-md:max-w-full max-md:text-4xl">
+      <div className="mx-2.5 font-silkscreen  mq450:text-2xl text-nowrap text-center text-[#954AD2] md:text-[60px] sm:mb-16 mb-6 text-4xl tracking-tighter font-medium sm:tracking-wider leading-8">
         Commits
       </div>
-      <div className="flex  scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
+      <div className="flex items-center  scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-[#954AD2] max-w-[1345px] flex-wrap">
         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
           8bpx5gh7sg....
         </div>
-        <div className="flex items-center gap-2 xl:-mr-6">
-          <div className="lg:text-2xl text-[#42FF00] self-baseline sm:text-xl text-base tracking-wide leading-8">
-            Live
-          </div>
           <div className="w-[18px] h-[18px] rounded-full bg-[#42FF00] inline-block "></div>
-        </div>
       </div>
-      <div className="flex scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap">
+      <div className="flex items-center scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-[#954AD2] max-w-[1345px] flex-wrap">
         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
           Wallet Address: {walletAddress}
         </div>
-        <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
-          Past
-        </div>
+        <div className="w-[18px] h-[18px] rounded-full bg-[#FF0000] inline-block "></div>
+
       </div>
       <div
-        className={`flex scale-[0.8] gap-5 ${showAllCommits ? "" : "hidden"} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-neutral-900 max-w-[1345px] flex-wrap`}
+        className={`flex items-center scale-[0.8] gap-5 ${showAllCommits ? "" : "hidden"} self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium text-white rounded-2xl bg-[#954AD2] max-w-[1345px] flex-wrap`}
       >
         <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
           Wallet Address: {walletAddress}
