@@ -68,7 +68,7 @@ export default function Links() {
                 />
                <div className="flex gap-5 justify-end w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
                   
-                    <a href="/marketplace" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
+                    <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
                         <div>Finish</div>
                         <Image
                             alt=""
@@ -78,7 +78,7 @@ export default function Links() {
                             src={next}
                             className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
                         />
-                    </a>
+                    </button>
                 </div>
             </div>
         </form>

@@ -25,7 +25,7 @@ export default function ProjectListing() {
 
 
     return (
-        <form className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10 ">
+        <form action="/marketplace" className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10 ">
             <div className="flex gap-2.5 self-start">
                 <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px]  w-[38px]" />
                 <div className="shrink-0 w-14 bg-[#954AD2] rounded-2xl h-[11px]" />
@@ -82,7 +82,7 @@ export default function ProjectListing() {
                     required
                 />
                 <div className="flex gap-5 justify-end  w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-                    <a href="/addproject/banner" className="flex gap-5  font-nunito justify-between  items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
+                    <button type='submit' className="flex gap-5  font-nunito justify-between  items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
                         <div>Next</div>
                         <Image
                             alt=""
@@ -92,7 +92,7 @@ export default function ProjectListing() {
                             src={next}
                             className="shrink-0 w-[12px]  aspect-[0.76] stroke-[2px] stroke-white"
                         />
-                    </a>
+                    </button>
                 </div>
             </div>
         </form>
