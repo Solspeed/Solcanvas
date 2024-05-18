@@ -10,11 +10,11 @@ type Member = {
 
 // Define types for project update
 type ProjectUpdate = {
-  date: string; // Format: DD/MM/YY
+  date: string; 
   update: string;
 };
 
-// Define types for form data including team members and project updates
+
 type FormData = {
   name: string;
   tagline: string;
@@ -27,6 +27,7 @@ type FormData = {
   twitter: string;
   description: string;
   projectUpdates: ProjectUpdate[]; // Array of project updates
+  wallet_id : string;
 };
 
 type FormDataContextType = {
@@ -66,6 +67,7 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
     twitter: "",
     description: "",
     projectUpdates: [], // Initialize with an empty array of project updates
+    wallet_id: "",
   });
 
   const updateFormData = (newData: Partial<FormData>): void => {

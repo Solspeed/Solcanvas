@@ -4,10 +4,14 @@ import Image from "next/image";
 import supabase from "../../../../supabase";
 import { useFormData } from '../context/FormDataContext';
 import next from '../../../../public/images/next.png';
+import { useWallet } from "@solana/wallet-adapter-react";
+
 
 export default function Description() {
   const { formData, updateFormData } = useFormData();
   const [description, setDescription] = useState(formData.description || "");
+  const { publicKey } = useWallet();
+  const walletId = publicKey?.toString() || '';
 
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const newDescription = event.target.value;
@@ -19,7 +23,7 @@ export default function Description() {
       updateFormData({ description: newDescription.slice(0, 1000) });
     }
   };
-
+console.log(formData)
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,6 +45,7 @@ export default function Description() {
         websiteLink: formData.website, 
         twitterLink: formData.twitter, 
         teamMembers: formData.teamMembers,
+        wallet_id: walletId,
        
       };
 
