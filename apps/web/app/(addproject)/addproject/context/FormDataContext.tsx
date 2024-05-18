@@ -6,6 +6,7 @@ type Member = {
   github: string;
   twitter: string;
   image: string | null;
+ 
 };
 
 // Define types for project update
