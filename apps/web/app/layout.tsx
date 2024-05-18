@@ -9,6 +9,7 @@ import * as walletAdapterWallets from '@solana/wallet-adapter-wallets';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { FormDataProvider } from '../app/(addproject)/addproject/context/FormDataContext';
 require('@solana/wallet-adapter-react-ui/styles.css');
+ import { ProjectProvider } from './(editproject)/editproject/contextname/namecontext'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,8 +58,10 @@ export default function RootLayout({
         <meta name="twitter:image" content={metadata.openGraph.images.url} />
         
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-      </head>
+      </head> 
+      
       <FormDataProvider>
+      <ProjectProvider>
       <walletAdapterReact.ConnectionProvider endpoint={endpoint}>
         <walletAdapterReact.WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
@@ -66,7 +69,9 @@ export default function RootLayout({
           </WalletModalProvider>
         </walletAdapterReact.WalletProvider>
       </walletAdapterReact.ConnectionProvider>
+     </ProjectProvider>
       </FormDataProvider>
+     
 
     </html>
   );
