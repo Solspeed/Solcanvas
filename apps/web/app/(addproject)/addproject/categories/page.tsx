@@ -2,15 +2,14 @@ import required from "../../../../public/images/required.png";
 import next from "../../../../public/images/next.png";
 import Image from "next/image";
 
+
 export default function Categories() {
     return (
-        <form
-            className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10 "
-        >
+        <form className="flex flex-col self- sm:mt-24 font-nunito max-w-full mt-10">
             <div className="flex gap-2.5 self-start">
-                <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px]  w-[38px]" />
+                <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px] w-[38px]" />
                 <div className="shrink-0 w-14 bg-[#954AD2] rounded-2xl h-[11px]" />
-                <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px]  w-[38px]" />
+                <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px] w-[38px]" />
             </div>
             <div className="mt-11 sm:text-[30px] font-silkscreen font-medium tracking-wide leading-8 text-white max-w-full text-4xl">
                 Choose Category
@@ -18,11 +17,11 @@ export default function Categories() {
             <div className="mt-5 text-[16px] font-nunito font-medium tracking-wide leading-8 text-white text-opacity-50 max-w-full">
                 Choose a category which your
                 <br />
-                project lie in.
+                project lies in.
             </div>
             <div className="sm:w-[457px]">
-                <div className="flex gap-5  justify-between  w-full text-[16px] tracking-wide leading-8 whitespace-nowrap sm:flex-none flex-wrap sm:mt-20 mt-10 max-w-full">
-                    <div className="flex flex-1 self-start  text-white text-opacity-80">
+                <div className="flex gap-5 justify-between w-full text-[16px] tracking-wide leading-8 whitespace-nowrap sm:flex-none flex-wrap sm:mt-20 mt-10 max-w-full">
+                    <div className="flex flex-1 self-start text-white text-opacity-80">
                         <div>Categories</div>
                         <Image
                             alt=""
@@ -34,12 +33,40 @@ export default function Categories() {
                         />
                     </div>
                 </div>
-                <input
-                    type=""
-                    className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[16px] text-[18px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70 "
-                    placeholder="Select"
-                    required
-                />
+                <select
+  className="mt-4 w-full p-3 text-[16px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 text-black text-opacity-70 focus:outline-none focus:ring-2 focus:ring-purple-600 cursor-pointer relative"
+  required
+>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Analytics">Analytics</option>
+                    <option value="Step Finance">Step Finance</option>
+                    <option value="Hello Moon">Hello Moon</option>
+                    <option value="Cex">Cex</option>
+                    <option value="OKX">OKX</option>
+                    <option value="Binance">Binance</option>
+                    <option value="DeFi">DeFi</option>
+                    <option value="Mango">Mango</option>
+                    <option value="Jupiter Aggregator">Jupiter Aggregator</option>
+                    <option value="Developer Tool">Developer Tool</option>
+                    <option value="Squads">Squads</option>
+                    <option value="Tiny Dancer">Tiny Dancer</option>
+                    <option value="Digital Collectibles">Digital Collectibles</option>
+                    <option value="Drip">Drip</option>
+                    <option value="Art">Art</option>
+                    <option value="Dao">Dao</option>
+                    <option value="Depin">Depin</option>
+                    <option value="Explorer">Explorer</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Mobile">Mobile</option>
+                    <option value="Oracle">Oracle</option>
+                    <option value="Payments">Payments</option>
+                    <option value="Privacy">Privacy</option>
+                    <option value="Social Protocol">Social Protocol</option>
+                    <option value="Stable Coin">Stable Coin</option>
+                    <option value="Wallet">Wallet</option>
+                    <option value="Others">Others</option>
+                </select>
                 <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-36 mt-20 max-w-full">
                     <a
                         href="/addproject/team"
@@ -47,7 +74,10 @@ export default function Categories() {
                     >
                         <div>Back</div>
                     </a>
-                    <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
+                    <button
+                        type="submit"
+                        className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
+                    >
                         <div>Next</div>
                         <Image
                             alt=""
@@ -63,3 +93,4 @@ export default function Categories() {
         </form>
     );
 }
+``
