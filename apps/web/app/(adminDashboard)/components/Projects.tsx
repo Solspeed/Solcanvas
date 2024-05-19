@@ -117,19 +117,19 @@ export default function AdminDashboard() {
                 </div>
                 <div className="flex gap-2 self-start mt-3 text-xs whitespace-nowrap">
                     <button
-                        className={`justify-center px-8 py-2 rounded-md bg-zinc-900 max-md:px-5 ${filter === 'live' ? 'text-lime-500' : 'text-gray-500'}`}
+                        className={`justify-center px-8 py-2 rounded-md bg-[#1C1C1C] max-md:px-5 ${filter === 'live' ? 'text-lime-500' : 'text-gray-500'}`}
                         onClick={() => handleFilterChange('live')}
                     >
                         Live
                     </button>
                     <button
-                        className={`justify-center px-4 py-2 rounded-md bg-zinc-900 ${filter === 'rejected' ? 'text-red-600' : 'text-gray-500'}`}
+                        className={`justify-center px-4 py-2 rounded-md bg-[#1C1C1C] ${filter === 'rejected' ? 'text-red-600' : 'text-gray-500'}`}
                         onClick={() => handleFilterChange('rejected')}
                     >
                         Rejected
                     </button>
                     <button
-                        className={`justify-center px-3 py-2 rounded-md bg-zinc-900 ${filter === 'requested' ? 'text-purple-600' : 'text-gray-500'}`}
+                        className={`justify-center px-3 py-2 rounded-md bg-[#1C1C1C] ${filter === 'requested' ? 'text-purple-600' : 'text-gray-500'}`}
                         onClick={() => handleFilterChange('requested')}
                     >
                         Requested
@@ -173,10 +173,8 @@ export default function AdminDashboard() {
                                         </div>
                                     </div>
                                     <div className="flex flex-col text-base whitespace-nowrap">
-                                        <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-zinc-900 max-md:px-5">approve</button>
-                                        <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-z
-
-inc-900 max-md:px-5">reject</button>
+                                        <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-[#1C1C1C]  shadow-2xl">approve</button>
+                                        <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-[#1C1C1C] shadow-2xl">reject</button>
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +219,8 @@ inc-900 max-md:px-5">reject</button>
                                             </div>
                                         </div>
                                         <div className="flex flex-col text-base whitespace-nowrap">
-                                            <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-zinc-900 max-md:px-5">approve</button>
-                                            <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-zinc-900 max-md:px-5">reject</button>
+                                            <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-[#1C1C1C] max-md:px-5">approve</button>
+                                            <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-[#1C1C1C] max-md:px-5">reject</button>
                                         </div>
                                     </div>
                                 </div>
