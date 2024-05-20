@@ -89,7 +89,7 @@ const updateProjectStatus = async (projectId: string, status: string) => {
         return wallet_id;
       };
     return (
-        <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black overflow-scroll">
+        <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black overflow-y-scroll">
             <div className="flex flex-col self-stretch  max-md:mt-10 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
                     <div className="flex-auto my-auto text-3xl text-purple-300">Projects</div>
