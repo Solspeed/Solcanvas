@@ -7,7 +7,7 @@ interface Project {
   bannerImageUrl: string;
   logoImageUrl: string;
   name: string;
-  description: string;
+  tagline: string;
 }
 
 function splitIntoChunks<T>(array: T[], chunkSize: number): T[][] {
@@ -31,7 +31,7 @@ export default function Projects(): JSX.Element {
 
   const fetchProjectData = async () => {
     try {
-      setIsLoading(true); 
+      setIsLoading(true);
       const { data: allProjects, error: projectError } = await supabase
         .from('project_listing')
         .select('*');
@@ -44,7 +44,7 @@ export default function Projects(): JSX.Element {
     } catch (error: any) {
       console.error('Error fetching project data:', error.message);
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
 
@@ -54,7 +54,7 @@ export default function Projects(): JSX.Element {
   return (
     <div className="flex flex-col xl:gap-16 place-items-center space-y-[2.88rem] xl:px-24 sm:px-12 px-4">
       {isLoading ? (
-       <span className="loader"></span>
+        <span className="loader"></span>
       ) : (
         chunks.map((chunk: Project[], rowIndex: number) => (
           <div key={rowIndex} className="flex sm:gap-12 gap-[2.88rem] justify-between w-full md:flex-nowrap flex-wrap">
@@ -64,7 +64,7 @@ export default function Projects(): JSX.Element {
                 imageSrc={project.bannerImageUrl}
                 iconSrc={project.logoImageUrl}
                 title={project.name}
-                description={project.description}
+                description={project.tagline}
                 url={project.name}
               />
             ))}
