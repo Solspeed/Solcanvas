@@ -165,3 +165,23 @@ textarea::-webkit-scrollbar-thumb {
 textarea::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #151515; /* Track background color */
+    border-radius: 6px; /* Round corners */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #954AD2; /* Thumb color */
+    border-radius: 6px; /* Round corners */
+    border: 3px solid #151515; /* Padding around thumb to create spacing */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #722EB8; /* Thumb color on hover */
+}
