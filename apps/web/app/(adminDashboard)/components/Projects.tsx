@@ -5,7 +5,7 @@ import supabase from '../../../supabase';
 type Project = {
     id: string;
     name: string;
-    description: string;
+    tagline: string;
     author: string;
     wallet_id: string;
     category: string;
@@ -82,7 +82,12 @@ const updateProjectStatus = async (projectId: string, status: string) => {
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
-    
+    const truncateWalletId = (wallet_id: any) => {
+        if (typeof wallet_id === 'string' && wallet_id.length > 10) {
+          return wallet_id.substring(0, 10) + "...";
+        }
+        return wallet_id;
+      };
     return (
         <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black overflow-scroll">
             <div className="flex flex-col self-stretch  max-md:mt-10 max-md:max-w-full">
@@ -144,7 +149,7 @@ const updateProjectStatus = async (projectId: string, status: string) => {
                                     />
                                     <div className="flex flex-col my-auto">
                                         <div className="text-base font-medium text-white">{selectedProject.name}</div>
-                                        <div className="mt-1.5 text-xs text-white text-opacity-80">{selectedProject.description}</div>
+                                        <div className="mt-1.5 text-xs text-white text-opacity-80">{selectedProject.tagline}</div>
                                         <div className="mt-6">{selectedProject.author}</div>
                                         <div className="flex gap-3 mt-1.5 whitespace-nowrap">
                                             <div className="grow my-auto">{selectedProject.wallet_id}</div>
@@ -190,10 +195,10 @@ const updateProjectStatus = async (projectId: string, status: string) => {
                                         />
                                         <div className="flex flex-col my-auto">
                                             <div className="text-base font-medium text-white">{project.name}</div>
-                                            <div className="mt-1.5 text-xs text-white text-opacity-80">{project.description}</div>
+                                            <div className="mt-1.5 text-xs text-white text-opacity-80">{project.tagline}</div>
                                             <div className="mt-6">{project.author}</div>
                                             <div className="flex gap-3 mt-1.5 whitespace-nowrap">
-                                                <div className="grow my-auto">{project.wallet_id}</div>
+                                                <div className="grow my-auto">{truncateWalletId(project.wallet_id)}</div>
                                                 <img
                                                     loading="lazy"
                                                     src={copy.src}
