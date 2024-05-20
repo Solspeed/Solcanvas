@@ -46,6 +46,7 @@ console.log(formData)
         twitterLink: formData.twitter, 
         teamMembers: formData.teamMembers,
         wallet_id: walletId,
+        category: formData.category,
        
       };
 
