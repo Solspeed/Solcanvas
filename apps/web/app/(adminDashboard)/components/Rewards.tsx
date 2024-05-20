@@ -8,7 +8,7 @@ export default function Rewards() {
                         Rewards
                     </h1>
                     <div className="mt-16 flex max-md:mt-10 max-w-full bg-white">
-                        <div className="flex sm:justify-evenly justify-between w-full"> 
+                        <div className="flex sm:justify-evenly justify-between w-full">
                             <div className="bg-gray-300 p-4"> Hel lo</div>
                             <div className="bg-gray-300 p-4"> Hello</div>
                         </div>

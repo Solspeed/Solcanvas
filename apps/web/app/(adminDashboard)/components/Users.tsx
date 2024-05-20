@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import tiny from "../../../public/images/dashboard/TinyDancer.png"
 import copy from "../../../public/images/dashboard/copy.svg"
 import avatar from "../../../public/images/dashboard/avatar.png"
 
