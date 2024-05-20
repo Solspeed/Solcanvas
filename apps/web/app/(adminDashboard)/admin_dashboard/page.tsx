@@ -1,4 +1,4 @@
-import SideNavbar from "../components/SideNavbar"
+import SideNavbar from "../components/SideNavbar";
 import Main from "../components/Main"
 // import Projects from "../../marketplace/components/Projects";
 import Projects from "../components/Projects"

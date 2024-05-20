@@ -160,8 +160,8 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({
 };
 const Main = () => {
     return (
-        <div className="bg-black overflow-scroll font-silkscreen scroll-smooth
-     p-12 w-full flex justify-between">
+        <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black">
+
             <main className="flex flex-col ml-5  max-md:ml-0 w-full">
                 <section className="flex flex-col self-stretchf  max-w-full">
                     <h1 className="text-3xl text-purple-300 max-w-ful font-silkscreen uppercase">
