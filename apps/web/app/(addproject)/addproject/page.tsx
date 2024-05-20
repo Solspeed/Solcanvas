@@ -37,7 +37,7 @@ export default function ProjectListing() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    router.push("/addproject/banner");
+    router.push("/addproject/categories");
   };
   const nameCharacterCount = name.length;
   const bioCharacterCount = tagline.length;

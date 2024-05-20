@@ -1,71 +1,63 @@
 'use client'
-import React, { useState } from 'react';
-import tiny from "../../../public/images/dashboard/TinyDancer.png"
+import React, { useState , useEffect } from 'react';
 import copy from "../../../public/images/dashboard/copy.svg"
-
+import supabase from '../../../supabase';
 type Project = {
-    id: number;
+    id: string;
     name: string;
     description: string;
     author: string;
-    idShort: string;
+    wallet_id: string;
     category: string;
     date: string;
+    created_at: string;
     imgSrc: string;
     status: string;
 };
 
-const projects: Project[] = [
-    {
-        id: 1,
-        name: 'Tiny Dancer',
-        description: 'Solana first light client.',
-        author: 'Rohan KUMAR',
-        idShort: '8bxPvX42UR....',
-        category: 'DePin',
-        date: '24.04.24',
-        imgSrc:tiny.src,
-        status: 'rejected'
-    },
-    {
-        id: 2,
-        name: 'Tiny Dancer 2',
-        description: 'Solana second light client.',
-        author: 'Jane DOE',
-        idShort: '7yxPvX42UR....',
-        category: 'DeFi',
-        date: '25.04.24',
-        imgSrc:tiny.src,
-        status: 'live'
-    },
-    {
-        id: 3,
-        name: 'Tiny Dancer 3',
-        description: 'Solana second light client.',
-        author: 'Jane DOE',
-        idShort: '7yxPvX42UR....',
-        category: 'DeFi',
-        date: '25.04.24',
-        imgSrc:tiny.src,
-        status: 'live'
-    },
-    {
-        id: 4,
-        name: 'Tiny Dancer 4',
-        description: 'Solana second light client.',
-        author: 'Jane DOE',
-        idShort: '7yxPvX42UR....',
-        category: 'DeFi',
-        date: '25.04.24',
-        imgSrc:tiny.src,
-        status: 'live'
-    }
-];
 
 export default function AdminDashboard() {
+       const [projects, setProjects] = useState<Project[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [filter, setFilter] = useState<string>('');
+ 
+    useEffect(() => {
+        const fetchProjects = async () => {
+            const { data, error } = await supabase
+                .from('project_listing')
+                .select('*');
+
+            if (error) {
+                console.error('Error fetching projects:', error);
+            } else {
+                setProjects(data);
+            }
+        };
+
+        fetchProjects();
+    }, []);
+
+const updateProjectStatus = async (projectId: string, status: string) => {
+    try {
+      const { error } = await supabase
+        .from("project_listing")
+        .update({ status })
+        .eq("id", projectId);
+
+      if (error) {
+        console.error("Error updating project status:", error.message);
+      } else {
+        setProjects((prevProjects) =>
+          prevProjects.map((project) =>
+            project.id === projectId ? { ...project, status } : project
+          )
+        );
+      }
+    } catch (error: any) {
+      console.error("Error updating project status:", error.message);
+    }
+  };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -86,7 +78,11 @@ export default function AdminDashboard() {
         project.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (!filter || project.status === filter)
     );
-
+    const formatDate = (dateString: string) => {
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+    
     return (
         <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black overflow-scroll">
             <div className="flex flex-col self-stretch  max-md:mt-10 max-md:max-w-full">
@@ -135,7 +131,7 @@ export default function AdminDashboard() {
                         Requested
                     </button>
                 </div>
-                {selectedProject ? (
+                {selectedProject ? (    
                     <div key={selectedProject.id} className="px-4 py-3.5 mt-6 rounded-xl bg-neutral-900 max-md:max-w-full">
                         <div className="flex sm:gap-12 gap-5 md:flex-nowrap flex-wrap max-md:gap-0">
                             <div className="flex flex-col">
@@ -151,13 +147,13 @@ export default function AdminDashboard() {
                                         <div className="mt-1.5 text-xs text-white text-opacity-80">{selectedProject.description}</div>
                                         <div className="mt-6">{selectedProject.author}</div>
                                         <div className="flex gap-3 mt-1.5 whitespace-nowrap">
-                                            <div className="grow my-auto">{selectedProject.idShort}</div>
+                                            <div className="grow my-auto">{selectedProject.wallet_id}</div>
                                             <img
                                                 loading="lazy"
                                                 src={copy.src}
                                                 className="shrink-0 w-3.5 aspect-square"
                                                 alt="icon"
-                                            />
+                                              />
                                         </div>
                                     </div>
                                 </div>
@@ -169,15 +165,15 @@ export default function AdminDashboard() {
                                             Category: <span className="text-red-600">{selectedProject.category}</span>
                                         </div>
                                         <div className="px-1.5 mt-2 py-2.5 rounded-md bg-neutral-950">
-                                            Date: <span className="text-red-600">{selectedProject.date}</span>
+                                            Date: <span className="text-red-600">{formatDate(selectedProject.created_at)}</span>
                                         </div>
                                     </div>
                                     <div className="flex flex-col text-base whitespace-nowrap">
-                                        <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-[#1C1C1C]  shadow-2xl">approve</button>
+                                        <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-[#1C1C1C]  shadow-2xl" >approve</button>
                                         <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-[#1C1C1C] shadow-2xl">reject</button>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 ) : (
@@ -197,7 +193,7 @@ export default function AdminDashboard() {
                                             <div className="mt-1.5 text-xs text-white text-opacity-80">{project.description}</div>
                                             <div className="mt-6">{project.author}</div>
                                             <div className="flex gap-3 mt-1.5 whitespace-nowrap">
-                                                <div className="grow my-auto">{project.idShort}</div>
+                                                <div className="grow my-auto">{project.wallet_id}</div>
                                                 <img
                                                     loading="lazy"
                                                     src={copy.src}
@@ -215,12 +211,12 @@ export default function AdminDashboard() {
                                                 Category: <span className="text-red-600">{project.category}</span>
                                             </div>
                                             <div className="px-1.5 mt-2 py-2.5 rounded-md bg-neutral-950">
-                                                Date: <span className="text-red-600">{project.date}</span>
+                                                Date: <span className="text-red-600">{formatDate(project.created_at)}</span>
                                             </div>
                                         </div>
                                         <div className="flex flex-col text-base whitespace-nowrap">
-                                            <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-[#1C1C1C] max-md:px-5">approve</button>
-                                            <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-[#1C1C1C] max-md:px-5">reject</button>
+                                            <button className="justify-center px-6 py-4 text-lime-500 rounded-md bg-[#1C1C1C] max-md:px-5" onClick={() => updateProjectStatus(project.id, "live")}>approve</button>
+                                            <button className="justify-center px-8 py-4 mt-3 text-red-600 rounded-md bg-[#1C1C1C] max-md:px-5" onClick={() => updateProjectStatus(project.id ,"rejected")}>reject</button>
                                         </div>
                                     </div>
                                 </div>
