@@ -118,7 +118,7 @@ export default function ProjectBanner() {
   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
   const router = useRouter();
-
+console.log("FormData:", formData);
   const handleFileSelect = (file: File, fileType: string) => {
     if (fileType === 'logo') {
       setLogoFile(file);
