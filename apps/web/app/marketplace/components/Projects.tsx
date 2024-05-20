@@ -34,7 +34,8 @@ export default function Projects(): JSX.Element {
       setIsLoading(true);
       const { data: allProjects, error: projectError } = await supabase
         .from('project_listing')
-        .select('*');
+        .select('*')
+        .eq("status", "live");
 
       if (projectError) {
         throw projectError;

@@ -1,8 +1,8 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import tiny from "../../../public/images/dashboard/TinyDancer.png"
 import copy from "../../../public/images/dashboard/copy.svg"
-
+import supabase from '../../../supabase';
 type Project = {
     id: number;
     name: string;
@@ -11,61 +11,81 @@ type Project = {
     idShort: string;
     category: string;
     date: string;
+    created_at: string;
     imgSrc: string;
     status: string;
 };
 
-const projects: Project[] = [
-    {
-        id: 1,
-        name: 'Tiny Dancer',
-        description: 'Solana first light client.',
-        author: 'Rohan KUMAR',
-        idShort: '8bxPvX42UR....',
-        category: 'DePin',
-        date: '24.04.24',
-        imgSrc:tiny.src,
-        status: 'rejected'
-    },
-    {
-        id: 2,
-        name: 'Tiny Dancer 2',
-        description: 'Solana second light client.',
-        author: 'Jane DOE',
-        idShort: '7yxPvX42UR....',
-        category: 'DeFi',
-        date: '25.04.24',
-        imgSrc:tiny.src,
-        status: 'live'
-    },
-    {
-        id: 3,
-        name: 'Tiny Dancer 3',
-        description: 'Solana second light client.',
-        author: 'Jane DOE',
-        idShort: '7yxPvX42UR....',
-        category: 'DeFi',
-        date: '25.04.24',
-        imgSrc:tiny.src,
-        status: 'live'
-    },
-    {
-        id: 4,
-        name: 'Tiny Dancer 4',
-        description: 'Solana second light client.',
-        author: 'Jane DOE',
-        idShort: '7yxPvX42UR....',
-        category: 'DeFi',
-        date: '25.04.24',
-        imgSrc:tiny.src,
-        status: 'live'
-    }
-];
+// const projects: Project[] = [
+//     {
+//         id: 1,
+//         name: 'Tiny Dancer',
+//         description: 'Solana first light client.',
+//         author: 'Rohan KUMAR',
+//         idShort: '8bxPvX42UR....',
+//         category: 'DePin',
+//         date: '24.04.24',
+//         imgSrc:tiny.src,
+//         status: 'rejected',
+//         created_at: ''
+//     },
+//     {
+//         id: 2,
+//         name: 'Tiny Dancer 2',
+//         description: 'Solana second light client.',
+//         author: 'Jane DOE',
+//         idShort: '7yxPvX42UR....',
+//         category: 'DeFi',
+//         date: '25.04.24',
+//         imgSrc:tiny.src,
+//         status: 'live'
+//     },
+//     {
+//         id: 3,
+//         name: 'Tiny Dancer 3',
+//         description: 'Solana second light client.',
+//         author: 'Jane DOE',
+//         idShort: '7yxPvX42UR....',
+//         category: 'DeFi',
+//         date: '25.04.24',
+//         imgSrc:tiny.src,
+//         status: 'live'
+//     },
+//     {
+//         id: 4,
+//         name: 'Tiny Dancer 4',
+//         description: 'Solana second light client.',
+//         author: 'Jane DOE',
+//         idShort: '7yxPvX42UR....',
+//         category: 'DeFi',
+//         date: '25.04.24',
+//         imgSrc:tiny.src,
+//         status: 'live'
+//     }
+// ];
 
 export default function AdminDashboard() {
+       const [projects, setProjects] = useState<Project[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [filter, setFilter] = useState<string>('');
+ 
+    useEffect(() => {
+        const fetchProjects = async () => {
+            const { data, error } = await supabase
+                .from('project_listing')
+                .select('*');
+
+            if (error) {
+                console.error('Error fetching projects:', error);
+            } else {
+                setProjects(data);
+            }
+        };
+
+        fetchProjects();
+    }, []);
+
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -86,7 +106,10 @@ export default function AdminDashboard() {
         project.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (!filter || project.status === filter)
     );
-
+    const formatDate = (dateString: string) => {
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
     return (
         <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black overflow-scroll">
             <div className="flex flex-col self-stretch  max-md:mt-10 max-md:max-w-full">
@@ -169,7 +192,7 @@ export default function AdminDashboard() {
                                             Category: <span className="text-red-600">{selectedProject.category}</span>
                                         </div>
                                         <div className="px-1.5 mt-2 py-2.5 rounded-md bg-neutral-950">
-                                            Date: <span className="text-red-600">{selectedProject.date}</span>
+                                            Date: <span className="text-red-600">{formatDate(selectedProject.created_at)}</span>
                                         </div>
                                     </div>
                                     <div className="flex flex-col text-base whitespace-nowrap">
@@ -215,7 +238,7 @@ export default function AdminDashboard() {
                                                 Category: <span className="text-red-600">{project.category}</span>
                                             </div>
                                             <div className="px-1.5 mt-2 py-2.5 rounded-md bg-neutral-950">
-                                                Date: <span className="text-red-600">{project.date}</span>
+                                                Date: <span className="text-red-600">{formatDate(project.created_at)}</span>
                                             </div>
                                         </div>
                                         <div className="flex flex-col text-base whitespace-nowrap">
