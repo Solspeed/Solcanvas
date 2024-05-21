@@ -5,6 +5,7 @@ import projectImage from "../../../public/images/dashboard/TinyDancer.png";
 import upload from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
 import supabase from "../../../supabase";
+
 interface ProjectProps {
     imageUrl: string;
     title: string;
