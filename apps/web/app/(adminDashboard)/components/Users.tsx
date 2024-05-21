@@ -273,7 +273,7 @@ export default function AdminDashboard() {
                     )}
                 </div>
             </div>
-            <div className="mt-12 flex-1 overflow-y-auto">
+            <div className="mt-12 flex-1 overflow-y-auto scroll-smooth">
                 <div className="grid lg:grid-cols-2 gap-10 mt-4">
                     {selectedUser ? (
                         <ProfileCard
