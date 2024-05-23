@@ -6,15 +6,13 @@ type Member = {
   github: string;
   twitter: string;
   image: string | null;
- 
 };
 
 // Define types for project update
 type ProjectUpdate = {
-  date: string; 
+  date: string;
   update: string;
 };
-
 
 type FormData = {
   name: string;
@@ -28,8 +26,9 @@ type FormData = {
   twitter: string;
   description: string;
   projectUpdates: ProjectUpdate[]; // Array of project updates
-  wallet_id : string;
-  category : string;
+  wallet_id: string;
+  category: string;
+  username:string;
 };
 
 type FormDataContextType = {
@@ -71,6 +70,7 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
     projectUpdates: [], // Initialize with an empty array of project updates
     wallet_id: "",
     category: "",
+    username: "",
   });
 
   const updateFormData = (newData: Partial<FormData>): void => {
@@ -88,7 +88,9 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
   };
 
   return (
-    <FormDataContext.Provider value={{ formData, updateFormData, addProjectUpdate }}>
+    <FormDataContext.Provider
+      value={{ formData, updateFormData, addProjectUpdate }}
+    >
       {children}
     </FormDataContext.Provider>
   );
