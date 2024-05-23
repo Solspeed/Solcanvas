@@ -13,6 +13,7 @@ interface User {
   rewards: number;
   logoImageUrl: string;
   profileImgAlt: string;
+  
 }
 
 interface ProfileProps {
@@ -97,6 +98,7 @@ export default function AdminDashboard() {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [users, setUsers] = useState<User[]>([]);
+   
     const truncateWalletId = (wallet_id: any) => {
         if (typeof wallet_id === 'string' && wallet_id.length > 10) {
             return wallet_id.substring(0, 10) + "...";
@@ -109,25 +111,36 @@ export default function AdminDashboard() {
                 const { data, error } = await supabase
                     .from('project_listing')
                     .select('id, username, tagline, wallet_id, logoImageUrl');
-
+    
                 if (error) {
                     console.error("Error fetching users:", error.message);
                     return;
                 }
-
-                const usersWithProjects = data.map((user: any) => ({
-                    ...user,
-                    projects: 0, // Replace 0 with the appropriate value for 'projects'
+    
+                const usersWithProjects = await Promise.all(data.map(async (user: any) => {
+                    const { data: projectData, error: projectError } = await supabase
+                        .from('project_listing')
+                        .select('*', { count: 'exact' })
+                        .eq('username', user.username)
+                        .single();  
+    
+                    if (projectError) {
+                        console.error("Error fetching projects for user:", user.username, projectError.message);
+                        return { ...user, projects: 0 };
+                    }
+    
+                    return { ...user, projects: projectData.count || 0 };
                 }));
-
+    
                 setUsers(usersWithProjects);
             } catch (error: any) {
                 console.error("Error fetching users:", error.message);
             }
         };
-
+    
         fetchUsers();
     }, []);
+    console.log(users)    
     
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
