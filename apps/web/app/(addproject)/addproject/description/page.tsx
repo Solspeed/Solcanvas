@@ -5,69 +5,86 @@ import supabase from "../../../../supabase";
 import { useFormData } from '../context/FormDataContext';
 import next from '../../../../public/images/next.png';
 import { useWallet } from "@solana/wallet-adapter-react";
-
+ import { useUser } from "../../../(useronboarding)/context/UserContext";
 
 export default function Description() {
   const { formData, updateFormData } = useFormData();
   const [description, setDescription] = useState(formData.description || "");
   const { publicKey } = useWallet();
   const walletId = publicKey?.toString() || '';
+const {name} = useUser();
 
-  const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    const newDescription = event.target.value;
-    if (newDescription.length <= 1000) {
-      setDescription(newDescription);
-      updateFormData({ description: newDescription });
-    } else {
-      setDescription(newDescription.slice(0, 1000));
-      updateFormData({ description: newDescription.slice(0, 1000) });
+ console.log(name)
+  
+const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const newDescription = event.target.value;
+  if (newDescription.length <= 1000) {
+    setDescription(newDescription);
+    updateFormData({ description: newDescription });
+  } else {
+    setDescription(newDescription.slice(0, 1000));
+    updateFormData({ description: newDescription.slice(0, 1000) });
+  }
+};
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+    const projectData = {
+      name: formData.name,
+      tagline: formData.tagline,
+      email: formData.email,
+      description: formData.description,
+      logoImageUrl: formData.logoImageUrl,
+      bannerImageUrl: formData.bannerImageUrl,
+      githubLink: formData.github,
+      websiteLink: formData.website,
+      twitterLink: formData.twitter,
+      teamMembers: formData.teamMembers,
+      wallet_id: walletId,
+      category: formData.category,
+      username :formData.name,
+    };
+
+    // Fetch the name from the onboarding table where wallet_id matches
+    const { data: onboardingData, error: fetchError } = await supabase
+      .from("onboarding")
+      .select("name")
+      .eq("wallet_id", walletId);
+
+    if (fetchError) {
+      throw new Error(`Error fetching data from onboarding table: ${fetchError.message}`);
     }
-  };
-console.log(formData)
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
-    try {
-      const projectName = localStorage.getItem('projectName') || '';
-      const projectTagline = localStorage.getItem('projectTagline') || '';
-      const logoImageUrl = localStorage.getItem('logoImageUrl') || '';
-      const bannerImageUrl = localStorage.getItem('bannerImageUrl') || '';
-      const teamMembers = JSON.parse(localStorage.getItem('teamMembers') || '[]');
-
-      const projectData = {
-        name: formData.name,
-        tagline: formData.tagline,
-        email: formData.email, 
-        description: formData.description,
-        logoImageUrl: formData.logoImageUrl,
-        bannerImageUrl: formData.bannerImageUrl,
-        githubLink: formData.github, 
-        websiteLink: formData.website, 
-        twitterLink: formData.twitter, 
-        teamMembers: formData.teamMembers,
-        wallet_id: walletId,
-        category: formData.category,
-       
-      };
-
-      const { data, error } = await supabase.from("project_listing").insert([projectData]);
-
-      if (error) {
-        throw error;
-      }
-
-      console.log("Data inserted successfully:", data);
-
-    
-      localStorage.clear();
-
-      alert("Project data inserted successfully!");
-
-    } catch (error: any) {
-      console.error("Error inserting data:", error.message);
-      alert("Failed to insert data. Please try again.");
+    if (!onboardingData || onboardingData.length === 0) {
+      throw new Error("No matching wallet_id found in onboarding table.");
     }
-  };
+
+    if (onboardingData.length > 1) {
+      throw new Error("Multiple matching wallet_id found in onboarding table.");
+    }
+
+    projectData.username = onboardingData[0]?.name;
+
+    const { data, error } = await supabase.from("project_listing").insert([projectData]);
+
+    if (error) {
+      throw new Error(`Error inserting data into project_listing table: ${error.message}`);
+    }
+
+    console.log("Data inserted successfully:", data);
+
+    localStorage.clear();
+
+    alert("Project data inserted successfully!");
+
+  } catch (error: any) {
+    console.error("Error inserting data:", error.message);
+    alert("Failed to insert data. Please try again.");
+  }
+};
+
 
   const descriptionCharacterCount = description.length;
 

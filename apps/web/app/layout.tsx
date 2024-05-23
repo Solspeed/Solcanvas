@@ -10,7 +10,7 @@ import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import { FormDataProvider } from '../app/(addproject)/addproject/context/FormDataContext';
 require('@solana/wallet-adapter-react-ui/styles.css');
  import { ProjectProvider } from './(editproject)/editproject/contextname/namecontext'
-
+import { UserProvider } from "./(useronboarding)/context/UserContext";
 const inter = Inter({ subsets: ["latin"] });
 
 const metadata = {
@@ -59,7 +59,7 @@ export default function RootLayout({
         
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
       </head> 
-      
+      <UserProvider>
       <FormDataProvider>
       <ProjectProvider>
       <walletAdapterReact.ConnectionProvider endpoint={endpoint}>
@@ -71,7 +71,7 @@ export default function RootLayout({
       </walletAdapterReact.ConnectionProvider>
      </ProjectProvider>
       </FormDataProvider>
-     
+      </UserProvider>
 
     </html>
   );

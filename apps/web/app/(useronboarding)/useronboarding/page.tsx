@@ -2,23 +2,24 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import supabase from "../../../supabase";
 import { useWallet } from "@solana/wallet-adapter-react";
 import required from "../../../public/images/required.png";
 import next from "../../../public/images/next.png";
-
 interface FormData {
   name: string;
   bio: string;
 }
 
 const UserOnBoarding = () => {
+
   const [formData, setFormData] = useState<FormData>({ name: "", bio: "" });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { publicKey } = useWallet();
-console.log(publicKey?.toString());
+  console.log(publicKey?.toString());
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "name") {
@@ -32,36 +33,45 @@ console.log(publicKey?.toString());
     setLoading(true);
     try {
       const walletId = publicKey?.toString();
-  
+
       // Check if the username already exists in the onboarding table
       const { data: existingName } = await supabase
         .from("onboarding")
         .select("name")
         .eq("name", formData.name)
         .single();
-  
+
       if (existingName) {
-        throw new Error(`A profile with the name '${formData.name}' already exists.`);
+        throw new Error(
+          `A profile with the name '${formData.name}' already exists.`
+        );
       }
-  
+
       // Check if a profile with the same wallet ID already exists in the onboarding table
       const { data: existingProfile } = await supabase
         .from("onboarding")
         .select("name")
         .eq("wallet_id", walletId)
         .single();
-  
+
       if (existingProfile) {
-        throw new Error(`A profile with the same wallet ID already exists for user '${existingProfile.name}'.`);
+        throw new Error(
+          `A profile with the same wallet ID already exists for user '${existingProfile.name}'.`
+        );
       }
-  
+
       // Insert data into the onboarding table
-      await supabase.from("onboarding").insert([{ ...formData, wallet_id: walletId }]);
-  
+      await supabase
+        .from("onboarding")
+        .insert([{ ...formData, wallet_id: walletId }]);
+
       // Insert data into the project_listing table
-      await supabase.from("project_listing").insert([{ ...formData, username: formData.name }]);
-  
+      await supabase
+        .from("project_listing")
+        .insert([{ ...formData, username: formData.name }]);
+
       router.push("/comingsoon");
+      console.log(formData)
     } catch (error: any) {
       console.error("Error inserting data:", error.message);
       alert(error.message);
@@ -117,7 +127,6 @@ console.log(publicKey?.toString());
         </div>
       ))}
 
- 
       <div className="flex gap-5 justify-end w-full text-2xl font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
         <button
           type="submit"
