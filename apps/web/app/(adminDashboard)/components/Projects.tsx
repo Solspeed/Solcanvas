@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import copy from "../../../public/images/dashboard/copy.svg"
 import supabase from '../../../supabase';
+
 type Project = {
     id: string;
     name: string;
