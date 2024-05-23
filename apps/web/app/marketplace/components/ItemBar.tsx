@@ -18,6 +18,7 @@ interface Project {
   logoImageUrl: string;
   name: string;
   tagline: string;
+  category: string;
 }
 
 export default function ItemBar({

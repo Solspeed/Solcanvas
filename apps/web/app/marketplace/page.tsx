@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Recommendation from "./components/Recommendation";
 import Footer from "./components/Footer";
-import Menu from "./components/Menu";
 import Balance from "./components/Balance";
 import Transactions from "./components/Transactions";
 
@@ -20,6 +19,7 @@ interface Project {
   logoImageUrl: string;
   name: string;
   tagline: string;
+  category: string;
 }
 
 export default function Page() {
@@ -59,7 +59,6 @@ export default function Page() {
           {state.contentToShow === "recommendations" && <Recommendation />}
           {state.contentToShow === "walletContent" && <Balance />}
         </div>
-        <Menu />
         <div ref={projectRef}>
           {state.contentToShow === "recommendations" && <Projects selectedProject={selectedProject} />}
           {state.contentToShow === "walletContent" && <Transactions />}
