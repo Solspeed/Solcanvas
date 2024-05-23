@@ -1,9 +1,10 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import supabase from "../../../supabase";
 
 interface Project {
+  id: string;
   bannerImageUrl: string;
   logoImageUrl: string;
   name: string;
@@ -21,13 +22,17 @@ function splitIntoChunks<T>(array: T[], chunkSize: number): T[][] {
   return chunks;
 }
 
-export default function Projects(): JSX.Element {
+export default function Projects({ selectedProject }: { selectedProject: Project | null }): JSX.Element {
   const [projectData, setProjectData] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchProjectData();
-  }, []);
+    if (!selectedProject) {
+      fetchProjectData();
+    } else {
+      setIsLoading(false);
+    }
+  }, [selectedProject]);
 
   const fetchProjectData = async () => {
     try {
@@ -49,7 +54,6 @@ export default function Projects(): JSX.Element {
     }
   };
 
-  // Split the projectData into chunks of two
   const chunks: Project[][] = splitIntoChunks(projectData, 2);
 
   return (
@@ -57,25 +61,34 @@ export default function Projects(): JSX.Element {
       {isLoading ? (
         <span className="loader"></span>
       ) : (
-        chunks.map((chunk: Project[], rowIndex: number) => (
-          <div key={rowIndex} className="flex sm:gap-12 gap-[2.88rem] justify-between w-full md:flex-nowrap flex-wrap">
-            {chunk.map((project: Project, colIndex: number) => (
-              <Card
-                key={`${rowIndex}_${colIndex}`}
-                imageSrc={project.bannerImageUrl}
-                iconSrc={project.logoImageUrl}
-                title={project.name}
-                description={project.tagline}
-                url={project.name}
-              />
-            ))}
-            {chunk.length < 2 && (
-              <div key={`empty_${rowIndex}`} className="w-[calc(50%-4.688rem)]"></div>
-            )}
-          </div>
-        ))
+        selectedProject ? (
+          <Card
+            imageSrc={selectedProject.bannerImageUrl}
+            iconSrc={selectedProject.logoImageUrl}
+            title={selectedProject.name}
+            description={selectedProject.tagline}
+            url={selectedProject.name}
+          />
+        ) : (
+          chunks.map((chunk: Project[], rowIndex: number) => (
+            <div key={rowIndex} className="flex sm:gap-12 gap-[2.88rem] justify-between w-full md:flex-nowrap flex-wrap">
+              {chunk.map((project: Project, colIndex: number) => (
+                <Card
+                  key={`${rowIndex}_${colIndex}`}
+                  imageSrc={project.bannerImageUrl}
+                  iconSrc={project.logoImageUrl}
+                  title={project.name}
+                  description={project.tagline}
+                  url={project.name}
+                />
+              ))}
+              {chunk.length < 2 && (
+                <div key={`empty_${rowIndex}`} className="w-[calc(50%-4.688rem)]"></div>
+              )}
+            </div>
+          ))
+        )
       )}
     </div>
   );
 }
-
