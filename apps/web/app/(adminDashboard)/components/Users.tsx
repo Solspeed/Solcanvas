@@ -5,7 +5,7 @@ import supabase from "../../../supabase";
 
 interface User {
   id: number;
-  name: string;
+  username: string;
   tagline: string;
   projects: number;
   commits: number;
@@ -16,7 +16,7 @@ interface User {
 }
 
 interface ProfileProps {
-  name: string;
+  username: string;
   tagline: string;
   projects: number;
   commits: number;
@@ -27,7 +27,7 @@ interface ProfileProps {
 }
 
 const ProfileCard: React.FC<ProfileProps> = ({
-  name,
+  username,
   tagline,
   projects,
   commits,
@@ -36,6 +36,17 @@ const ProfileCard: React.FC<ProfileProps> = ({
   logoImageUrl,
   profileImgAlt,
 }) => {
+    const truncateWalletId = (wallet_id: string) => {
+        if (wallet_id.length > 10) {
+          return wallet_id.substring(0, 10) + "...";
+        }
+        return wallet_id;
+      };
+    
+      const copyToClipboard = (wallet_id: string) => {
+        navigator.clipboard.writeText(wallet_id);
+        alert("Wallet ID copied to clipboard");
+      };
     return (
         <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900 max-md:mt-6 max-w-full">
             <div className="flex">
@@ -51,12 +62,12 @@ const ProfileCard: React.FC<ProfileProps> = ({
                     <div className="flex flex-col max-md:mt-6">
                         <div className="flex gap-5 px-px">
                             <div className="flex flex-col flex-1 mt-2">
-                                <h1 className="text-base font-medium font-nunito text-white">{name}</h1>
-                                <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">{tagline}</p>
+                                <h1 className="text-base font-medium font-nunito text-white">{username}</h1>
+                                <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">Chief@{tagline}</p>
                                 <div className="self-start justify-self-end mt-auto flex px-2 w-fit py-1.5 text-sm text-[#954AD2] rounded-md bg-neutral-950">
-                                    <span className="sm:text-sm text-xs">{wallet_id}</span>
+                                    <span className="sm:text-sm text-xs">{truncateWalletId(wallet_id)}</span>
                                     <img
-                                        loading="lazy"
+                                        loading="lazy"  
                                         src={copy.src}
                                         alt="Copy address"
                                         className="shrink-0 self-center w-3.5 aspect-square"
@@ -86,13 +97,18 @@ export default function AdminDashboard() {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [users, setUsers] = useState<User[]>([]);
-
+    const truncateWalletId = (wallet_id: any) => {
+        if (typeof wallet_id === 'string' && wallet_id.length > 10) {
+            return wallet_id.substring(0, 10) + "...";
+        }
+        return wallet_id;
+    };
     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const { data, error } = await supabase
                     .from('project_listing')
-                    .select('id, name, tagline, wallet_id, logoImageUrl');
+                    .select('id, username, tagline, wallet_id, logoImageUrl');
 
                 if (error) {
                     console.error("Error fetching users:", error.message);
@@ -112,6 +128,7 @@ export default function AdminDashboard() {
 
         fetchUsers();
     }, []);
+    
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -124,7 +141,7 @@ export default function AdminDashboard() {
   };
 
   const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    user.username.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -147,7 +164,7 @@ export default function AdminDashboard() {
                                 onClick={() => handleSuggestionClick(user)}
                                 className="px-4 py-2 cursor-pointer hover:bg-neutral-800"
                             >
-                                {user.name}
+                                {user.username}
                             </div>
                         ))}
                     </div>
@@ -159,7 +176,7 @@ export default function AdminDashboard() {
                 {selectedUser ? (
                     <ProfileCard
                         key={selectedUser.id}
-                        name={selectedUser.name}
+                        username={selectedUser.username}
                         tagline={selectedUser.tagline}
                         projects={selectedUser.projects}
                         commits={selectedUser.commits}
@@ -172,7 +189,7 @@ export default function AdminDashboard() {
                     filteredUsers.map((user) => (
                         <ProfileCard
                             key={user.id}
-                            name={user.name}
+                            username={user.username}
                             tagline={user.tagline}
                             projects={user.projects}
                             commits={user.commits}
