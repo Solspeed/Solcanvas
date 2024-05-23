@@ -16,7 +16,6 @@ const Card: React.FC<CardProps> = ({ imageSrc, iconSrc, title, description , url
 
   return (
     <a href={`/marketplace/${url}`} className="w-[45.875rem] h-[19.063rem] bg-[#151515] rounded-[15px]">
-      {imageSrc}
       <Image
         src={imageSrc}
         alt={title}
