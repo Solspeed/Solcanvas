@@ -25,12 +25,22 @@ export default function Team({ teamMembers }: TeamProps) {
                             <img className="z-10 w-[265px] h-[265px] object-fill left-[109px] top-0 absolute rounded-full" src={member.image} alt={`${member.name} avatar`} />
                         </div>
                         <div className="z-50 left-[410px] top-[123px] absolute text-[#954AD2] text-opacity-70 text-[36px] font-semibold leading-[30px] capitalize tracking-wide">{member.name}<br /></div>
-                        <a href={member.twitter} target="_blank" rel="noopener noreferrer">
-                            <img className="z-100 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/twit.svg' alt="twitter icon" />
-                        </a>
-                        <a href={member.github} target="_blank" rel="noopener noreferrer">
-                            <img className="z-20 w-[37px] h-[37px] left-[457px] top-[173px] absolute" src='/git.svg' alt="github icon" />
-                        </a>
+                        {member.twitter
+                            ? <a
+
+                                href={`https://twitter.com/${member.twitter}`}
+                                target="_blank" rel="noopener noreferrer">
+                                <img className="z-100 w-[37px] h-[37px] left-[410px] top-[173px] absolute" src='/twit.svg' alt="twitter icon" />
+                            </a>
+                            : null}
+                        {member.github
+
+                            ? <a
+                                href={`https://github.com/${member.github}`}
+                                target="_blank" rel="noopener noreferrer">
+                                <img className="z-20 w-[37px] h-[37px] left-[457px] top-[173px] absolute" src='/git.svg' alt="github icon" />
+                            </a>
+                            : null}
                     </div>
                 ))}
             </div>
