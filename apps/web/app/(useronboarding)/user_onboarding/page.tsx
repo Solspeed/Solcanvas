@@ -34,7 +34,6 @@ const UserOnBoarding = () => {
     try {
       const walletId = publicKey?.toString();
 
-      // Check if the username already exists in the onboarding table
       const { data: existingName } = await supabase
         .from("onboarding")
         .select("name")

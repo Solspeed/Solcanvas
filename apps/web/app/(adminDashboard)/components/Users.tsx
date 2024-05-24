@@ -1,9 +1,10 @@
-    "use client";
-    import React, { useState, useEffect } from "react";
-    import copy from "../../../public/images/dashboard/copy.svg";
-    import supabase from "../../../supabase";
+"use client";
+import React, { useState, useEffect } from "react";
+import copy from "../../../public/images/dashboard/copy.svg";
+import supabase from "../../../supabase";
+import avatar from "../../../public/images/user.png"
 
-    interface User {
+interface User {
     id: number;
     username: string;
     tagline: string;
@@ -13,10 +14,10 @@
     rewards: number;
     logoImageUrl: string;
     profileImgAlt: string;
-    
-    }
 
-    interface ProfileProps {
+}
+
+interface ProfileProps {
     username: string;
     tagline: string;
     projects: number;
@@ -25,9 +26,9 @@
     rewards: number;
     logoImageUrl: string;
     profileImgAlt: string;
-    }
+}
 
-    const ProfileCard: React.FC<ProfileProps> = ({
+const ProfileCard: React.FC<ProfileProps> = ({
     username,
     tagline,
     projects,
@@ -36,112 +37,112 @@
     rewards,
     logoImageUrl,
     profileImgAlt,
-    }) => {
-        const truncateWalletId = (wallet_id: string) => {
-            if (wallet_id.length > 10) {
+}) => {
+    const truncateWalletId = (wallet_id: string) => {
+        if (wallet_id.length > 10) {
             return wallet_id.substring(0, 10) + "...";
-            }
-            return wallet_id;
-        };
-        
-        const copyToClipboard = (wallet_id: string) => {
-            navigator.clipboard.writeText(wallet_id);
-            alert("Wallet ID copied to clipboard");
-        };
-        return (
-            <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900 max-md:mt-6 max-w-full">
-                <div className="flex">
-                    <figure className="flex flex-row">
-                        <img
-                            loading="lazy"
-                            src={logoImageUrl}
-                            alt={profileImgAlt}
-                            className="grow object-cover max-md:mt-6"
-                        />
-                    </figure>
-                    <div className="flex flex-col ml-2 w-9/12">
-                        <div className="flex flex-col max-md:mt-6">
-                            <div className="flex gap-5 px-px">
-                                <div className="flex flex-col flex-1 mt-2">
-                                    <h1 className="text-base font-medium font-nunito text-white">{username}</h1>
-                                    <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">Chief@{tagline}</p>
-                                    <div className="self-start justify-self-end mt-auto flex px-2 w-fit py-1.5 text-sm text-[#954AD2] rounded-md bg-neutral-950">
-                                        <span className="sm:text-sm text-xs">{truncateWalletId(wallet_id)}</span>
-                                        <img
-                                            loading="lazy"  
-                                            src={copy.src}
-                                            alt="Copy address"
-                                            className="shrink-0 self-center w-3.5 aspect-square"
-                                        />
-                                    </div>
+        }
+        return wallet_id;
+    };
+
+    const copyToClipboard = (wallet_id: string) => {
+        navigator.clipboard.writeText(wallet_id);
+        alert("Wallet ID copied to clipboard");
+    };
+    return (
+        <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900  max-w-full">
+            <div className="flex">
+                <div className="flex w-[99px]  items-center justify-center flex-row">
+                    <img
+                        loading="lazy"
+                        src={avatar.src}
+                        alt={profileImgAlt}
+                        className="grow object-cover "
+                    />
+                </div>
+                <div className="flex flex-col ml-2 w-9/12">
+                    <div className="flex flex-col ">
+                        <div className="flex gap-5 px-px">
+                            <div className="flex flex-col flex-1 mt-2">
+                                <h1 className="text-base font-medium font-nunito text-white">{username}</h1>
+                                <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">Chief@{tagline}</p>
+                                <div className="self-start justify-self-end mt-auto flex px-2 w-fit py-1.5 text-sm text-[#954AD2] rounded-md bg-neutral-950">
+                                    <span className="sm:text-sm text-xs">{truncateWalletId(wallet_id)}</span>
+                                    <img
+                                        loading="lazy"
+                                        src={copy.src}
+                                        alt="Copy address"
+                                        className="shrink-0 self-center w-3.5 aspect-square"
+                                    />
                                 </div>
-                                <div className="flex flex-col text-xs text-white">
-                                    <div className="justify-center px-1 text-nowrap py-2.5 rounded-md bg-neutral-950">
-                                        Projects: <span className="text-purple-600">{projects}</span>
-                                    </div>
-                                    <div className="justify-center px-1 text-nowrap py-2.5 mt-2 rounded-md bg-neutral-950">
-                                        Commits: <span className="text-purple-600">{commits}</span>
-                                    </div>
-                                    <div className="justify-center px-1 text-nowrap py-2.5 mt-2 rounded-md bg-neutral-950">
-                                        Rewards: <span className="text-purple-600">{rewards}</span>
-                                    </div>
+                            </div>
+                            <div className="flex flex-col text-xs text-white">
+                                <div className="justify-center px-1 text-nowrap py-2.5 rounded-md bg-neutral-950">
+                                    Projects: <span className="text-purple-600">{projects}</span>
+                                </div>
+                                <div className="justify-center px-1 text-nowrap py-2.5 mt-2 rounded-md bg-neutral-950">
+                                    Commits: <span className="text-purple-600">{commits}</span>
+                                </div>
+                                <div className="justify-center px-1 text-nowrap py-2.5 mt-2 rounded-md bg-neutral-950">
+                                    Rewards: <span className="text-purple-600">{rewards}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        );
-    };
+            </div>
+        </section>
+    );
+};
 
-    export default function AdminDashboard() {
-        const [searchTerm, setSearchTerm] = useState<string>('');
-        const [selectedUser, setSelectedUser] = useState<User | null>(null);
-        const [users, setUsers] = useState<User[]>([]);
-    
-        const truncateWalletId = (wallet_id: any) => {
-            if (typeof wallet_id === 'string' && wallet_id.length > 10) {
-                return wallet_id.substring(0, 10) + "...";
-            }
-            return wallet_id;
-        };
-        useEffect(() => {
-            const fetchUsers = async () => {
-                try {
-                    const { data, error } = await supabase
-                        .from('project_listing')
-                        .select('id, username, tagline, wallet_id, logoImageUrl');
-        
-                    if (error) {
-                        console.error("Error fetching users:", error.message);
-                        return;
-                    }
-        
-                    const usersWithProjects = await Promise.all(data.map(async (user: any) => {
-                        const { data: projectData, error: projectError } = await supabase
-                            .from('project_listing')
-                            .select('*', { count: 'exact' })
-                            .eq('username', user.username)
-                            .single();  
-        
-                        if (projectError) {
-                            console.error("Error fetching projects for user:", user.username, projectError.message);
-                            return { ...user, projects: 0 };
-                        }
-        
-                        return { ...user, projects: projectData.count || 0 };
-                    }));
-        
-                    setUsers(usersWithProjects);
-                } catch (error: any) {
+export default function AdminDashboard() {
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [users, setUsers] = useState<User[]>([]);
+
+    const truncateWalletId = (wallet_id: any) => {
+        if (typeof wallet_id === 'string' && wallet_id.length > 10) {
+            return wallet_id.substring(0, 10) + "...";
+        }
+        return wallet_id;
+    };
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('project_listing')
+                    .select('id, username, tagline, wallet_id, logoImageUrl');
+
+                if (error) {
                     console.error("Error fetching users:", error.message);
+                    return;
                 }
-            };
-        
-            fetchUsers();
-        }, []);
-        console.log(users)    
-        
+
+                const usersWithProjects = await Promise.all(data.map(async (user: any) => {
+                    const { data: projectData, error: projectError } = await supabase
+                        .from('project_listing')
+                        .select('*', { count: 'exact' })
+                        .eq('username', user.username)
+                        .single();
+
+                    if (projectError) {
+                        console.error("Error fetching projects for user:", user.username, projectError.message);
+                        return { ...user, projects: 0 };
+                    }
+
+                    return { ...user, projects: projectData.count || 0 };
+                }));
+
+                setUsers(usersWithProjects);
+            } catch (error: any) {
+                console.error("Error fetching users:", error.message);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+    console.log(users)
+
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -195,7 +196,7 @@
                             commits={selectedUser.commits}
                             wallet_id={selectedUser.wallet_id}
                             rewards={selectedUser.rewards}
-                        logoImageUrl={selectedUser.logoImageUrl}
+                            logoImageUrl={selectedUser.logoImageUrl}
                             profileImgAlt={selectedUser.profileImgAlt}
                         />
                     ) : (
@@ -217,4 +218,4 @@
             </div>
         </div>
     );
-    }
+}
