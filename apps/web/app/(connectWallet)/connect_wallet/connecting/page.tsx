@@ -14,23 +14,29 @@ export default function Connecting() {
     const [userExists, setUserExists] = useState(false);
 
     useEffect(() => {
-        const checkUser = async () => {
+        const checkProfileExists = async () => {
             if (connected && publicKey) {
-                const { data, error } = await supabase
-                    .from('onboarding')
-                    .select('name')
-                    .eq('wallet_id', publicKey.toString())
+                const walletId = publicKey.toString();
+                const { data: existingProfile, error } = await supabase
+                    .from("onboarding")
+                    .select("name")
+                    .eq("wallet_id", walletId)
                     .single();
 
-                if (data) {
-                    setUserExists(true);
+                if (error) {
+                    console.error("Error checking profile:", error);
                 }
 
+                if (existingProfile) {
+                    setUserExists(true);
+                } else {
+                    setUserExists(false);
+                }
                 setLoading(false);
             }
         };
 
-        checkUser();
+        checkProfileExists();
     }, [connected, publicKey]);
 
     useEffect(() => {
@@ -67,4 +73,3 @@ export default function Connecting() {
         </div>
     );
 }
-    

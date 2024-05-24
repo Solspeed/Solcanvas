@@ -22,7 +22,7 @@ export default function ConnectWallet() {
           .select('name')
           .eq('wallet_id', publicKey.toString())
           .single();
-
+          
         if (data) {
           setUserExists(true);
         }
