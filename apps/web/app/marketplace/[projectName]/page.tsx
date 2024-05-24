@@ -192,17 +192,17 @@ console.log(params.projectName)
         {projectData.projectList[0]?.teamMembers && (
           <Team teamMembers={projectData.projectList[0].teamMembers} />
         )}
-        <Tweets />
+        {/* <Tweets /> */}
         {/* <Updates /> */}
         <Commits />
         <Link href={`/marketplace/${params.projectName}/editform/`} className="flex w-full justify-center ">
-        <button onClick={handleEditProjectClick}>
+        {/* <button onClick={handleEditProjectClick}>
           <CustomButton
             text="Edit Project"
             property1="variant-2"
             className="flex sm:scale-[1] scale-[0.8] hover:cursor-pointer justify-center items-center text-center px-16 py-10 sm:mt-80 mt-36 max-w-full tracking-wider leading-8 bg-black rounded-2xl text-zinc-400 w-[972px]"
           />
-        </button>
+        </button> */}
         </Link>
         <div className="w-full relative bg-black overflow-hidden flex flex-col items-center justify-start sm:pt-[5.81rem] pt-[5.6rem] px-[0rem] pb-[0rem] box-border gap-[14.19rem] tracking-[normal] mq450:gap-[8rem] mq1000:gap-[14.19rem]">
           <Footer />
