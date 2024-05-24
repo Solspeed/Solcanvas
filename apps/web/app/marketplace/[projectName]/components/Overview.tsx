@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import twitter from "../../../../public/twitter.svg"
-import github from "../../../../public/Github.svg"
-import website from "../../../../public/images/marketplace/projects/website.svg"
-import mail from "../../../../public/images/marketplace/projects/Mail.svg"
+import twitterIcon from "../../../../public/Twitter.svg";
+import githubIcon from "../../../../public/Github.svg";
+import websiteIcon from "../../../../public/images/marketplace/projects/website.svg";
+import mailIcon from "../../../../public/images/marketplace/projects/Mail.svg";
 
 export default function Overview({ projectsList }: { projectsList: any[] }) {
     if (projectsList.length === 0) {
@@ -11,6 +11,9 @@ export default function Overview({ projectsList }: { projectsList: any[] }) {
     }
     const project = projectsList[0];
     const descriptionLines = project.description.split(/\n/);
+
+    const githubUsername = project.githubLink;
+    const twitterUsername = project.twitterLink;
 
     return (
         <div className="">
@@ -34,9 +37,6 @@ export default function Overview({ projectsList }: { projectsList: any[] }) {
                         <h1 className="flex-auto font-bold sm:text-5xl text-4xl tracking-wider leading-8 text-white ">
                             {project.name}
                         </h1>
-                        {/* <button className="justify-center sm:scale-[1] scale-[0.9] px-[14px] py-[1px] mt-1 text-sm tracking-wide leading-7 text-black uppercase bg-lime-500 rounded-xl">
-                            Upvote
-                        </button> */}
                     </div>
                     <p className="mt-2 sm:mt-4 sm:text-[20px] text-xl tracking-wide leading-8 text-white text-opacity-70  font-semibold">
                         {project.title}
@@ -49,22 +49,36 @@ export default function Overview({ projectsList }: { projectsList: any[] }) {
                 </div>
                 <div className="flex  xl:flex-col xl:justify-normal sm:justify-evenly justify-center sm:items-center xl:max-w-[395px]  xl:mt-0 mt-4">
                     <div className="flex gap-5 ">
-                        <Link href={`#`}>
-                            <Image src={website} alt="website" width={50} height={50} />
-                        </Link>
-                        <Link href={`#`}>
-                            <Image src={twitter} alt="twitter" width={50} height={50} />
-                        </Link>
-                        <Link href={`#`}>
-                            <Image src={github} alt="github" width={50} height={50} />
-                        </Link>
-                        <Link href={`#`}>
-                            <Image src={mail} alt
-                                ="mail" width={50} height={50} />
-                        </Link>
-                    </div>
+                        {githubUsername && (
+                            <Link href={`https://github.com/${githubUsername}`}>
+
+                                <Image src={githubIcon} alt="github" width={50} height={50} />
+
+                            </Link>
+                        )}
+                        {twitterUsername && (
+                            <Link href={`https://twitter.com/${twitterUsername}`}>
+
+                                <Image src={twitterIcon} alt="twitter" width={50} height={50} />
+
+                            </Link>
+                        )}
+                        {project.websiteLink && (
+                            <Link href={project.websiteLink}>
+
+                                <Image src={websiteIcon} alt="website" width={50} height={50} />
+
+                            </Link>
+                        )}
+                        {project.email && (
+                            <a href={`mailto:${project.email}`} target="_blank">
+                                <Image src={mailIcon} alt="mail" width={50} height={50} />
+                            </a>
+                         
+                        )}
+                            </div>
+                </div>
                 </div>
             </div>
-        </div>
-    );
+            );
 }
