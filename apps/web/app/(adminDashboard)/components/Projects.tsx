@@ -12,7 +12,7 @@ type Project = {
     category: string;
     date: string;
     created_at: string;
-    imgSrc: string;
+    logoImageUrl: string;
     status: string;
 };
 
@@ -88,7 +88,8 @@ export default function AdminDashboard() {
             return wallet_id.substring(0, 10) + "...";
         }
         return wallet_id;
-    };
+    }
+
     return (
         <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
             <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
@@ -142,12 +143,14 @@ export default function AdminDashboard() {
                         <div className="flex sm:gap-12 gap-5 md:flex-nowrap flex-wrap max-md:gap-0">
                             <div className="flex flex-col">
                                 <div className="flex grow gap-1.5 self-stretch my-auto text-sm text-red-600 max-md:mt-10">
-                                    <img
-                                        loading="lazy"
-                                        srcSet={selectedProject.imgSrc}
-                                        className="shrink-0 aspect-[1.02] w-[99px]"
-                                        alt={`${selectedProject.name} logo`}
-                                    />
+                                    <div className='w-[120px] overflow-hidden flex justify-center items-center h-[120px]'>
+                                        <img
+                                            loading="lazy"
+                                            src={selectedProject.logoImageUrl}
+                                            className="object-"
+                                            alt={`${selectedProject.name} logo`}
+                                        />
+                                    </div>
                                     <div className="flex flex-col my-auto">
                                         <div className="text-base font-medium text-white">{selectedProject.name}</div>
                                         <div className="mt-1.5 text-xs text-white text-opacity-80">{selectedProject.tagline}</div>
@@ -188,12 +191,14 @@ export default function AdminDashboard() {
                             <div className="flex sm:gap-12 gap-5 md:flex-nowrap flex-wrap max-md:gap-0">
                                 <div className="flex flex-col">
                                     <div className="flex grow gap-1.5 self-stretch my-auto text-sm text-red-600 max-md:mt-10">
-                                        <img
-                                            loading="lazy"
-                                            srcSet={project.imgSrc}
-                                            className=" aspect-square object-cover rounded-md"
-                                            alt={`${project.name} logo`}
-                                        />
+                                    <div className='w-[120px] overflow-hidden flex justify-center items-center h-[120px]'>
+                                            <img
+                                                loading="lazy"
+                                                src={project.logoImageUrl}
+                                                className="object-"
+                                                alt={`${project.name} logo`}
+                                            />
+                                        </div>
                                         <div className="flex flex-col my-auto">
                                             <div className="text-base font-medium text-white">{project.name}</div>
                                             <div className="mt-1.5 text-xs text-white text-opacity-80">{project.tagline}</div>
