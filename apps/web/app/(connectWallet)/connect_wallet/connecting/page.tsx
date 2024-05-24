@@ -2,19 +2,46 @@
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 require('@solana/wallet-adapter-react-ui/styles.css');
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import group from "../../../../public/images/Group.svg";
+import supabase from '../../../../supabase';
 
 export default function Connecting() {
-    const { connected } = useWallet();
+    const { connected, publicKey } = useWallet();
     const router = useRouter();
+    const [loading, setLoading] = useState(true);
+    const [userExists, setUserExists] = useState(false);
 
     useEffect(() => {
-        if (connected) {
-            router.push("/marketplace");
+        const checkUser = async () => {
+            if (connected && publicKey) {
+                const { data, error } = await supabase
+                    .from('onboarding')
+                    .select('name')
+                    .eq('wallet_id', publicKey.toString())
+                    .single();
+
+                if (data) {
+                    setUserExists(true);
+                }
+
+                setLoading(false);
+            }
+        };
+
+        checkUser();
+    }, [connected, publicKey]);
+
+    useEffect(() => {
+        if (!loading) {
+            if (userExists) {
+                router.push("/marketplace");
+            } else {
+                router.push("/user_onboarding");
+            }
         }
-    }, [connected]);
+    }, [loading, userExists, router]);
 
     return (
         <div style={{ boxShadow: '0px 1px 90px rgba(255, 255, 255, 0.3)' }} className="flex flex-col justify-center items-center -mt-12 px-16 py-14 bg-black rounded-xl max-w-[396px]">
@@ -40,3 +67,4 @@ export default function Connecting() {
         </div>
     );
 }
+    

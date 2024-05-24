@@ -7,7 +7,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
 body {
   @apply leading-[normal] m-0;
   font-family: "Inter", sans-serif;
@@ -188,40 +187,27 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 
-/* Add this to your CSS file */
 select {
-  /* Add your desired styling */
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  /* Set the height to auto so that it adjusts based on the content */
   height: auto;
-  /* Set a maximum height to control the dropdown size */
-  max-height: 120px; /* Adjust as needed */
-  /* Enable scrolling if content overflows */
+  max-height: 120px; 
   overflow-y: auto;
-  /* Ensure options are visible even if outside the dropdown */
   position: relative;
-  z-index: 11; /* Ensure the options are above the dropdown itself */
+  z-index: 11;
 }
 
-/* Style the options */
 option {
-  /* Add your desired styling */
   padding: 8px;
 }
 
-/* Hide the default arrow in Chrome, Safari, and Opera */
 select::-ms-expand {
   display: none;
 }
-/* Hide the default arrow in Firefox */
 select {
-  /* Add your desired styling */
   -moz-appearance: none;
-  /* Add your desired styling */
   text-indent: 1px;
-  /* Add your desired styling */
   text-overflow: '';
 }
 

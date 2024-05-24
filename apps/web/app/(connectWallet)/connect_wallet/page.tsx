@@ -9,20 +9,40 @@ import star from "../../../public/images/Glossy.svg"
 import supabase from "../../../supabase";
 
 export default function ConnectWallet() {
-  const { connected } = useWallet();
+  const { connected, publicKey } = useWallet();
   const router = useRouter();
-  const { publicKey } = useWallet();
+  const [loading, setLoading] = useState(true);
+  const [userExists, setUserExists] = useState(false);
 
-  const user: any = supabase.from('onboarding').select('name').eq('wallet_id', publicKey?.toString()).single();
   useEffect(() => {
-    if (connected) {
-      if (user) {
+    const checkUser = async () => {
+      if (connected && publicKey) {
+        const { data, error } = await supabase
+          .from('onboarding')
+          .select('name')
+          .eq('wallet_id', publicKey.toString())
+          .single();
+
+        if (data) {
+          setUserExists(true);
+        }
+
+        setLoading(false);
+      }
+    };
+
+    checkUser();
+  }, [connected, publicKey]);
+
+  useEffect(() => {
+    if (!loading) {
+      if (userExists) {
         router.push("/marketplace");
-      } else{
+      } else {
         router.push("/user_onboarding");
       }
     }
-  }, [connected]);
+  }, [loading, userExists, router]);
 
   const handleClick = () => {
     setTimeout(() => {

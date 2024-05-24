@@ -59,17 +59,15 @@ const UserOnBoarding = () => {
         );
       }
 
-      // Insert data into the onboarding table
       await supabase
         .from("onboarding")
         .insert([{ ...formData, wallet_id: walletId }]);
 
-      // Insert data into the project_listing table
       await supabase
         .from("project_listing")
         .insert([{ ...formData, username: formData.name }]);
 
-      router.push("/comingsoon");
+      router.push("/marketplace");
       console.log(formData)
     } catch (error: any) {
       console.error("Error inserting data:", error.message);
