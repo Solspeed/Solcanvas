@@ -49,10 +49,10 @@ export default function Navbar() {
         <div className="hidden sm:flex items-baseline justify-center lg:justify-between gap-[1.94rem]">
             {wallet.connected ? (
                 <a
-                    href="/comingsoon"
+                    href="/marketplace"
                     className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1] transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                 >
-                onboarding
+               Explore
                 </a>
             ) : (
                 <a
@@ -64,7 +64,7 @@ export default function Navbar() {
             )}
             {/* {wallet.connected ? (
                 <a
-                    href="/comingsoon"
+                    href="/marketplace"
                     className="rounded-full bg-black flex items-center justify-center px-[1.5rem] whitespace-nowrap z-[1] border-[1px] border-solid border-gray-400 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                 >
                     <div className="relative tracking-[0.01em] leading-[1.88rem] capitalize font-semibold z-[1]">
@@ -105,7 +105,7 @@ export default function Navbar() {
                 )}
                 {/* {wallet.connected ? (
                     <a
-                        href="/comingsoon"
+                        href="/marketplace"
                         className="text-white py-2 px-4 m-4 capitalize font-semibold border-b border-gray-600 transition duration-300 ease-in-out hover:text-purple-500 hover:border-purple-500 hover:shadow-md"
                     >
                         Add project
