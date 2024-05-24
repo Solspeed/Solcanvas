@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -7,6 +6,7 @@ import supabase from "../../../supabase";
 import { useWallet } from "@solana/wallet-adapter-react";
 import required from "../../../public/images/required.png";
 import next from "../../../public/images/next.png";
+
 interface FormData {
   name: string;
   bio: string;
