@@ -14,7 +14,8 @@ export default function Overview({ projectsList }: { projectsList: any[] }) {
 
     const githubUsername = project.githubLink;
     const twitterUsername = project.twitterLink;
-
+    const websiteLink = project.websiteLink;
+    console.log(websiteLink)
     return (
         <div className="">
             <Image
@@ -64,21 +65,21 @@ export default function Overview({ projectsList }: { projectsList: any[] }) {
                             </Link>
                         )}
                         {project.websiteLink && (
-                            <Link href={project.websiteLink}>
 
+                            <Link href={websiteLink.startsWith('http') ? websiteLink : `https://${websiteLink}`}>
                                 <Image src={websiteIcon} alt="website" width={50} height={50} />
-
                             </Link>
                         )}
+
                         {project.email && (
                             <a href={`mailto:${project.email}`} target="_blank">
                                 <Image src={mailIcon} alt="mail" width={50} height={50} />
                             </a>
-                         
+
                         )}
-                            </div>
-                </div>
+                    </div>
                 </div>
             </div>
-            );
+        </div>
+    );
 }
