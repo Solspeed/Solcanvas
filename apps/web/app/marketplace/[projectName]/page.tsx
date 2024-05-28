@@ -115,7 +115,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Overview from "./components/Overview";
 import Team from "./components/Team";
-//  import Updates from "./components/Updates";
+ import Updates from "./components/Updates";
 import Commits from "./components/Commits";
 import Footer from "../components/Footer";
 import Tweets from "./components/Tweets";
@@ -193,7 +193,7 @@ console.log(params.projectName)
           <Team teamMembers={projectData.projectList[0].teamMembers} />
         )}
         {/* <Tweets /> */}
-        {/* <Updates /> */}
+        <Updates />
         <Commits />
         <Link href={`/marketplace/${params.projectName}/editform/`} className="flex w-full justify-center ">
         {/* <button onClick={handleEditProjectClick}>

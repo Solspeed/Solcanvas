@@ -16,30 +16,6 @@ interface ProjectProps {
   status?: "live" | "review" | "rejected";
 }
 
-const projects: ProjectProps[] = [
-  {
-    logoImageUrl: projectImage.src,
-    tagline: "Tiny Dancer",
-    description: "Solana first light client.",
-    views: 350,
-    commits: 35,
-    liveLink: "Link",
-    status: "live",
-  },
-  {
-    logoImageUrl: projectImage.src,
-    tagline: "Tiny Dancer",
-    description: "Solana first light client.",
-    status: "review",
-  },
-  {
-    logoImageUrl: projectImage.src,
-    tagline: "Tiny Dancer",
-    description: "Solana first light client.",
-    status: "rejected",
-  },
-];
-
 const ProjectCard: React.FC<ProjectProps> = ({
   logoImageUrl,
   tagline,
