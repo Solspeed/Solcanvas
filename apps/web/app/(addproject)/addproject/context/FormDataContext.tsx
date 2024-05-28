@@ -25,21 +25,20 @@ type FormData = {
   github: string;
   twitter: string;
   description: string;
-  projectUpdates: ProjectUpdate[]; // Array of project updates
+  projectUpdates: ProjectUpdate[];
   wallet_id: string;
   category: string;
-  username:string;
+  username: string;
 };
 
 type FormDataContextType = {
   formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   updateFormData: (newData: Partial<FormData>) => void;
   addProjectUpdate: (update: ProjectUpdate) => void;
 };
 
-const FormDataContext = createContext<FormDataContextType | undefined>(
-  undefined
-);
+const FormDataContext = createContext<FormDataContextType | undefined>(undefined);
 
 export const useFormData = (): FormDataContextType => {
   const context = useContext(FormDataContext);
@@ -53,9 +52,7 @@ type FormDataProviderProps = {
   children: ReactNode;
 };
 
-export const FormDataProvider: React.FC<FormDataProviderProps> = ({
-  children,
-}) => {
+export const FormDataProvider: React.FC<FormDataProviderProps> = ({ children }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     tagline: "",
@@ -67,7 +64,7 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
     github: "",
     twitter: "",
     description: "",
-    projectUpdates: [], // Initialize with an empty array of project updates
+    projectUpdates: [],
     wallet_id: "",
     category: "",
     username: "",
@@ -88,12 +85,11 @@ export const FormDataProvider: React.FC<FormDataProviderProps> = ({
   };
 
   return (
-    <FormDataContext.Provider
-      value={{ formData, updateFormData, addProjectUpdate }}
-    >
+    <FormDataContext.Provider value={{ formData, setFormData, updateFormData, addProjectUpdate }}>
       {children}
     </FormDataContext.Provider>
   );
 };
 
 export default FormDataContext;
+  

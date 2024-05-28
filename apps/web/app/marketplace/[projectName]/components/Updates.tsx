@@ -1,83 +1,165 @@
-// "use client"
-// import { useState, useEffect } from "react";
-// import { useFormData } from "../../../(addproject)/addproject/context/FormDataContext";
-// import supabase from "../../../../supabase";
+"use client";
 
-// export default function Updates() {
-//   const { formData, addProjectUpdate } = useFormData();
-//   const [newUpdateText, setNewUpdateText] = useState("");
-//   const [projectUpdates, setProjectUpdates] = useState([]);
+import { useState, useEffect } from "react";
+import { useFormData } from "../../../(addproject)/addproject/context/FormDataContext";
+import supabase from "../../../../supabase";
+import { useWallet } from "@solana/wallet-adapter-react";
 
-//   useEffect(() => {
-//     const fetchUpdates = async () => {
-//       const currentUrl = window.location.href;
-//       const projectName = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+export default function Updates() {
+  const { publicKey } = useWallet();
+  const walletId = publicKey?.toString();
+  const [showAllUpdates, setShowAllUpdates] = useState(false);
+  const { formData, setFormData, addProjectUpdate } = useFormData();
+  const [newUpdateText, setNewUpdateText] = useState("");
+  const [showInput, setShowInput] = useState(false);
 
-//       const { data, error } = await supabase
-//         .from("project_listing")
-//         .select("project_update")
-//         .eq("name", projectName);
+  useEffect(() => {
+    const fetchProjectUpdates = async () => {
+      const currentUrl = window.location.href;
+      const projectName = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 
-//       if (error) {
-//         console.error("Error fetching project updates:", error.message);
-//         return;
-//       }
+      const { data: projects, error } = await supabase
+        .from("project_listing")
+        .select("project_update")
+        .eq("name", projectName);
 
-//       if (data && data.length > 0) {
-//         const updates = data[0]?.project_update || [];
-//         setProjectUpdates(updates);
-//       }
-//     };
+      if (error) {
+        console.error("Error fetching project updates:", error.message);
+        return;
+      }
 
-//     fetchUpdates();
-//   }, []);
+      if (projects.length === 0) {
+        console.error("Project not found.");
+        return;
+      }
 
-//   const handleAddUpdate = async () => {
-//     if (!newUpdateText.trim()) return;
+      const projectUpdates = projects[0]?.project_update || [];
+      setFormData((prevData) => ({ ...prevData, projectUpdates }));
+    };
 
-//     const currentDate = new Date();
-//     const newUpdate = { date: currentDate.toString(), update: newUpdateText };
-//     const [projectUpdates, setProjectUpdates] = useState([] as { date: string; update: string; }[]);
-//     const projectName = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
+    fetchProjectUpdates();
+  }, [setFormData]);
 
-//     const { data, error } = await supabase
-//       .from("project_listing")
-//       .update({ project_update: [...projectUpdates, newUpdate] })
-//       .eq("name", projectName);
+  const handleSeeAllUpdatesClick = () => {
+    setShowAllUpdates(!showAllUpdates);
+  };
 
-//     if (error) {
-//       console.error("Error updating project with new update:", error.message);
-//     }
+  const handleAddUpdate = async () => {
+    if (!newUpdateText.trim()) return;
 
-//     setNewUpdateText(""); // Clear input after adding update
-//   };
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()} ${currentDate.toLocaleString(
+      "en-us",
+      { month: "short" }
+    )} ${currentDate.getFullYear() % 100}`;
 
-//   return (
-//     <div className="flex relative flex-col sm:mt-64 mt-24 w-full">
-//       {/* Render updates */}
-//       {projectUpdates.map((update, index) => (
-//         <div key={index} className="flex gap-5 self-center px-4 py-4 w-full font-medium rounded-2xl bg-[#DCA7FB] max-w-[1390px]">
-//           <div className="flex-auto text-lg tracking-wide leading-8">{update.update}</div>
-//           <div className="text-base tracking-wide leading-8">{update.date}</div>
-//         </div>
-//       ))}
+    const newUpdate = {
+      date: formattedDate,
+      update: newUpdateText,
+    };
 
-//       {/* Add new update */}
-//       <div className="flex mt-6">
-//         <input
-//           type="text"
-//           value={newUpdateText}
-//           onChange={(e) => setNewUpdateText(e.target.value)}
-//           className="flex-1 px-4 py-2 mr-4 rounded-xl bg-[#DCA7FB] max-w-[1390px] placeholder-gray-600"
-//           placeholder="What is the update?"
-//         />
-//         <button
-//           onClick={handleAddUpdate}
-//           className="px-4 py-2 bg-[#954AD2] text-white rounded-xl hover:bg-purple-600 focus:outline-none"
-//         >
-//           Add Update
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
+    addProjectUpdate(newUpdate);
+
+    const currentUrl = window.location.href;
+    const projectName = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+
+    const { data: projects, error } = await supabase
+      .from("project_listing")
+      .select("id, project_update")
+      .eq("name", projectName);
+
+    if (error) {
+      console.error("Error fetching project:", error.message);
+      return;
+    }
+
+    if (projects.length === 0) {
+      console.error("Project not found.");
+      return;
+    }
+
+    const projectId = projects[0]?.id;
+    const currentUpdates = projects[0]?.project_update || [];
+
+    const updatedProject = {
+      project_update: [newUpdate, ...currentUpdates],
+    };
+
+    const { data: updatedData, error: updateError } = await supabase
+      .from("project_listing")
+      .update(updatedProject)
+      .match({ id: projectId });
+
+    if (updateError) {
+      console.error("Error updating project:", updateError.message);
+      return;
+    }
+
+    console.log("Project updated successfully:", updatedData);
+
+    setNewUpdateText("");
+    setShowInput(false);
+  };
+
+  return (
+    <div className={`flex relative flex-col sm:mt-64 mt-24 w-full`}>
+      <div className="mx-2.5 font-silkscreen mq450:text-2xl text-nowrap text-center text-[#954AD2] md:text-[60px] sm:mb-16 mb-6 text-4xl tracking-tighter font-medium sm:tracking-wider leading-8">
+        Product Updates
+      </div>
+      <button
+        onClick={() => setShowInput(!showInput)}
+        className={`sm:w-44 w-24 self-end sm:mt-4 bg-[#954AD2] ${
+          showInput ? "blur-xl" : ""
+        } sm:text-lg text-sm text-white font-medium sm:py-2 py-1 rounded-xl hover:bg-purple-600 focus:outline-none`}
+      >
+        Add Project
+      </button>
+      {showInput && (
+        <div className="flex-col inset-0 absolute top-1/2 bg-opacity-10 justify-center items-center z-50">
+          <div className="flex flex-col">
+            <input
+              type="text"
+              value={newUpdateText}
+              onChange={(e) => setNewUpdateText(e.target.value)}
+              className="flex scale-[0.8] gap-5 placeholder:text-gray-600 sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 lg:placeholder:text-3xl sm:placeholder:text-xl placeholder:text-lg self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 w-full font-medium rounded-2xl bg-[#DCA7FB] max-w-[1390px] flex-wrap"
+              placeholder="What is the update?"
+            />
+            <button
+              onClick={handleAddUpdate}
+              className="sm:w-44 w-24 self-center mt-4 bg-[#954AD2] sm:text-lg text-sm text-white font-medium sm:py-2 py-1 rounded-xl hover:bg-purple-600 focus:outline-none"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
+
+      {formData.projectUpdates
+        .slice(0, showAllUpdates ? formData.projectUpdates.length : 3)
+        .reverse()
+        .map((update, index) => (
+          <div
+            key={index}
+            className={`flex ${
+              showInput ? "blur-xl" : ""
+            } scale-[0.8] gap-5 self-center lg:px-10 sm:px-6 px-4 lg:py-11 sm:py-8 py-4 sm:mt-11 mt-6 w-full font-medium rounded-2xl bg-[#DCA7FB] max-w-[1390px] flex-wrap`}
+          >
+            <div className="flex-auto sm:text-2xl text-lg lg:text-3xl tracking-wide leading-8 max-md:max-w-full">
+              {update.update}
+            </div>
+            <div className="lg:text-2xl sm:text-xl text-base tracking-wide leading-8">
+              {update.date}
+            </div>
+          </div>
+        ))}
+      {formData.projectUpdates.length > 3 && (
+        <button
+          onClick={handleSeeAllUpdatesClick}
+          className="self-center sm:mt-12 mt-6 sm:text-3xl text-xl font-medium tracking-wide leading-8 text-zinc-400 max-md:mt-10"
+        >
+          {showAllUpdates ? "View less" : "View all"}
+        </button>
+      )}
+    </div>
+  );
+}
