@@ -24,7 +24,7 @@ export default function Team({ teamMembers }: TeamProps) {
                             <img className="z-0 w-[317px] object-fill h-[211px] left-0 top-[104px] absolute" src="/images/marketplace/projects/avatarBg.png" alt="avatar background" />
                             <img className="z-10 w-[265px] h-[265px] object-fill left-[109px] top-0 absolute rounded-full" src={member.image} alt={`${member.name} avatar`} />
                         </div>
-                        <div className="z-50 left-[410px] top-[123px] absolute text-[#954AD2] text-opacity-70 text-[36px] font-semibold leading-[30px] capitalize tracking-wide">{member.name}<br /></div>
+                        <div className="z-50 left-[410px] top-[123px] absolute text-[#954AD2] text-opacity-70 text-[36px] font-semibold text-nowrap leading-[30px] capitalize tracking-wide">{member.name}<br /></div>
                         {member.twitter
                             ? <a
 
