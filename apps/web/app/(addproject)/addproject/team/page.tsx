@@ -72,6 +72,7 @@ export default function Team(): JSX.Element {
 
   //remove last added member
   const removeMember = (): void => {
+    if (members.length === 1) return;
     setMembers((prevMembers) => prevMembers.slice(0, prevMembers.length - 1));
   }
 
