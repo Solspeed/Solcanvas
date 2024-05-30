@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import projectImage from "../../../public/images/dashboard/TinyDancer.png";
 import upload from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
 import supabase from "../../../supabase";
@@ -10,38 +9,41 @@ interface ProjectProps {
   logoImageUrl: string;
   name: string;
   tagline: string;
-  description: string;
   views?: number;
-  commits?: number;
+  // commits?: number;
   liveLink?: string;
-  status?: "live" | "review" | "rejected";
- 
+  status?: "live" | "requested" | "rejected";
 }
 
 const ProjectCard: React.FC<ProjectProps> = ({
   logoImageUrl,
   name,
   tagline,
-  description,
   views,
-  commits,
+  // commits,
   liveLink,
   status,
-  
 }) => {
-  let statusText = "";
+  let statusText: React.ReactNode = "";
   let statusClass = "";
- 
 
   switch (status) {
     case "live":
-      statusText = `Live on "${liveLink}"`;
+      statusText = (
+        <a
+          href={liveLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-purple-300"
+        >
+          Live on “Link”
+        </a>
+      );
       statusClass = "text-purple-300";
-       statusText = `Live on "/marketplace/${name}"`;
       break;
-    case "review":
+    case "requested":
       statusText =
-        "Your project is under review, you will get notified when your project is live. Can take upto 72 hours.";
+        "Your project is under review, you will get notified when your project is live. Can take up to 72 hours.";
       statusClass = "text-purple-600";
       break;
     case "rejected":
@@ -50,14 +52,12 @@ const ProjectCard: React.FC<ProjectProps> = ({
           Rejected, for further help mail on{" "}
           <span className="text-purple-300">solcanvas2024@gmail.com</span>
         </>
-      ).toString();
+      );
       statusClass = "text-purple-300";
       break;
   }
 
   return (
-    
-
     <div className="flex flex-col grow pt-4 w-full rounded-xl bg-neutral-900">
       {status === "live" && (
         <div className="flex flex-1 justify-between gap-5 w-full ">
@@ -70,7 +70,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
             <div className="flex flex-col my-auto">
               <div className="text-base font-medium text-white">{name}</div>
               <div className="mt-1.5 text-xs text-white text-opacity-80">
-                {description}
+                {tagline}
               </div>
             </div>
           </div>
@@ -81,12 +81,12 @@ const ProjectCard: React.FC<ProjectProps> = ({
                 {views}
               </div>
             </div>
-            <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
+            {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
               <div className="text-xs text-white">Commits</div>
               <div className="mt-3 text-xl font-bold text-purple-300">
                 {commits}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       )}
@@ -105,17 +105,18 @@ const ProjectCard: React.FC<ProjectProps> = ({
           </div>
         </div>
       )}
-      {/* <div
+
+      <div
         className={`justify-center text-center items-center px-16 py-4 text-xs tracking-wider rounded-none bg-black bg-opacity-90 max-md:px-5 max-md:max-w-full ${statusClass}`}
       >
         {statusText}
-      </div> */}
+      </div>
     </div>
   );
 };
 
 const ProjectList: React.FC<{ walletId: string }> = ({ walletId }) => {
-  const [projects, setProjects] = useState<ProjectProps[]>([]); // State for project data
+  const [projects, setProjects] = useState<ProjectProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -246,13 +247,15 @@ const Main = () => {
 
   console.log("projectCount", projectCount);
   return (
-    <div  
+    <div
       className="bg-black overflow-scroll scroll-smooth
      p-12 w-full flex justify-between"
     >
       <main className="flex flex-col ml-5 max-md:ml-0 w-full">
         <section className="flex flex-col self-stretch my-auto max-w-full">
-          <h1 className="text-3xl text-purple-300 max-w-full">Gm, {username}</h1>
+          <h1 className="text-3xl text-purple-300 max-w-full">
+            Gm, {username}
+          </h1>
           <div className="mt-16 flex max-md:mt-10 max-w-full">
             <div className="flex gap-5 flex-col max-md:gap-0">
               <div className="flex flex-col max-md:ml-0 max-md:w-full">
@@ -285,10 +288,10 @@ const Main = () => {
                 <StatCard label="Your Projects" value={projectCount} />
               </div>
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                <StatCard label="Your Projects" value={13} />
+                <StatCard label="Your Rewards" value={13} />
               </div>
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                <StatCard label="Your Projects" value={13} />
+                <StatCard label="Your Commits" value={13} />
               </div>
             </div>
           </div>

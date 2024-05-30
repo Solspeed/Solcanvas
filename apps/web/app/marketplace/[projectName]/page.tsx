@@ -8,7 +8,7 @@ import Link from "next/link";
 import Overview from "./components/Overview";
 import Team from "./components/Team";
 
-import Commits from "./components/Commits";
+// import Commits from "./components/Commits";
 import Footer from "../components/Footer";
 import Tweets from "./components/Tweets";
 import Updates from "./components/Updates";
@@ -87,7 +87,7 @@ console.log(params.projectName)
         )}
         {/* <Tweets /> */}
         <Updates />
-        <Commits />
+        {/* <Commits /> */}
         <Link href={`/marketplace/${params.projectName}/editform/`} className="flex w-full justify-center ">
         {/* <button onClick={handleEditProjectClick}>
           <CustomButton
