@@ -6,20 +6,25 @@ import next from "../../../public/images/next.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useFormData } from "./context/FormDataContext";
+import supabase from "../../../supabase";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export default function ProjectListing() {
   const { formData, updateFormData } = useFormData();
   console.log("FormData:", formData);
   const [name, setName] = useState(formData.name || "");
   const [tagline, setTagline] = useState(formData.tagline || "");
+  const [userName, setUserName] = useState("");
   const router = useRouter();
+  const { publicKey } = useWallet();
+  const walletId = publicKey?.toString();
+  console.log("Username:", userName);
 
   useEffect(() => {
     setName(formData.name || "");
     setTagline(formData.tagline || "");
   }, [formData]);
 
-  
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     const inputValue = event.target.value;
@@ -36,11 +41,30 @@ export default function ProjectListing() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     router.push("/addproject/categories");
   };
+
   const nameCharacterCount = name.length;
   const bioCharacterCount = tagline.length;
+
+  useEffect(() => {
+    if (!walletId) return;
+
+    const fetchUsername = async () => {
+      const { data, error } = await supabase
+        .from("project_listing")
+        .select("username")
+        .eq("wallet_id", walletId);
+
+      if (error) {
+        console.error("Error fetching username:", error.message);
+      } else if (data.length > 0) {
+        setUserName(data[0]?.username);
+      }
+    };
+
+    fetchUsername();
+  }, [walletId]);
 
   return (
     <form
@@ -48,21 +72,21 @@ export default function ProjectListing() {
       onSubmit={handleSubmit}
     >
       <div className="flex gap-2.5 self-start">
-        <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px]  w-[38px]" />
+        <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px] w-[38px]" />
         <div className="shrink-0 w-14 bg-[#954AD2] rounded-2xl h-[11px]" />
-        <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px]  w-[38px]" />
+        <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px] w-[38px]" />
       </div>
       <div className="mt-11 sm:text-[30px] font-silkscreen font-medium tracking-wide leading-8 text-white max-w-full text-4xl">
-        GM, "USER NAME"
+        GM, {userName}
       </div>
       <div className="mt-5 text-[16px] font-nunito font-medium tracking-wide leading-8 text-white text-opacity-50 max-w-full">
-        Lets get started by adding your project
+        Let's get started by adding your project
         <br />
         to showcase the world
       </div>
       <div className="sm:w-[457px]">
-        <div className="flex gap-5  justify-between  w-full text-[16px] tracking-wide leading-8 whitespace-nowrap sm:flex-none flex-wrap sm:mt-20 mt-10 max-w-full">
-          <div className="flex flex-1 self-start  text-white text-opacity-80">
+        <div className="flex gap-5 justify-between w-full text-[16px] tracking-wide leading-8 whitespace-nowrap sm:flex-none flex-wrap sm:mt-20 mt-10 max-w-full">
+          <div className="flex flex-1 self-start text-white text-opacity-80">
             <div>Name of the project</div>
             <Image
               alt=""
@@ -78,14 +102,14 @@ export default function ProjectListing() {
           </div>
         </div>
         <input
-          className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[12px] text-[16px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70 "
+          className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[12px] text-[16px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70"
           placeholder="Project name"
           value={name}
           onChange={handleNameChange}
           required
         />
-        <div className="flex gap-5  w-full text-[16px] tracking-wide leading-8 whitespace-nowrap flex-wrap mt-10 max-w-full">
-          <div className="flex flex-1  self-start text-white text-opacity-80">
+        <div className="flex gap-5 w-full text-[16px] tracking-wide leading-8 whitespace-nowrap flex-wrap mt-10 max-w-full">
+          <div className="flex flex-1 self-start text-white text-opacity-80">
             <div>Tagline</div>
             <Image
               alt=""
@@ -101,15 +125,15 @@ export default function ProjectListing() {
           </div>
         </div>
         <input
-          className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[12px] text-[16px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70 "
+          className="justify-center items-start p-[13px] mt-4 w-full placeholder:text-[12px] text-[16px] font-medium tracking-wide leading-8 bg-[#DFA9FE] rounded-xl border border-solid border-white border-opacity-20 placeholder:opacity-40 placeholder:font-nunito placeholder:text-black text-black text-opacity-70"
           placeholder="Give a short tagline for your project."
           value={tagline}
           onChange={handleTaglineChange}
           required
         />
         <button type="submit">
-          <div className="flex gap-5 justify-end  w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-            <a className="flex gap-5  font-nunito justify-between  items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
+          <div className="flex gap-5 justify-end w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
+            <a className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-3xl">
               <div>Next</div>
               <Image
                 alt=""
@@ -117,7 +141,7 @@ export default function ProjectListing() {
                 height={100}
                 loading="lazy"
                 src={next}
-                className="shrink-0 w-[12px]  aspect-[0.76] stroke-[2px] stroke-white"
+                className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
               />
             </a>
           </div>
