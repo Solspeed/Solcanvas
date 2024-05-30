@@ -6,6 +6,7 @@ import { useFormData } from '../context/FormDataContext';
 import next from '../../../../public/images/next.png';
 import { useWallet } from "@solana/wallet-adapter-react";
  import { useUser } from "../../../(useronboarding)/context/UserContext";
+ import { useRouter } from "next/navigation";
 
 export default function Description() {
   const { formData, updateFormData } = useFormData();
@@ -13,7 +14,7 @@ export default function Description() {
   const { publicKey } = useWallet();
   const walletId = publicKey?.toString() || '';
 const {name} = useUser();
-
+const router = useRouter();
  console.log(name)
   
 const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -68,7 +69,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     projectData.username = onboardingData[0]?.name;
 
     const { data, error } = await supabase.from("project_listing").insert([projectData]);
-
+router.push('/dashboard')
     if (error) {
       throw new Error(`Error inserting data into project_listing table: ${error.message}`);
     }

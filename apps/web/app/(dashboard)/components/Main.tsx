@@ -1,37 +1,43 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import projectImage from "../../../public/images/dashboard/TinyDancer.png";
 import upload from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
 import supabase from "../../../supabase";
-import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
+
 interface ProjectProps {
   logoImageUrl: string;
+  name: string;
   tagline: string;
   description: string;
   views?: number;
   commits?: number;
   liveLink?: string;
   status?: "live" | "review" | "rejected";
+ 
 }
 
 const ProjectCard: React.FC<ProjectProps> = ({
   logoImageUrl,
+  name,
   tagline,
   description,
   views,
   commits,
   liveLink,
   status,
+  
 }) => {
   let statusText = "";
   let statusClass = "";
+ 
 
   switch (status) {
     case "live":
       statusText = `Live on "${liveLink}"`;
       statusClass = "text-purple-300";
+       statusText = `Live on "/marketplace/${name}"`;
       break;
     case "review":
       statusText =
@@ -41,7 +47,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
     case "rejected":
       statusText = (
         <>
-          Rejected , for further help mail on{" "}
+          Rejected, for further help mail on{" "}
           <span className="text-purple-300">solcanvas2024@gmail.com</span>
         </>
       ).toString();
@@ -50,23 +56,25 @@ const ProjectCard: React.FC<ProjectProps> = ({
   }
 
   return (
+    
+
     <div className="flex flex-col grow pt-4 w-full rounded-xl bg-neutral-900">
       {status === "live" && (
         <div className="flex flex-1 justify-between gap-5 w-full ">
           <div className="flex gap-2 self-start ">
             <img
               src={logoImageUrl}
-              alt={tagline}
+              alt={name}
               className="shrink-0 aspect-[1.02] w-[99px] -mb-4 ml-4"
             />
             <div className="flex flex-col my-auto">
-              <div className="text-base font-medium text-white">{tagline}</div>
+              <div className="text-base font-medium text-white">{name}</div>
               <div className="mt-1.5 text-xs text-white text-opacity-80">
                 {description}
               </div>
             </div>
           </div>
-          <div className="flex  font-silkscreen  gap-5 mt-auto sm:mr-6">
+          <div className="flex font-silkscreen gap-5 mt-auto sm:mr-6">
             <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
               <div className="text-xs text-white">Views</div>
               <div className="mt-3 text-xl font-bold text-purple-300">
@@ -90,28 +98,25 @@ const ProjectCard: React.FC<ProjectProps> = ({
             className="shrink-0 aspect-[1.02] w-[99px] -mb-4 ml-4"
           />
           <div className="flex flex-col my-auto">
-            <div className="text-base font-medium text-white">{tagline}</div>
+            <div className="text-base font-medium text-white">{name}</div>
             <div className="mt-1.5 text-xs text-white text-opacity-80">
-              {description}
+              {tagline}
             </div>
           </div>
         </div>
       )}
-      <div
-        className={`justify-center text-center items-center px-16 py-4 text-xs tracking-wider rounded-none  bg-black bg-opacity-90 max-md:px-5 max-md:max-w-full ${statusClass}`}
+      {/* <div
+        className={`justify-center text-center items-center px-16 py-4 text-xs tracking-wider rounded-none bg-black bg-opacity-90 max-md:px-5 max-md:max-w-full ${statusClass}`}
       >
         {statusText}
-      </div>
+      </div> */}
     </div>
   );
 };
 
-const ProjectList: React.FC = () => {
+const ProjectList: React.FC<{ walletId: string }> = ({ walletId }) => {
   const [projects, setProjects] = useState<ProjectProps[]>([]); // State for project data
   const [isLoading, setIsLoading] = useState(true);
-  const { publicKey } = useWallet();
-
-  const walletId = publicKey?.toString() || "";
 
   useEffect(() => {
     let isMounted = true;
@@ -152,6 +157,7 @@ const ProjectList: React.FC = () => {
       isMounted = false;
     };
   }, [walletId]);
+
   console.log("projects", projects);
   return (
     <div className="flex flex-col grow mt-5 max-md:mt-10 max-md:max-w-full">
@@ -184,9 +190,11 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({
     </div>
   );
 };
+
 const Main = () => {
   const [projectCount, setProjectCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [username, setUsername] = useState("");
   const { publicKey } = useWallet();
 
   const walletId = publicKey?.toString() || "";
@@ -195,7 +203,7 @@ const Main = () => {
   useEffect(() => {
     let isMounted = true; // Flag to track component mount status
 
-    const fetchProjectCount = async () => {
+    const fetchProjectCountAndUsername = async () => {
       if (!walletId) {
         setIsLoading(false);
         return; // Exit early if walletId is not available yet
@@ -204,7 +212,7 @@ const Main = () => {
       setIsLoading(true);
 
       try {
-        const { count, error } = await supabase
+        const { data, count, error } = await supabase
           .from("project_listing")
           .select("*", { count: "exact" })
           .eq("wallet_id", walletId);
@@ -214,6 +222,9 @@ const Main = () => {
         } else if (isMounted) {
           // Update state only if component is still mounted
           setProjectCount(count || 0); // Default to 0 if count is undefined
+          if (data && data.length > 0) {
+            setUsername(data[0].username); // Set username from the first project
+          }
         }
       } catch (error: any) {
         console.error("Error fetching project count:", error.message);
@@ -225,7 +236,7 @@ const Main = () => {
     };
 
     if (walletId) {
-      fetchProjectCount();
+      fetchProjectCountAndUsername();
     }
 
     return () => {
@@ -235,21 +246,19 @@ const Main = () => {
 
   console.log("projectCount", projectCount);
   return (
-    <div
+    <div  
       className="bg-black overflow-scroll scroll-smooth
      p-12 w-full flex justify-between"
     >
-      <main className="flex flex-col ml-5  max-md:ml-0 w-full">
-        <section className="flex flex-col self-stretch my-auto  max-w-full">
-          <h1 className="text-3xl text-purple-300 max-w-full">
-            Gm, "user name"
-          </h1>
+      <main className="flex flex-col ml-5 max-md:ml-0 w-full">
+        <section className="flex flex-col self-stretch my-auto max-w-full">
+          <h1 className="text-3xl text-purple-300 max-w-full">Gm, {username}</h1>
           <div className="mt-16 flex max-md:mt-10 max-w-full">
             <div className="flex gap-5 flex-col max-md:gap-0">
-              <div className="flex flex-col  max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col max-md:ml-0 max-md:w-full">
                 <div className="max-md:mt-10 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                    <div className="flex-col  bg-stone-950 flex items-center p-7 py-8 rounded-full justify-center">
+                    <div className="flex-col bg-stone-950 flex items-center p-7 py-8 rounded-full justify-center">
                       <img src={upload.src} alt="User avatar" />
                     </div>
                     <div className="flex flex-col ml-5 w-[82%] max-md:ml-0 max-md:w-full">
@@ -267,22 +276,18 @@ const Main = () => {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-                                <ProjectCard {...projects[0]} />
-                            </div> */}
-              <div className="flex flex-col  max-md:ml-0 max-md:w-full">
-                <ProjectList />
+              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                <ProjectList walletId={walletId} />
               </div>
             </div>
             <div className="flex flex-col gap-12">
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Projects" value={projectCount} />
               </div>
-              <div className="flex flex-col sm:ml-5  ml-0 w-full">
+              <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Projects" value={13} />
               </div>
-              <div className="flex flex-col sm:ml-5  ml-0 w-full">
+              <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Projects" value={13} />
               </div>
             </div>
