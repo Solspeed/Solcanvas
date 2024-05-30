@@ -5,17 +5,17 @@ import required from "../../../../public/images/required.png";
 import next from "../../../../public/images/next.png";
 import Image from "next/image";
 import upload from "../../../../public/images/upload.png";
-import  supabase  from "../../../../supabase";
+import supabase from "../../../../supabase";
 import { useRouter } from "next/navigation";
-import {useFormData} from '../context/FormDataContext'
+import { useFormData } from '../context/FormDataContext'
 
 export default function ProjectBanner() {
 
- const { formData, updateFormData } = useFormData();
+  const { formData, updateFormData } = useFormData();
   const [logoFile, setLogoFile] = useState<File | null>(null); // State to hold the selected logo file
   const [bannerFile, setBannerFile] = useState<File | null>(null); // State to hold the selected banner file
   const router = useRouter();
-console.log("FormData:", formData);
+  console.log("FormData:", formData);
   const handleFileSelect = (file: File, fileType: string) => {
     if (fileType === 'logo') {
       setLogoFile(file);
@@ -79,7 +79,7 @@ console.log("FormData:", formData);
       updateFormData({
         logoImageUrl: logoImagePath,
         bannerImageUrl: bannerImagePath,
-      });  
+      });
 
       // Redirect to the next step
       router.push('/addproject/team');
@@ -94,6 +94,11 @@ console.log("FormData:", formData);
     return `${supabaseUrl}/storage/v1/object/public/${bucketName}/${encodeURIComponent(imagePath)}`;
   };
 
+
+  const handllePreviousClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    router.push("/addproject/categories");
+  }
 
 
 
@@ -239,31 +244,31 @@ console.log("FormData:", formData);
           />
         </div>
         <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-          <a
-            href="/addproject"
+        <button
+            onClick={handllePreviousClick}
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Back</div>
-          </a>
+          </button>
           <button type="submit">
-          <a
-            // href="/addproject/team"
-            className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
-          >
-            <div>Next</div>
-            <Image
-              alt=""
-              width={100}
-              height={100}
-              loading="lazy"
-              src={next}
-              className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
-            />
-          </a>
+            <a
+              // href="/addproject/team"
+              className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
+            >
+              <div>Next</div>
+              <Image
+                alt=""
+                width={100}
+                height={100}
+                loading="lazy"
+                src={next}
+                className="shrink-0 w-[12px] aspect-[0.76] stroke-[2px] stroke-white"
+              />
+            </a>
           </button>
         </div>
       </div>
     </form>
   );
 }
-    
+

@@ -27,6 +27,10 @@ const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     updateFormData({ description: newDescription.slice(0, 1000) });
   }
 };
+const handlePreviousClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault();   
+  router.push('/addproject/links');
+};
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -116,12 +120,12 @@ router.push('/dashboard')
           onChange={handleDescriptionChange}
         />
         <div className="flex sm:w-[457px] gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-10 mt-8 max-w-full">
-          <a
-            href="/addproject/team"
+        <button
+            onClick={handlePreviousClick}
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Back</div>
-          </a>
+          </button>
           <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
             <div>Finish</div>
             <Image
