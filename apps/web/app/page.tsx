@@ -8,8 +8,6 @@ import GetStarted from "../components/layout/GetStarted";
 import Community from "../components/layout/Community";
 import ConnectWallet from "../components/layout/ConnectWallet";
 import Solana from "../components/layout/Solana";
-import { AppProps } from "next/app";
-
 
 export default function Home() {
 
