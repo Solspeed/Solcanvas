@@ -50,6 +50,11 @@ export default function Team(): JSX.Element {
     }
   };
 
+  const handlePreviousClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();   
+    router.push('/addproject/banner');
+  };
+  
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number, field: keyof Member): void => {
     const { value } = event.target;
     setMembers((prevMembers) => {
@@ -152,9 +157,12 @@ export default function Team(): JSX.Element {
         Add Another Member
       </div>
       <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-        <a href="/addproject/banner" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
-          <div>Back</div>
-        </a>
+      <button
+            onClick={handlePreviousClick}
+            className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
+          >
+            <div>Back</div>
+          </button>
         <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
           <div>Next</div>
           <Image alt="" src={next} width={12} height={12} className="shrink-0 aspect-[0.76] stroke-white" />

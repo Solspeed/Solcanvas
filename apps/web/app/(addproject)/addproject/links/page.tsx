@@ -33,7 +33,10 @@ console.log("FormData:", formData);
     setGithub(newGithub);
     updateFormData({ github: newGithub });
   };
-
+  const handlePreviousClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();   
+    router.push('/addproject/team');
+  };
   const handleTwitterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newTwitter = event.target.value;
     setTwitter(newTwitter);
@@ -143,12 +146,12 @@ console.log("FormData:", formData);
           required
         />
         <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-          <a
-            href="/addproject/team"
+        <button
+            onClick={handlePreviousClick}
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Back</div>
-          </a>
+          </button>
           <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
             <div>Next</div>
             <Image

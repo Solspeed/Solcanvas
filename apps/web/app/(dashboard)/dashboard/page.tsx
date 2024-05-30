@@ -48,7 +48,7 @@ export default function Home() {
               Rewards
             </button>
           </div>
-          <button className="self-center mb-12 text-[#954AD2]">Exit</button>
+          <a href='/marketplace' className="self-center mb-12 text-[#954AD2]">Exit</a  >
         </div>
       </div>
       <div className="flex-1 md:flex h-full relative overflow-y-auto">

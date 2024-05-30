@@ -25,12 +25,12 @@ export default function Navbar() {
                     <a href="#" className="text-[#B2B2B2] text-xl font-bold capitalize leading-[30px] tracking-[1%]">
                         Wallet
                     </a> */}
-           <a href="/marketplace" className="flex items-center text-white justify-start gap-[0.44rem] font-nunito">
-                <Image src={logo} alt="solcanvas logo" className="w-[40px] h-[40px] " />
-                <div className="flex-auto my-auto ml-2 font-semibold font-silkscreen">
-                    SolCanvas<span className="text-xs text-red-600">beta</span>
-                </div>
-            </a>
+          <a href="/marketplace" className="flex items-center text-white justify-start gap-[0.44rem] font-nunito">
+            <Image src={logo} alt="solcanvas logo" className="w-[40px] h-[40px] " />
+            <div className="flex-auto my-auto ml-2 font-semibold font-silkscreen">
+              SolCanvas<span className="text-xs text-red-600">beta</span>
+            </div>
+          </a>
           {/* <a href="#" className="text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         DeFi
                     </a>
@@ -40,7 +40,7 @@ export default function Navbar() {
                     <a href="#" className="xl:block hidden text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         Developer Tools
                     </a> */}
-          <a href="#">
+          <a href="/dashboard">
             <Image
               src={window}
               className="shrink-0 aspect-[0.86] w-[31px]"
