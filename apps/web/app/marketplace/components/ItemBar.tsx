@@ -124,6 +124,12 @@ export default function ItemBar({
           >
             Submit Project
           </a>
+          <a
+            href="/dashboard"
+            className="flex justify-center font-silkscreen self-stretch text-nowrap  py-3 my-auto text-purple-300 rounded-md"
+          >
+           Dashboard
+          </a>
         </div>
         {isCopied && (
           <div className="absolute z-50 top-4 right-8 bg-green-500 text-white px-4 py-2 rounded-md shadow-md">

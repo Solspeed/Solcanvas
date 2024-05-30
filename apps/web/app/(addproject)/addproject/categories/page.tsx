@@ -67,7 +67,6 @@ export default function Categories() {
           <option value="" disabled selected>
             Select
           </option>
-          <option value="Analytics">Analytics</option>
           <option value="Step Finance">Step Finance</option>
           <option value="Hello Moon">Hello Moon</option>
           <option value="Cex">Cex</option>

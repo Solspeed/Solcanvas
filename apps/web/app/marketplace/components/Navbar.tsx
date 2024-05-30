@@ -40,7 +40,7 @@ export default function Navbar() {
                     <a href="#" className="xl:block hidden text-[#B2B2B2] text-xl font-bold  capitalize leading-[30px] tracking-[1%]">
                         Developer Tools
                     </a> */}
-          <a href="#">
+          <a href="/dashboard">
             <Image
               src={window}
               className="shrink-0 aspect-[0.86] w-[31px]"
