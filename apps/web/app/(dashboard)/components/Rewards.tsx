@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import backIcon from "../../../public/images/dashboard/back.svg";
 import heliusApiUrl from '../../constant';
-console.log('dfhldsjfkljdsklheliusApiUrl' + heliusApiUrl);
 const nftImageUrl = 'https://i.ibb.co/Rg9M1tT/Beta-NFT-1.png';
-const apiUrl = 'https://mainnet.helius-rpc.com/?api-key=' + heliusApiUrl;
+const apiUrl = 'https://devnet.helius-rpc.com/?api-key=' + heliusApiUrl;
 
 interface RewardCardProps {
   imageSrc: string;
@@ -16,14 +15,47 @@ interface RewardCardProps {
   rewardType: string;
 }
 
+const Loader = () => (
+  <div className="loader">
+    <div className="spinner"></div>
+    <style jsx>{`
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    `}</style>
+  </div>
+);
+
 export default function Rewards() {
   const [selectedButton, setSelectedButton] = useState('');
   const [claimSuccess, setClaimSuccess] = useState(false);
   const [claimedRewards, setClaimedRewards] = useState({ beta: false, firstProject: false });
   const [showClaimedMessage, setShowClaimedMessage] = useState(false);
   const [nftImage, setNftImage] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { publicKey } = useWallet();
+
+  useEffect(() => {
+    if (!publicKey) {
+      router.push('/connect_wallet');
+    }
+  }, [publicKey, router]);
 
   const handleClaim = (rewardType: 'beta') => {
     setClaimSuccess(true);
@@ -31,11 +63,11 @@ export default function Rewards() {
     setTimeout(() => {
       setSelectedButton('');
       setShowClaimedMessage(true);
-      // window.location.reload();
     }, 3000);
   };
 
   const mintCompressedNft = async () => {
+    setLoading(true);
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -46,7 +78,7 @@ export default function Rewards() {
           method: 'mintCompressedNft',
           params: {
             name: "Solcanvas Beta NFT",
-            symbol: 'NFT',
+            symbol: 'NNFT',
             owner: publicKey,
             description: "Solcanvas's Beta NFT is a unique NFT that is only available to beta testers of Solcanvas. This NFT is a token of appreciation for your contribution to the Solcanvas community. Thank you for being a part of our journey!",
             attributes: [{ trait_type: 'Rarity', value: 'Common' }],
@@ -67,6 +99,8 @@ export default function Rewards() {
     } catch (error) {
       toast.error("Failed to mint NFT. Please try again.");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,18 +124,21 @@ export default function Rewards() {
       console.error(error);
     }
   };
+  
 
   const RewardCard = ({ imageSrc, altText, claimed }:
     RewardCardProps
   ) => (
-    <div className={`flex flex-col self-end px-7 py-7 mt-28 max-w-full text-xl ${claimed ? 'text-gray-400' : 'text-red-300'} rounded-2xl bg-neutral-950 max-w-[563px] max-md:px-5 max-md:mt-10`}>
+    <div className={`flex  flex-col self-end px-7 py-7 mt-28 max-w-full text-xl ${claimed ? 'text-gray-400' : 'text-red-300'} rounded-2xl bg-neutral-950 max-w-[563px] max-md:px-5 max-md:mt-10`}>
       <img src={imageSrc} alt={altText} className="self-center max-w-full" />
       <button
-        className={`justify-center px-12 py-4 mt-4 rounded-md bg-neutral-900 max-md:px-5 ${claimed ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`justify-center  px-12 py-4 mt-4 rounded-md bg-neutral-900 max-md:px-5 ${claimed ? 'opacity-50 cursor-not-allowed' : ''}`}
         onClick={!claimed ? mintCompressedNft : undefined}
       >
-        {claimed ? 'Claimed' : 'Claim'}
+      {loading ? <div className='inset-0 flex items-center justify-center absolute bg-black bg-opacity-70 '> <Loader /></div> : 'Claim'}
       </button>
+
+
     </div>
   );
 
@@ -137,7 +174,7 @@ export default function Rewards() {
             <div className="bg-[#151515] flex flex-col text-[#FF0000] px-24 py-12 rounded-md">
               <button onClick={() => setSelectedButton('beta')}>Beta Reward</button>
               {claimedRewards.beta && (
-                <div className="text-green-400   text-sm">Claimed</div>
+                <div className="text-green-400 text-sm">Claimed</div>
               )}
             </div>
           </div>
@@ -147,21 +184,26 @@ export default function Rewards() {
   };
 
   return (
-    <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
-      <div className="flex gap-5 flex-col flex-wrap max-md:max-w-full">
-        <div className="flex-auto my-auto text-3xl text-purple-300">Rewards</div>
-        {selectedButton && !claimSuccess && (
-          <button onClick={() => setSelectedButton('')} className="text-white focus:outline-none ml-4">
-            <img src={backIcon.src} alt="Back" className="w-6 h-6" />
-          </button>
-        )}
-        {claimSuccess && (
-          <button onClick={() => setClaimSuccess(false)} className="text-white focus:outline-none ml-4">
-            <img src={backIcon.src} alt="Back" className="w-6 h-6" />
-          </button>
-        )}
-      </div>
-      {renderCards()}
+    <div className="flex flex-col overflow-y-scroll font-silkscreen p-12 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
+
+
+      <>
+        <div className="flex gap-5 flex-col flex-wrap max-md:max-w-full">
+          <div className="flex-auto my-auto text-3xl text-purple-300">Rewards</div>
+          {selectedButton && !claimSuccess && (
+            <button onClick={() => setSelectedButton('')} className="text-white focus:outline-none ml-4">
+              <img src={backIcon.src} alt="Back" className="w-6 h-6" />
+            </button>
+          )}
+          {claimSuccess && (
+            <button onClick={() => setClaimSuccess(false)} className="text-white focus:outline-none ml-4">
+              <img src={backIcon.src} alt="Back" className="w-6 h-6" />
+            </button>
+          )}
+        </div>
+        {renderCards()}
+      </>
+
       <ToastContainer />
     </div>
   );
