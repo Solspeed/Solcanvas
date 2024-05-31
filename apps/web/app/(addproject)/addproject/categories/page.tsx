@@ -72,19 +72,10 @@ export default function Categories() {
           <option value="" disabled selected>
             Select
           </option>
-          <option value="Step Finance">Step Finance</option>
-          <option value="Hello Moon">Hello Moon</option>
           <option value="Cex">Cex</option>
-          <option value="OKX">OKX</option>
-          <option value="Binance">Binance</option>
           <option value="DeFi">DeFi</option>
-          <option value="Mango">Mango</option>
-          <option value="Jupiter Aggregator">Jupiter Aggregator</option>
           <option value="Developer Tool">Developer Tool</option>
-          <option value="Squads">Squads</option>
-          <option value="Tiny Dancer">Tiny Dancer</option>
           <option value="Digital Collectibles">Digital Collectibles</option>
-          <option value="Drip">Drip</option>
           <option value="Art">Art</option>
           <option value="Dao">Dao</option>
           <option value="Depin">Depin</option>
@@ -95,6 +86,8 @@ export default function Categories() {
           <option value="Oracle">Oracle</option>
           <option value="Payments">Payments</option>
           <option value="Privacy">Privacy</option>
+          <option value="Social Protocol">Social Platform</option>
+
           <option value="Social Protocol">Social Protocol</option>
           <option value="Stable Coin">Stable Coin</option>
           <option value="Wallet">Wallet</option>

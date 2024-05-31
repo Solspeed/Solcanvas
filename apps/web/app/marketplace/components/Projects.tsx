@@ -13,9 +13,9 @@ interface Project {
 }
 
 const categories = [
- 'Cex', 'DeFi', 'Developer Tool', 'Digital Collectibles', 'Art',
+  'Cex', 'DeFi', 'Developer Tool', 'Digital Collectibles', 'Art',
   'Dao', 'Depin', 'Explorer', 'Gaming', 'Infrastructure', 'Mobile', 'Oracle',
-  'Payments', 'Privacy', 'Social Protocol', 'Stable Coin', 'Wallet', 'Others'
+  'Payments', 'Privacy', 'Social Platform', 'Social Protocol', 'Stable Coin', 'Wallet', 'Others'
 ];
 
 const mainCategories = ['All Projects', 'NFT', 'Wallet', 'Exchange', 'DeFi'];
