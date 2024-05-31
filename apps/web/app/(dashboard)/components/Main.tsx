@@ -75,12 +75,12 @@ const ProjectCard: React.FC<ProjectProps> = ({
             </div>
           </div>
           <div className="flex font-silkscreen gap-5 mt-auto sm:mr-6">
-            <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
+            {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
               <div className="text-xs text-white">Views</div>
               <div className="mt-3 text-xl font-bold text-purple-300">
                 {views}
               </div>
-            </div>
+            </div> */}
             {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
               <div className="text-xs text-white">Commits</div>
               <div className="mt-3 text-xl font-bold text-purple-300">
@@ -193,6 +193,7 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({
 
 const Main = () => {
   const [projectCount, setProjectCount] = useState(0);
+  const [rewards, setRewards] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState("");
   const { publicKey } = useWallet();
@@ -222,6 +223,7 @@ const Main = () => {
           console.error("Error fetching project count:", error.message);
         } else if (isMounted) {
           setProjectCount(count || 0); // Default to 0 if count is undefined
+          setRewards(count !== null && count > 0 ? 1 : 0); // Set rewards based on project count
         }
 
         // Fetch username from onboarding table
@@ -303,7 +305,7 @@ const Main = () => {
                 <StatCard label="Your Projects" value={projectCount} />
               </div>
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                <StatCard label="Your Rewards" value={13} />
+                <StatCard label="Your Rewards" value={rewards} />
               </div>
               {/* <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Commits" value={13} />
