@@ -305,9 +305,9 @@ const Main = () => {
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Rewards" value={13} />
               </div>
-              <div className="flex flex-col sm:ml-5 ml-0 w-full">
+              {/* <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Commits" value={13} />
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
