@@ -294,10 +294,10 @@ const Main = () => {
                 <div className="max-md:mt-10 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex-col flex shrink-0 bg-stone-950 items-center sm:w-44 w-24 h-24 sm:h-44 p-2 rounded-full justify-center relative">
-                      {uploadedImage ? (
-                        <img src={uploadedImage} alt="Uploaded" className="w-full  h-full object-cover rounded-full" />
+                      {!uploadedImage ? (
+                        <img src={uploadedImage ?? ''} alt="Uploaded" className="w-full  h-full object-cover rounded-full" />
                       ) : (
-                        <img src={uploadIcon.src} alt="User avatar" className="w-full h-full object-fit rounded-full" />
+                        <img src={uploadIcon.src} alt="User avatar" className="w-16 h-16 object-fit rounded-full" />
                       )}
                       <input
                         type="file"
