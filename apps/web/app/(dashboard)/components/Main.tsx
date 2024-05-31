@@ -247,7 +247,7 @@ const Main = () => {
   console.log("projectCount", projectCount);
   return (
     <div
-      className="bg-black overflow-scroll scroll-smooth
+      className="bg-black overflow-scroll  scroll-smooth
      p-12 w-full flex justify-between"
     >
       <main className="flex flex-col ml-5 max-md:ml-0 w-full">
