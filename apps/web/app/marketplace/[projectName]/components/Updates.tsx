@@ -136,7 +136,6 @@ export default function Updates() {
 
       {formData.projectUpdates
         .slice(0, showAllUpdates ? formData.projectUpdates.length : 3)
-        .reverse()
         .map((update, index) => (
           <div
             key={index}

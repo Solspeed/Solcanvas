@@ -52,14 +52,14 @@ export default function ProjectListing() {
 
     const fetchUsername = async () => {
       const { data, error } = await supabase
-        .from("project_listing")
-        .select("username")
+        .from("onboarding")
+        .select("name")
         .eq("wallet_id", walletId);
 
       if (error) {
-        console.error("Error fetching username:", error.message);
+        console.error("Error fetching name:", error.message);
       } else if (data.length > 0) {
-        setUserName(data[0]?.username);
+        setUserName(data[0]?.name);
       }
     };
 
@@ -77,7 +77,7 @@ export default function ProjectListing() {
         <div className="shrink-0 rounded-2xl bg-zinc-400 h-[11px] w-[38px]" />
       </div>
       <div className="mt-11 sm:text-[30px] font-silkscreen font-medium tracking-wide leading-8 text-white max-w-full text-4xl">
-        GM, {userName}
+        GM,{userName}
       </div>
       <div className="mt-5 text-[16px] font-nunito font-medium tracking-wide leading-8 text-white text-opacity-50 max-w-full">
         Let's get started by adding your project

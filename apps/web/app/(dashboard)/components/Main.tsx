@@ -213,6 +213,7 @@ const Main = () => {
       setIsLoading(true);
 
       try {
+        // Fetch project count from project_listing table
         const { data, count, error } = await supabase
           .from("project_listing")
           .select("*", { count: "exact" })
@@ -221,14 +222,23 @@ const Main = () => {
         if (error) {
           console.error("Error fetching project count:", error.message);
         } else if (isMounted) {
-          // Update state only if component is still mounted
           setProjectCount(count || 0); // Default to 0 if count is undefined
-          if (data && data.length > 0) {
-            setUsername(data[0].username); // Set username from the first project
-          }
+        }
+
+        // Fetch username from onboarding table
+        const { data: onboardingData, error: onboardingError } = await supabase
+          .from("onboarding")
+          .select("name")
+          .eq("wallet_id", walletId)
+          .single();
+
+        if (onboardingError) {
+          console.error("Error fetching username:", onboardingError.message);
+        } else if (isMounted && onboardingData) {
+          setUsername(onboardingData.name); // Set username from the onboarding table
         }
       } catch (error: any) {
-        console.error("Error fetching project count:", error.message);
+        console.error("Error fetching data:", error.message);
       } finally {
         if (isMounted) {
           setIsLoading(false);
