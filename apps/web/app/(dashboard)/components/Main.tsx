@@ -1,9 +1,10 @@
+
 "use client";
 import React, { useEffect, useState } from "react";
-import upload from "../../../public/images/dashboard/cloud.svg";
+import uploadIcon from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
-import supabase from "../../../supabase";
 import { useWallet } from "@solana/wallet-adapter-react";
+import supabase from "../../../supabase";
 import { useRouter } from 'next/navigation'
 
 interface ProjectProps {
@@ -15,8 +16,6 @@ interface ProjectProps {
   liveLink?: string;
   status?: "live" | "requested" | "rejected";
 }
-
-
 
 const ProjectCard: React.FC<ProjectProps> = ({
   logoImageUrl,
@@ -31,10 +30,9 @@ const ProjectCard: React.FC<ProjectProps> = ({
   let statusClass = "";
   const router = useRouter();
 
-
-const handleClick = () => {
-  router.push(`/marketplace/${name}`)
-}
+  const handleClick = () => {
+    router.push(`/marketplace/${name}`)
+  }
 
   switch (status) {
     case "live":
@@ -62,7 +60,7 @@ const handleClick = () => {
   }
 
   return (
-    <div className="flex flex-col font-nunito  grow pt-4 w-full rounded-xl bg-neutral-900">
+    <div className="flex flex-col w-full font-nunito pt-4  rounded-xl bg-neutral-900">
       {status === "live" && (
         <div className="flex flex-1 justify-between gap-5 w-full ">
           <div className="flex gap-2 self-start ">
@@ -80,17 +78,17 @@ const handleClick = () => {
           </div>
           <div className="flex font-silkscreen gap-5 mt-auto sm:mr-6">
             {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
-              <div className="text-xs text-white">Views</div>
-              <div className="mt-3 text-xl font-bold text-purple-300">
-                {views}
-              </div>
-            </div> */}
+                <div className="text-xs text-white">Views</div>
+                <div className="mt-3 text-xl font-bold text-purple-300">
+                  {views}
+                </div>
+              </div> */}
             {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
-              <div className="text-xs text-white">Commits</div>
-              <div className="mt-3 text-xl font-bold text-purple-300">
-                {commits}
-              </div>
-            </div> */}
+                <div className="text-xs text-white">Commits</div>
+                <div className="mt-3 text-xl font-bold text-purple-300">
+                  {commits}
+                </div>
+              </div> */}
           </div>
         </div>
       )}
@@ -183,7 +181,7 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({
   value,
 }) => {
   return (
-    <div className="flex flex-col items-start py-4 pr-20 pl-3 w-full rounded-xl bg-neutral-900 max-md:pr-5 max-md:mt-10">
+    <div className="flex flex-col items-start py-4 pl-3 w-full rounded-xl bg-neutral-900 max-md:pr-5 max-md:mt-10">
       <div className="text-sm text-white">{label}</div>
       <div
         className={`mt-11 text-4xl font-bold max-md:mt-10 ${label === "Your Rewards" ? "text-orange-600" : "text-purple-600"
@@ -201,9 +199,22 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState("");
   const { publicKey } = useWallet();
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const walletId = publicKey?.toString() || "";
   console.log("walletId", walletId);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setUploadedImage(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -260,36 +271,56 @@ const Main = () => {
     };
   }, [walletId]);
 
+  const truncatedWalletId = walletId
+    ? walletId.length > 10
+      ? `${walletId.substring(0, 6)}...${walletId.substring(walletId.length - 4)}`
+      : walletId
+    : "";
+
   console.log("projectCount", projectCount);
   return (
     <div
-      className="bg-black overflow-scroll  font-silkscreen  scroll-smooth
-     p-12 w-full flex justify-between"
+      className="bg-black overflow-y-scroll overflow-x-hidden font-silkscreen scroll-smooth
+      sm:p-12 sm:mt-0 p-4 w-full flex justify-between"
     >
-      <main className="flex flex-col ml-5 w-full">
-        <section className="flex flex-col self-stretch  ">
-          <h1 className="text-3xl text-purple-300 max-w-full">
+      <main className="flex flex-col w-full">
+        <section className="flex flex-col self-stretch">
+          <h1 className="text-3xl sm:ml-0 ml-16 text-purple-300 max-w-full">
             Gm, {username}
           </h1>
-          <div className="mt-16 flex max-md:mt-10 ">
-            <div className="flex gap-5 flex-col max-md:gap-0">
+          <div className="mt-16 flex lg:flex-row  flex-col max-md:mt-10">
+            <div className="flex gap-5 flex-col lg:w-[55vw]">
               <div className="flex flex-col max-md:ml-0 w-full">
                 <div className="max-md:mt-10 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                    <div className="flex-col bg-stone-950 flex items-center p-7 py-8 rounded-full justify-center">
-                      <img src={upload.src} alt="User avatar" />
+                    <div className="flex-col flex shrink-0 bg-stone-950 items-center sm:w-44 w-24 h-24 sm:h-44 p-2 rounded-full justify-center relative">
+                      {uploadedImage ? (
+                        <img src={uploadedImage} alt="Uploaded" className="w-full  h-full object-cover rounded-full" />
+                      ) : (
+                        <img src={uploadIcon.src} alt="User avatar" className="w-full h-full object-fit rounded-full" />
+                      )}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="absolute inset-0 opacity-0 cursor-pointer"
+                      />
                     </div>
-                    <div className="flex flex-col ml-5 w-[82%] max-md:ml-0 max-md:w-full">
+                    <div className="flex flex-col w-[82%] max-md:ml-0 max-md:w-full">
                       <div className="flex gap-2.5 self-stretch p-3 my-auto w-full text-sm text-red-600 whitespace-nowrap rounded-md bg-stone-950 max-md:flex-wrap max-md:mt-10">
                         {walletId ? (
-                          <div className="flex-auto max-md:max-w-full">
-                            {walletId}
-                          </div>) : (
+                          <>
+                            <div className="sm:hidden flex-auto max-md:max-w-full">
+                              {truncatedWalletId}
+                            </div>
+                            <div className="hidden sm:block flex-auto max-md:max-w-full">
+                              {walletId}
+                            </div>
+                          </>) : (
                           <div className="flex-auto max-md:max-w-full">
                             Connect your wallet to see your wallet address
                           </div>
                         )}
-
                         <img
                           src={copyIcon.src}
                           alt="Copy icon"
@@ -300,11 +331,9 @@ const Main = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col max-md:ml-0">
-                <ProjectList walletId={walletId} />
-              </div>
+              <ProjectList walletId={walletId} />
             </div>
-            <div className="flex flex-col gap-12">
+            <div className="flex text-nowrap lg:mt-0 mt-12 flex-row flex-1 lg:flex-col gap-4 sm:gap-12">
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Projects" value={projectCount} />
               </div>
@@ -312,8 +341,8 @@ const Main = () => {
                 <StatCard label="Your Rewards" value={rewards} />
               </div>
               {/* <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                <StatCard label="Your Commits" value={13} />
-              </div> */}
+                  <StatCard label="Your Commits" value={13} />
+                </div> */}
             </div>
           </div>
         </section>

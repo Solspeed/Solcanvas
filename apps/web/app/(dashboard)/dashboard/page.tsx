@@ -23,9 +23,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className={`fixed top-0 left-0 h-full bg-[#0A0A0A] z-40 transition-transform duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} sm:relative sm:translate-x-0`}>
-        <div className="sm:flex font-silkscreen h-full flex-col justify-between">
+    <div className="flex h-screen bg-black">
+      <div className={`fixed top-0 left-0 h-full bg-[#0A0A0A] z-40 transition-transform duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0`}>
+        <div className="lg:flex font-silkscreen h-full flex-col justify-between">
           <div className="flex flex-col grow px-9 pt-14 pb-9 w-full text-base whitespace-nowrap">
             <div className="text-xl text-[#954AD2] font-bold">Solcavas</div>
             <button
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex-1 md:flex  h-full relative overflow-y-auto">
-        <div className="sm:hidden absolute top-5 left-5 z-50">
+        <div className="lg:hidden absolute top-5 left-5 z-50">
           <button onClick={toggleSidebar} className="text-white focus:outline-none">
             {isSidebarOpen ? (
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@ export default function Home() {
         {renderComponent()}
       </div>
       <style jsx>{`
-        @media (min-width: 640px) {
+        @media (min-width: 1024px) {
           .sm\\:translate-x-0 {
             transform: translateX(0);
           }
