@@ -58,7 +58,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   }
 
   return (
-    <div className="flex flex-col grow pt-4 w-full rounded-xl bg-neutral-900">
+    <div className="flex flex-col  grow pt-4 w-full rounded-xl bg-neutral-900">
       {status === "live" && (
         <div className="flex flex-1 justify-between gap-5 w-full ">
           <div className="flex gap-2 self-start ">
@@ -250,14 +250,14 @@ const Main = () => {
     }
 
     return () => {
-      isMounted = false; // Cleanup: Set flag to false when component unmounts
+      isMounted = false; 
     };
   }, [walletId]);
 
   console.log("projectCount", projectCount);
   return (
     <div
-      className="bg-black overflow-scroll  scroll-smooth
+      className="bg-black overflow-scroll font-silkscreen  scroll-smooth
      p-12 w-full flex justify-between"
     >
       <main className="flex flex-col ml-5 max-md:ml-0 w-full">
