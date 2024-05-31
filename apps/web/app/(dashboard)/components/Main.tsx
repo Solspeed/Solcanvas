@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
 import uploadIcon from "../../../public/images/dashboard/cloud.svg";
@@ -200,7 +199,7 @@ const Main = () => {
   const [username, setUsername] = useState("");
   const { publicKey } = useWallet();
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-  const [imageUploading, setImageUploading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const walletId = publicKey?.toString() || "";
   console.log("walletId", walletId);
@@ -214,6 +213,17 @@ const Main = () => {
       setUploadedImage(reader.result as string);
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleCopyAddress = () => {
+    if (walletId) {
+      navigator.clipboard.writeText(walletId).then(() => {
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 3000);
+      });
+    }
   };
 
   useEffect(() => {
@@ -295,9 +305,9 @@ const Main = () => {
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex-col flex shrink-0 bg-stone-950 items-center sm:w-44 w-24 h-24 sm:h-44 p-2 rounded-full justify-center relative">
                       {!uploadedImage ? (
-                        <img src={uploadedImage ?? ''} alt="Uploaded" className="w-full  h-full object-cover rounded-full" />
-                      ) : (
                         <img src={uploadIcon.src} alt="User avatar" className="w-16 h-16 object-fit rounded-full" />
+                      ) : (
+                        <img src={uploadedImage ?? ''} alt="Uploaded" className="w-full  h-full object-cover rounded-full" />
                       )}
                       <input
                         type="file"
@@ -322,9 +332,10 @@ const Main = () => {
                           </div>
                         )}
                         <img
+                          onClick={handleCopyAddress}
                           src={copyIcon.src}
                           alt="Copy icon"
-                          className="shrink-0 w-3.5 aspect-square"
+                          className="cursor-pointer shrink-0 w-3.5 aspect-square"
                         />
                       </div>
                     </div>
@@ -346,6 +357,11 @@ const Main = () => {
             </div>
           </div>
         </section>
+        {isCopied && (
+          <div className="absolute z-50 top-4 right-8 bg-green-500 text-white px-4 py-2 rounded-md shadow-md">
+            Wallet address copied!
+          </div>
+        )}
       </main>
     </div>
   );
