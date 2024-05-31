@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import copy from "../../../public/images/dashboard/copy.svg";
 import supabase from "../../../supabase";
-import avatar from "../../../public/images/user.png"
+import avatar from "../../../public/images/user.png";
 
 interface User {
     id: number;
@@ -14,7 +14,6 @@ interface User {
     rewards: number;
     logoImageUrl: string;
     profileImgAlt: string;
-
 }
 
 interface ProfileProps {
@@ -49,20 +48,21 @@ const ProfileCard: React.FC<ProfileProps> = ({
         navigator.clipboard.writeText(wallet_id);
         alert("Wallet ID copied to clipboard");
     };
+
     return (
-        <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900  max-w-full">
+        <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900 max-w-full">
             <div className="flex">
-                <div className="flex w-[99px]  items-center justify-center flex-row">
+                <div className="flex w-[99px] items-center justify-center flex-row">
                     <img
                         loading="lazy"
                         src={avatar.src}
                         alt={profileImgAlt}
-                        className="grow object-cover "
+                        className="grow object-cover rounded-full"
                     />
                 </div>
                 <div className="flex flex-col ml-2 w-9/12">
-                    <div className="flex flex-col ">
-                        <div className="flex gap-5 px-px">
+                    <div className="flex flex-col">
+                        <div className="flex flex-col md:flex-row gap-5 px-px">
                             <div className="flex flex-col flex-1 mt-2">
                                 <h1 className="text-base font-medium font-nunito text-white">{username}</h1>
                                 <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">Chief@{tagline}</p>
@@ -72,7 +72,8 @@ const ProfileCard: React.FC<ProfileProps> = ({
                                         loading="lazy"
                                         src={copy.src}
                                         alt="Copy address"
-                                        className="shrink-0 self-center w-3.5 aspect-square"
+                                        className="shrink-0 self-center w-3.5 aspect-square cursor-pointer"
+                                        onClick={() => copyToClipboard(wallet_id)}
                                     />
                                 </div>
                             </div>
@@ -100,12 +101,6 @@ export default function AdminDashboard() {
     const [selectedUser, setSelectedUser] = useState<User | null>(null);
     const [users, setUsers] = useState<User[]>([]);
 
-    const truncateWalletId = (wallet_id: any) => {
-        if (typeof wallet_id === 'string' && wallet_id.length > 10) {
-            return wallet_id.substring(0, 10) + "...";
-        }
-        return wallet_id;
-    };
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -143,7 +138,6 @@ export default function AdminDashboard() {
     }, []);
     console.log(users)
 
-
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
         setSelectedUser(null);
@@ -159,16 +153,16 @@ export default function AdminDashboard() {
     );
 
     return (
-        <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
+        <div className="flex flex-col mt-12 sm:mt-6 font-silkscreen p-4 sm:p-4 xl:px-14 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
             <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
-                <div className="flex-auto my-auto  text-3xl text-purple-300">Users</div>
-                <div className='relative'>
+                <div className="flex-auto my-auto text-3xl text-purple-300">Users</div>
+                <div className='relative w-full max-w-md'>
                     <input
                         type="text"
                         value={searchTerm}
                         onChange={handleSearchChange}
-                        placeholder="Search users...."
-                        className="sm:w-[360px] bg-[#151515] font-nunito rounded-full p-4 outline-none border-none text-white"
+                        placeholder="Search users..."
+                        className="w-full bg-[#151515] font-nunito rounded-full p-4 outline-none border-none text-white"
                     />
                     {searchTerm && (
                         <div className="absolute top-12 right-0 left-0 text-white text-opacity-70 bg-neutral-900 rounded-md shadow-lg z-10">
@@ -186,7 +180,7 @@ export default function AdminDashboard() {
                 </div>
             </div>
             <div className="mt-12 flex-1 overflow-y-auto scroll-smooth">
-                <div className="grid lg:grid-cols-2 gap-10 mt-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-4">
                     {selectedUser ? (
                         <ProfileCard
                             key={selectedUser.id}
@@ -219,201 +213,3 @@ export default function AdminDashboard() {
         </div>
     );
 }
-
-
-
-// 'use client';
-// import React, { useState, useEffect } from 'react';
-// import supabase from '../../../supabase';
-// import copy from "../../../public/images/dashboard/copy.svg";
-// import avatar from "../../../public/images/dashboard/avatar.png";
-
-// interface User {
-//     id: number;
-//     name: string;
-//     title: string;
-//     projects: number;
-//     commits: number;
-//     address: string;
-//     rewards: number;
-//     profileImgSrc: string;
-//     profileImgAlt: string;
-// }
-
-// interface ProfileProps {
-//     name: string;
-//     title: string;
-//     projects: number;
-//     commits: number;
-//     address: string;
-//     rewards: number;
-//     profileImgSrc: string;
-//     profileImgAlt: string;
-// }
-
-// const ProfileCard: React.FC<ProfileProps> = ({
-//     name,
-//     title,
-//     projects,
-//     commits,
-//     address,
-//     rewards,
-//     profileImgSrc,
-//     profileImgAlt,
-// }) => {
-//     return (
-//         <section className="grow px-4 py-4 w-full rounded-xl bg-neutral-900 max-md:mt-6 max-w-full">
-//             <div className="flex">
-//                 <figure className="flex flex-row">
-//                     <img
-//                         loading="lazy"
-//                         src={profileImgSrc}
-//                         alt={profileImgAlt}
-//                         className="grow object-cover max-md:mt-6"
-//                     />
-//                 </figure>
-//                 <div className="flex flex-col ml-2 w-9/12">
-//                     <div className="flex flex-col max-md:mt-6">
-//                         <div className="flex gap-5 px-px">
-//                             <div className="flex flex-col flex-1 mt-2">
-//                                 <h1 className="text-base font-medium font-nunito text-white">{name}</h1>
-//                                 <p className="mt-2.5 font-nunito text-xs text-white text-opacity-80">{title}</p>
-//                                 <div className="self-start justify-self-end mt-auto flex px-2 w-fit py-1.5 text-sm text-[#954AD2] rounded-md bg-neutral-950">
-//                                     <span className="sm:text-sm text-xs">{address}</span>
-//                                     <img
-//                                         loading="lazy"
-//                                         src={copy.src}
-//                                         alt="Copy address"
-//                                         className="shrink-0 self-center w-3.5 aspect-square"
-//                                     />
-//                                 </div>
-//                             </div>
-//                             <div className="flex flex-col text-xs text-white">
-//                                 <div className="justify-center px-1 text-nowrap py-2.5 rounded-md bg-neutral-950">
-//                                     Projects: <span className="text-purple-600">{projects}</span>
-//                                 </div>
-//                                 <div className="justify-center px-1 text-nowrap py-2.5 mt-2 rounded-md bg-neutral-950">
-//                                     Commits: <span className="text-purple-600">{commits}</span>
-//                                 </div>
-//                                 <div className="justify-center px-1 text-nowrap py-2.5 mt-2 rounded-md bg-neutral-950">
-//                                     Rewards: <span className="text-purple-600">{rewards}</span>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// };
-
-// export default function AdminDashboard() {
-//     const [searchTerm, setSearchTerm] = useState<string>('');
-//     const [selectedUser, setSelectedUser] = useState<User | null>(null);
-//     const [users, setUsers] = useState<User[]>([]);
-
-//     useEffect(() => {
-//         const fetchUsers = async () => {
-//             try {
-//                 const { data, error } = await supabase
-//                     .from('onboarding')
-//                     .select('*');
-
-//                 if (error) {
-//                     console.error('Error fetching users:', error.message);
-//                     return;
-//                 }
-
-//                 const usersWithDefaults = data.map((user: any) => ({
-//                     ...user,
-//                     projects: user.projects || 0,
-//                     commits: user.commits || 0,
-//                     rewards: user.rewards || 0,
-//                     profileImgSrc: user.profileImgSrc || avatar.src,
-//                     profileImgAlt: user.profileImgAlt || `Profile image of ${user.name}`,
-//                 }));
-
-//                 setUsers(usersWithDefaults);
-//             } catch (error: any) {
-//                 console.error('Error fetching users:', error.message);
-//             }
-//         };
-
-//         fetchUsers();
-//     }, []);
-
-//     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//         setSearchTerm(e.target.value);
-//         setSelectedUser(null);
-//     };
-
-//     const handleSuggestionClick = (user: User) => {
-//         setSelectedUser(user);
-//         setSearchTerm('');
-//     };
-
-//     const filteredUsers = users.filter((user) =>
-//         user.name.toLowerCase().includes(searchTerm.toLowerCase())
-//     );
-
-//     return (
-//         <div className="flex flex-col font-silkscreen p-12 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
-//             <div className="flex gap-5 max-md:flex-wrap max-md:max-w-full">
-//                 <div className="flex-auto my-auto text-3xl text-purple-300">Users</div>
-//                 <div className="relative">
-//                     <input
-//                         type="text"
-//                         value={searchTerm}
-//                         onChange={handleSearchChange}
-//                         placeholder="Search users...."
-//                         className="sm:w-[360px] bg-[#151515] font-nunito rounded-full p-4 outline-none border-none text-white"
-//                     />
-//                     {searchTerm && (
-//                         <div className="absolute top-12 right-0 left-0 text-white text-opacity-70 bg-neutral-900 rounded-md shadow-lg z-10">
-//                             {filteredUsers.map((user) => (
-//                                 <div
-//                                     key={user.id}
-//                                     onClick={() => handleSuggestionClick(user)}
-//                                     className="px-4 py-2 cursor-pointer hover:bg-neutral-800"
-//                                 >
-//                                     {user.name}
-//                                 </div>
-//                             ))}
-//                         </div>
-//                     )}
-//                 </div>
-//             </div>
-//             <div className="mt-12 flex-1 overflow-y-auto scroll-smooth">
-//                 <div className="grid lg:grid-cols-2 gap-10 mt-4">
-//                     {selectedUser ? (
-//                         <ProfileCard
-//                             key={selectedUser.id}
-//                             name={selectedUser.name}
-//                             title={selectedUser.title}
-//                             projects={selectedUser.projects}
-//                             commits={selectedUser.commits}
-//                             address={selectedUser.address}
-//                             rewards={selectedUser.rewards}
-//                             profileImgSrc={selectedUser.profileImgSrc}
-//                             profileImgAlt={selectedUser.profileImgAlt}
-//                         />
-//                     ) : (
-//                         filteredUsers.map((user) => (
-//                             <ProfileCard
-//                                 key={user.id}
-//                                 name={user.name}
-//                                 title={user.title}
-//                                 projects={user.projects}
-//                                 commits={user.commits}
-//                                 address={user.address}
-//                                 rewards={user.rewards}
-//                                 profileImgSrc={user.profileImgSrc}
-//                                 profileImgAlt={user.profileImgAlt}
-//                             />
-//                         ))
-//                     )}
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }

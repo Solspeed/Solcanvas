@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import Main from "../components/Main";
 import Projects from "../components/Projects";
 import Users from "../components/Users";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
   const [activeComponent, setActiveComponent] = useState("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const router = useRouter()
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -24,6 +27,10 @@ export default function Home() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const handleExit = () => {
+    router.push("/marketplace");
+  }
 
   return (
     <div className="flex h-screen bg-black">
@@ -61,7 +68,7 @@ export default function Home() {
               Users
             </button>
           </div>
-          <button className="self-center mb-12 text-[#954AD2]">Exit</button>
+          <button onClick={handleExit} className="self-center mb-12 text-[#954AD2]">Exit</button>
         </div>
       </div>
       <div className="flex-1 md:flex h-full relative overflow-y-auto">

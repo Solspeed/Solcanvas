@@ -237,7 +237,7 @@ const Main: React.FC = () => {
     : "";
 
   return (
-    <div className="flex flex-col font-silkscreen md:p-12 p-4 pt-14 w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
+    <div className="flex flex-col font-silkscreen md:p-12 p-4 mt-12        w-full xl:pr-[15vw] bg-black h-screen overflow-hidden">
       <main className="flex flex-col  max-md:ml-0 w-full">
         <section className="flex flex-col self-stretch max-w-full">
           <h1 className="text-3xl text-purple-300 max-w-ful font-silkscreen uppercase">
