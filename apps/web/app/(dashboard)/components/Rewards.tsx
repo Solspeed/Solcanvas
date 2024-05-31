@@ -61,7 +61,8 @@ export default function Rewards() {
     setClaimSuccess(true);
     setClaimedRewards((prev) => ({ ...prev, [rewardType]: true }));
     setTimeout(() => {
-      setSelectedButton('');
+      setClaimSuccess(false);
+      setSelectedButton('beta');
       setShowClaimedMessage(true);
     }, 3000);
   };
@@ -98,7 +99,6 @@ export default function Rewards() {
       await fetchNFT(result.assetId);
     } catch (error) {
       toast.error("Failed to mint NFT. Please try again.");
-      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -124,7 +124,7 @@ export default function Rewards() {
       console.error(error);
     }
   };
-  
+
 
   const RewardCard = ({ imageSrc, altText, claimed }:
     RewardCardProps
@@ -135,7 +135,9 @@ export default function Rewards() {
         className={`justify-center  px-12 py-4 mt-4 rounded-md bg-neutral-900 max-md:px-5 ${claimed ? 'opacity-50 cursor-not-allowed' : ''}`}
         onClick={!claimed ? mintCompressedNft : undefined}
       >
-      {loading ? <div className='inset-0 flex items-center justify-center absolute bg-black bg-opacity-70 '> <Loader /></div> : 'Claim'}
+        {loading ? <div className='inset-0 flex items-center justify-center absolute bg-black bg-opacity-70 '> <Loader /></div> :  
+        claimed ? 'Claimed' : 'Claim Reward'
+        }
       </button>
 
 
