@@ -51,7 +51,7 @@ export default function Home() {
           <a href='/marketplace' className="self-center mb-12 text-[#954AD2]">Exit</a  >
         </div>
       </div>
-      <div className="flex-1 md:flex h-full relative overflow-y-auto">
+      <div className="flex-1 md:flex  h-full relative overflow-y-auto">
         <div className="sm:hidden absolute top-5 left-5 z-50">
           <button onClick={toggleSidebar} className="text-white focus:outline-none">
             {isSidebarOpen ? (

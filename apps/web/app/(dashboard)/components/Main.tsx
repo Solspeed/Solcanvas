@@ -4,6 +4,7 @@ import upload from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
 import supabase from "../../../supabase";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { useRouter } from 'next/navigation'
 
 interface ProjectProps {
   logoImageUrl: string;
@@ -14,6 +15,8 @@ interface ProjectProps {
   liveLink?: string;
   status?: "live" | "requested" | "rejected";
 }
+
+
 
 const ProjectCard: React.FC<ProjectProps> = ({
   logoImageUrl,
@@ -26,18 +29,19 @@ const ProjectCard: React.FC<ProjectProps> = ({
 }) => {
   let statusText: React.ReactNode = "";
   let statusClass = "";
+  const router = useRouter();
+
+
+const handleClick = () => {
+  router.push(`/marketplace/${name}`)
+}
 
   switch (status) {
     case "live":
       statusText = (
-        <a
-          href={liveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-purple-300"
-        >
-          Live on “Link”
-        </a>
+        <div className="text-[#42FF00] text-sm">
+          Live on "<span onClick={handleClick} className="text-[#DCA7FB] hover:cursor-pointer"> Link</span>  "
+        </div>
       );
       statusClass = "text-purple-300";
       break;
@@ -58,7 +62,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   }
 
   return (
-    <div className="flex flex-col  grow pt-4 w-full rounded-xl bg-neutral-900">
+    <div className="flex flex-col font-nunito  grow pt-4 w-full rounded-xl bg-neutral-900">
       {status === "live" && (
         <div className="flex flex-1 justify-between gap-5 w-full ">
           <div className="flex gap-2 self-start ">
@@ -161,7 +165,7 @@ const ProjectList: React.FC<{ walletId: string }> = ({ walletId }) => {
 
   console.log("projects", projects);
   return (
-    <div className="flex flex-col grow mt-5 max-md:mt-10 max-md:max-w-full">
+    <div className="flex flex-col grow mt-5 max-md:mt-10 w-full">
       {projects.map((project, index) => (
         <div key={index} className={index > 0 ? "mt-5" : ""}>
           <ProjectCard {...project} />
@@ -202,12 +206,12 @@ const Main = () => {
   console.log("walletId", walletId);
 
   useEffect(() => {
-    let isMounted = true; // Flag to track component mount status
+    let isMounted = true;
 
     const fetchProjectCountAndUsername = async () => {
       if (!walletId) {
         setIsLoading(false);
-        return; // Exit early if walletId is not available yet
+        return;
       }
 
       setIsLoading(true);
@@ -252,24 +256,24 @@ const Main = () => {
     }
 
     return () => {
-      isMounted = false; 
+      isMounted = false;
     };
   }, [walletId]);
 
   console.log("projectCount", projectCount);
   return (
     <div
-      className="bg-black overflow-scroll font-silkscreen  scroll-smooth
+      className="bg-black overflow-scroll  font-silkscreen  scroll-smooth
      p-12 w-full flex justify-between"
     >
-      <main className="flex flex-col ml-5 max-md:ml-0 w-full">
-        <section className="flex flex-col self-stretch my-auto max-w-full">
+      <main className="flex flex-col ml-5 w-full">
+        <section className="flex flex-col self-stretch  ">
           <h1 className="text-3xl text-purple-300 max-w-full">
             Gm, {username}
           </h1>
-          <div className="mt-16 flex max-md:mt-10 max-w-full">
+          <div className="mt-16 flex max-md:mt-10 ">
             <div className="flex gap-5 flex-col max-md:gap-0">
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col max-md:ml-0 w-full">
                 <div className="max-md:mt-10 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex-col bg-stone-950 flex items-center p-7 py-8 rounded-full justify-center">
@@ -296,7 +300,7 @@ const Main = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
+              <div className="flex flex-col max-md:ml-0">
                 <ProjectList walletId={walletId} />
               </div>
             </div>
