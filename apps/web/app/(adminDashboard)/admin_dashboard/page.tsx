@@ -26,11 +26,11 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-black">
       <div
-        className={`fixed top-0 left-0 h-full bg-[#0A0A0A] z-40 transition-transform duration-300 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} sm:relative sm:translate-x-0`}
+        className={`fixed top-0 left-0 h-full bg-[#0A0A0A] z-40 transition-transform duration-300 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:relative lg:translate-x-0`}
       >
-        <div className="sm:flex font-silkscreen h-full flex-col justify-between">
+        <div className="lg:flex font-silkscreen h-full flex-col justify-between">
           <div className="flex flex-col grow px-9 pt-14 pb-9 w-full text-base whitespace-nowrap">
             <div className="text-xl text-[#954AD2] font-bold">Solcavas</div>
             <button
