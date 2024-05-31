@@ -7,6 +7,7 @@ import Recommendation from "./components/Recommendation";
 import Footer from "./components/Footer";
 import Balance from "./components/Balance";
 import Transactions from "./components/Transactions";
+import heliusApiUrl from "../constant";
 
 interface PageContentState {
   isWalletClicked: boolean;

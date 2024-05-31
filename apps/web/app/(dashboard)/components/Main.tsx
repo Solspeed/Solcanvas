@@ -182,9 +182,8 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({
     <div className="flex flex-col items-start py-4 pr-20 pl-3 w-full rounded-xl bg-neutral-900 max-md:pr-5 max-md:mt-10">
       <div className="text-sm text-white">{label}</div>
       <div
-        className={`mt-11 text-4xl font-bold max-md:mt-10 ${
-          label === "Your Rewards" ? "text-orange-600" : "text-purple-600"
-        }`}
+        className={`mt-11 text-4xl font-bold max-md:mt-10 ${label === "Your Rewards" ? "text-orange-600" : "text-purple-600"
+          }`}
       >
         {value}
       </div>
@@ -276,9 +275,15 @@ const Main = () => {
                     </div>
                     <div className="flex flex-col ml-5 w-[82%] max-md:ml-0 max-md:w-full">
                       <div className="flex gap-2.5 self-stretch p-3 my-auto w-full text-sm text-red-600 whitespace-nowrap rounded-md bg-stone-950 max-md:flex-wrap max-md:mt-10">
-                        <div className="flex-auto max-md:max-w-full">
-                          {walletId}
-                        </div>
+                        {walletId ? (
+                          <div className="flex-auto max-md:max-w-full">
+                            {walletId}
+                          </div>) : (
+                          <div className="flex-auto max-md:max-w-full">
+                            Connect your wallet to see your wallet address
+                          </div>
+                        )}
+
                         <img
                           src={copyIcon.src}
                           alt="Copy icon"

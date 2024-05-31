@@ -50,6 +50,11 @@ export default function Team(): JSX.Element {
     }
   };
 
+  const handlePreviousClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();   
+    router.push('/addproject/banner');
+  };
+  
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number, field: keyof Member): void => {
     const { value } = event.target;
     setMembers((prevMembers) => {
@@ -64,6 +69,12 @@ export default function Team(): JSX.Element {
   const addMember = (): void => {
     setMembers((prevMembers) => [...prevMembers, { name: '', github: '', twitter: '', image: null }]);
   };
+
+  //remove last added member
+  const removeMember = (): void => {
+    if (members.length === 1) return;
+    setMembers((prevMembers) => prevMembers.slice(0, prevMembers.length - 1));
+  }
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -151,10 +162,16 @@ export default function Team(): JSX.Element {
       <div className="justify-center text-center items-center self-center px-16 py-4 mt-12 w-full text-xl font-medium tracking-wide leading-8 bg-[#DCA7FB] rounded-xl border border-dashed border-white border-opacity-30 max-w-[879px] text-black text-opacity-80 max-md:px-5 max-md:mt-10 cursor-pointer" onClick={addMember}>
         Add Another Member
       </div>
+      <div className="justify-center text-center items-center self-center px-16 py-4 mt-4 w-full text-xl font-medium tracking-wide leading-8 bg-[#DCA7FB] rounded-xl border border-dashed border-white border-opacity-30 max-w-[879px] text-black text-opacity-80 max-md:px-5 max-md:mt-10 cursor-pointer" onClick={removeMember}>
+        Remove  Member
+      </div>
       <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-20 mt-10 max-w-full">
-        <a href="/addproject/banner" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
-          <div>Back</div>
-        </a>
+      <button
+            onClick={handlePreviousClick}
+            className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
+          >
+            <div>Back</div>
+          </button>
         <button type="submit" className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-4 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]">
           <div>Next</div>
           <Image alt="" src={next} width={12} height={12} className="shrink-0 aspect-[0.76] stroke-white" />

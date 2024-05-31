@@ -23,6 +23,11 @@ export default function Categories() {
   const handleNextClick = () => {
     router.push("/addproject/banner");
   };
+
+  const handlePreviousClick = () => {
+    router.push("/addproject/");
+  };
+  
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value);
   };
@@ -67,7 +72,6 @@ export default function Categories() {
           <option value="" disabled selected>
             Select
           </option>
-          <option value="Analytics">Analytics</option>
           <option value="Step Finance">Step Finance</option>
           <option value="Hello Moon">Hello Moon</option>
           <option value="Cex">Cex</option>
@@ -97,12 +101,12 @@ export default function Categories() {
           <option value="Others">Others</option>
         </select>
         <div className="flex gap-5 justify-between w-full text-[16px] font-medium tracking-wide leading-7 whitespace-nowrap flex-wrap sm:mt-36 mt-20 max-w-full">
-          <a
-            href="/addproject/team"
+          <button
+              onClick={handlePreviousClick}
             className="flex gap-5 font-nunito justify-between items-center sm:-mr-12 px-8 py-2 text-white text-opacity-80 bg-[#954AD2] rounded-[15px]"
           >
             <div>Back</div>
-          </a>
+          </button>
           <button
             type="submit"
             onClick={handleNextClick}
@@ -110,8 +114,6 @@ export default function Categories() {
           >
           
             <div>Next</div>
-       
-           
             <Image
               alt=""
               width={100}
