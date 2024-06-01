@@ -4,14 +4,13 @@ import uploadIcon from "../../../public/images/dashboard/cloud.svg";
 import copyIcon from "../../../public/images/dashboard/copy.svg";
 import { useWallet } from "@solana/wallet-adapter-react";
 import supabase from "../../../supabase";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 interface ProjectProps {
   logoImageUrl: string;
   name: string;
   tagline: string;
   views?: number;
-  // commits?: number;
   liveLink?: string;
   status?: "live" | "requested" | "rejected";
 }
@@ -21,7 +20,6 @@ const ProjectCard: React.FC<ProjectProps> = ({
   name,
   tagline,
   views,
-  // commits,
   liveLink,
   status,
 }) => {
@@ -30,14 +28,14 @@ const ProjectCard: React.FC<ProjectProps> = ({
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/marketplace/${name}`)
-  }
+    router.push(`/marketplace/${name}`);
+  };
 
   switch (status) {
     case "live":
       statusText = (
         <div className="text-[#42FF00] text-sm">
-          Live on "<span onClick={handleClick} className="text-[#DCA7FB] hover:cursor-pointer"> Link</span>  "
+          Live on "<span onClick={handleClick} className="text-[#DCA7FB] hover:cursor-pointer"> Link</span>"
         </div>
       );
       statusClass = "text-purple-300";
@@ -59,10 +57,10 @@ const ProjectCard: React.FC<ProjectProps> = ({
   }
 
   return (
-    <div className="flex flex-col w-full font-nunito pt-4  rounded-xl bg-neutral-900">
+    <div className="flex flex-col w-full font-nunito pt-4 rounded-xl bg-neutral-900">
       {status === "live" && (
-        <div className="flex flex-1 justify-between gap-5 w-full ">
-          <div className="flex gap-2 self-start ">
+        <div className="flex flex-1 justify-between gap-5 w-full">
+          <div className="flex gap-2 self-start">
             <img
               src={logoImageUrl}
               alt={name}
@@ -75,24 +73,10 @@ const ProjectCard: React.FC<ProjectProps> = ({
               </div>
             </div>
           </div>
-          <div className="flex font-silkscreen gap-5 mt-auto sm:mr-6">
-            {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
-                <div className="text-xs text-white">Views</div>
-                <div className="mt-3 text-xl font-bold text-purple-300">
-                  {views}
-                </div>
-              </div> */}
-            {/* <div className="flex flex-col py-1 pr-6 pl-2 items-start rounded-t-md bg-stone-950">
-                <div className="text-xs text-white">Commits</div>
-                <div className="mt-3 text-xl font-bold text-purple-300">
-                  {commits}
-                </div>
-              </div> */}
-          </div>
         </div>
       )}
       {status !== "live" && (
-        <div className="flex gap-2 self-start ">
+        <div className="flex gap-2 self-start">
           <img
             src={logoImageUrl}
             alt={tagline}
@@ -140,7 +124,7 @@ const ProjectList: React.FC<{ walletId: string }> = ({ walletId }) => {
         if (error) {
           console.error("Error fetching projects:", error.message);
         } else if (isMounted) {
-          setProjects(data || []); // Set projects state or an empty array if no data
+          setProjects(data || []);
         }
       } catch (error: any) {
         console.error("Error fetching projects:", error.message);
@@ -152,7 +136,7 @@ const ProjectList: React.FC<{ walletId: string }> = ({ walletId }) => {
     };
 
     if (walletId) {
-      fetchProjects(); // Fetch projects when walletId is available
+      fetchProjects();
     }
 
     return () => {
@@ -160,7 +144,6 @@ const ProjectList: React.FC<{ walletId: string }> = ({ walletId }) => {
     };
   }, [walletId]);
 
-  console.log("projects", projects);
   return (
     <div className="flex flex-col grow mt-5 max-md:mt-10 w-full">
       {projects.map((project, index) => (
@@ -183,8 +166,9 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({
     <div className="flex flex-col items-start py-4 pl-3 w-full rounded-xl bg-neutral-900 max-md:pr-5 max-md:mt-10">
       <div className="text-sm text-white">{label}</div>
       <div
-        className={`mt-11 text-4xl font-bold max-md:mt-10 ${label === "Your Rewards" ? "text-orange-600" : "text-purple-600"
-          }`}
+        className={`mt-11 text-4xl font-bold max-md:mt-10 ${
+          label === "Your Rewards" ? "text-orange-600" : "text-purple-600"
+        }`}
       >
         {value}
       </div>
@@ -202,17 +186,40 @@ const Main = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   const walletId = publicKey?.toString() || "";
-  console.log("walletId", walletId);
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setUploadedImage(reader.result as string);
-    };
-    reader.readAsDataURL(file);
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${walletId}-${Date.now()}.${fileExt}`;
+    const filePath = `${fileName}`;
+
+    let { error: uploadError, data: uploadData } = await supabase.storage
+      .from("user_image")
+      .upload(filePath, file);
+
+    if (uploadError) {
+      console.error("Error uploading image:", uploadError.message);
+      return;
+    }
+
+    const imageUrl = `${supabase.storage
+      .from("user_image")
+      .getPublicUrl(filePath).data.publicUrl}`;
+
+    const { data, error } = await supabase
+      .from("onboarding")
+      .update({ user_image: imageUrl })
+      .eq("wallet_id", walletId);
+
+    if (error) {
+      console.error("Error updating user image URL:", error.message);
+    } else {
+      setUploadedImage(imageUrl);
+    }
   };
 
   const handleCopyAddress = () => {
@@ -238,7 +245,6 @@ const Main = () => {
       setIsLoading(true);
 
       try {
-        // Fetch project count from project_listing table
         const { data, count, error } = await supabase
           .from("project_listing")
           .select("*", { count: "exact" })
@@ -247,21 +253,21 @@ const Main = () => {
         if (error) {
           console.error("Error fetching project count:", error.message);
         } else if (isMounted) {
-          setProjectCount(count || 0); // Default to 0 if count is undefined
-          setRewards(count !== null && count > 0 ? 1 : 0); // Set rewards based on project count
+          setProjectCount(count || 0);
+          setRewards(count !== null && count > 0 ? 1 : 0);
         }
 
-        // Fetch username from onboarding table
         const { data: onboardingData, error: onboardingError } = await supabase
           .from("onboarding")
-          .select("name")
+          .select("name, user_image")
           .eq("wallet_id", walletId)
           .single();
 
         if (onboardingError) {
           console.error("Error fetching username:", onboardingError.message);
         } else if (isMounted && onboardingData) {
-          setUsername(onboardingData.name); // Set username from the onboarding table
+          setUsername(onboardingData.name);
+          setUploadedImage(onboardingData.user_image);
         }
       } catch (error: any) {
         console.error("Error fetching data:", error.message);
@@ -283,11 +289,12 @@ const Main = () => {
 
   const truncatedWalletId = walletId
     ? walletId.length > 10
-      ? `${walletId.substring(0, 6)}...${walletId.substring(walletId.length - 4)}`
+      ? `${walletId.substring(0, 6)}...${walletId.substring(
+          walletId.length - 4
+        )}`
       : walletId
     : "";
 
-  console.log("projectCount", projectCount);
   return (
     <div
       className="bg-black overflow-y-scroll overflow-x-hidden font-silkscreen scroll-smooth
@@ -305,9 +312,17 @@ const Main = () => {
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex-col flex shrink-0 bg-stone-950 items-center sm:w-44 w-24 h-24 sm:h-44 p-2 rounded-full justify-center relative">
                       {!uploadedImage ? (
-                        <img src={uploadIcon.src} alt="User avatar" className="w-16 h-16 object-fit rounded-full" />
+                        <img
+                          src={uploadIcon.src}
+                          alt="User avatar"
+                          className="w-16 h-16 object-fit rounded-full"
+                        />
                       ) : (
-                        <img src={uploadedImage ?? ''} alt="Uploaded" className="w-full  h-full object-cover rounded-full" />
+                        <img
+                          src={uploadedImage ?? ""}
+                          alt="Uploaded"
+                          className="w-full  h-full object-cover rounded-full"
+                        />
                       )}
                       <input
                         type="file"
@@ -326,7 +341,8 @@ const Main = () => {
                             <div className="hidden sm:block flex-auto max-md:max-w-full">
                               {walletId}
                             </div>
-                          </>) : (
+                          </>
+                        ) : (
                           <div className="flex-auto max-md:max-w-full">
                             Connect your wallet to see your wallet address
                           </div>
@@ -351,9 +367,6 @@ const Main = () => {
               <div className="flex flex-col sm:ml-5 ml-0 w-full">
                 <StatCard label="Your Rewards" value={rewards} />
               </div>
-              {/* <div className="flex flex-col sm:ml-5 ml-0 w-full">
-                  <StatCard label="Your Commits" value={13} />
-                </div> */}
             </div>
           </div>
         </section>
