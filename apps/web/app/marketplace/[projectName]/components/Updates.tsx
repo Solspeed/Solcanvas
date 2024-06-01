@@ -36,12 +36,12 @@ export default function Updates() {
 
       setFormData((prevData) => ({
         ...prevData,
-        projectUpdates: projectUpdates.sort((a, b) => new Date(b.date) - new Date(a.date)),
+        projectUpdates: projectUpdates.sort((a:any, b:any) => new Date(b.date).getTime() - new Date(a.date).getTime()),
       }));
     };
 
     fetchProjectUpdates();
-  }, [setFormData]); 
+  }, [setFormData]);
 
   const handleSeeAllUpdatesClick = () => {
     setShowAllUpdates(!showAllUpdates);
@@ -99,6 +99,11 @@ export default function Updates() {
     }
 
     console.log("Project updated successfully:", updatedData);
+
+    setFormData((prevData) => ({
+      ...prevData,
+      projectUpdates: [newUpdate, ...prevData.projectUpdates],
+    }));
 
     setNewUpdateText("");
     setShowInput(false);
