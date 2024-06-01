@@ -55,7 +55,7 @@ const ProfileCard: React.FC<ProfileProps> = ({
                 <div className="flex w-[99px] items-center justify-center flex-row">
                     <img
                         loading="lazy"
-                        src={avatar.src}
+                        src={logoImageUrl || avatar.src}
                         alt={profileImgAlt}
                         className="grow object-cover rounded-full"
                     />
@@ -113,22 +113,37 @@ export default function AdminDashboard() {
                     return;
                 }
 
-                const usersWithProjects = await Promise.all(data.map(async (user: any) => {
-                    const { data: projectData, error: projectError } = await supabase
+                const usersWithDetails = await Promise.all(data.map(async (user: any) => {
+                    const { count: projectCount, error: projectError } = await supabase
                         .from('project_listing')
                         .select('*', { count: 'exact' })
-                        .eq('username', user.username)
-                        .single();
+                        .eq('username', user.username);
 
                     if (projectError) {
                         console.error("Error fetching projects for user:", user.username, projectError.message);
-                        return { ...user, projects: 0 };
+                        return { ...user, projects: 0, logoImageUrl: '', profileImgAlt: user.username };
                     }
 
-                    return { ...user, projects: projectData.count || 0 };
+                    const { data: onboardingData, error: onboardingError } = await supabase
+                        .from('onboarding')
+                        .select('user_image')
+                        .eq('wallet_id', user.wallet_id)
+                        .single();
+
+                    if (onboardingError) {
+                        console.error("Error fetching user image for user:", user.username, onboardingError.message);
+                        return { ...user, projects: projectCount || 0, logoImageUrl: '', profileImgAlt: user.username };
+                    }
+
+                    return { 
+                        ...user, 
+                        projects: projectCount || 0,
+                        logoImageUrl: onboardingData?.user_image || avatar.src,
+                        profileImgAlt: user.username 
+                    };
                 }));
 
-                setUsers(usersWithProjects);
+                setUsers(usersWithDetails);
             } catch (error: any) {
                 console.error("Error fetching users:", error.message);
             }
